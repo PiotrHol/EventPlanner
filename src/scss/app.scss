@@ -2,4 +2,14 @@
 
 body {
   background-color: $bgColor;
+  font-family: 'Vollkorn', serif;
+}
+
+.appContainer {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 15px;
+  @include mediaTablet {
+    padding: 0 30px;
+  }
 }
