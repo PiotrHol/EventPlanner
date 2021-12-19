@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import "./scss/logBox.scss";
-import {validation} from "./validation";
-import logo from './images/logo.png'
+import "./logBox.scss";
+import {validation} from "../validation";
+import logo from "../images/logo.png"
 import { getFirestore } from "firebase/firestore"
 import { doc, setDoc } from "firebase/firestore";
 

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import "./scss/app.scss";
-import appBase from "./firebase";
+import "./app.scss";
+import appBase from "../firebase";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
-import {LogBox} from "./LogBox";
-import {Home} from "./Home";
+import {LogBox} from "../LogBox/LogBox";
+import {Home} from "../Home/Home";
 
 const App = () => {
     const [isUser, setIsUser] = useState(false);
