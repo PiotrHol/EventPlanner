@@ -1,30 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import "./app.scss";
 import appBase from "../firebase";
-import {getAuth, onAuthStateChanged} from "firebase/auth";
+import {useUserStatus} from "../useUserStatus";
 import {LogBox} from "../LogBox/LogBox";
 import {Home} from "../Home/Home";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 const App = () => {
-    const [isUser, setIsUser] = useState(false);
-    const [userId, setUserId] = useState("");
-
-    useEffect(() => {
-        onAuthStateChanged(getAuth(), (user) => {
-            if (user) {
-                setUserId(user.uid);
-                setIsUser(true);
-            } else {
-                setUserId("");
-                setIsUser(false);
-            }
-        });
-    }, [userId]);
+    const {isLogIn, userId} = useUserStatus();
 
     return (
-        <div className="appContainer">
-            {!isUser ? <LogBox setUser={(user) => setUserId(user)}/> : <Home user={userId} removeUser={() => setUserId("")}/>}
-        </div>
+        <BrowserRouter>
+            <div className="appContainer">
+                <Switch>
+                    <Route exact path="/">
+                        {isLogIn ? <Home user={userId} /> : <Redirect to="/login" />}
+                    </Route>
+                    <Route path="/login">
+                        {!isLogIn ? <LogBox /> : <Redirect to="/" />}
+                    </Route>
+                </Switch>
+            </div>
+        </BrowserRouter>
     );
 }
 

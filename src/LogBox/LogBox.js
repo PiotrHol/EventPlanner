@@ -4,10 +4,10 @@ import {validation} from "../validation";
 import logo from "../images/logo.png"
 import { getFirestore } from "firebase/firestore"
 import { doc, setDoc } from "firebase/firestore";
-
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useHistory } from "react-router-dom";
 
-export const LogBox = ({setUser}) => {
+export const LogBox = () => {
     const [newUserForm, setNewUserForm] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ export const LogBox = ({setUser}) => {
     const [wrongAgainPasswordMessage, setWrongAgainPasswordMessage] = useState("");
     const [loginInError, setLogInError] = useState(false);
     const [loginInErrorMessage, setLogInErrorMessage] = useState("");
+    const routeHistory = useHistory();
 
     const formChanger = event => {
         event.preventDefault();
@@ -33,8 +34,8 @@ export const LogBox = ({setUser}) => {
         event.preventDefault();
         signInWithEmailAndPassword(getAuth(), email, password)
             .then((userCredential) => {
-                setUser(userCredential.user.uid);
                 setLogInError(false);
+                routeHistory.push("/");
             })
             .catch((error) => {
                 setLogInError(true);
@@ -61,12 +62,12 @@ export const LogBox = ({setUser}) => {
         }
         createUserWithEmailAndPassword(getAuth(), email, password)
             .then((userCredential) => {
-                setUser(userCredential.user.uid);
                 setLogInError(false);
                 setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
                     events: [],
                     archive: []
                 });
+                routeHistory.push("/");
             })
             .catch((error) => {
                 setLogInError(true);
