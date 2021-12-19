@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import "./scss/logBox.scss";
 import {validation} from "./validation";
 import logo from './images/logo.png'
+import { getFirestore } from "firebase/firestore"
+import { doc, setDoc } from "firebase/firestore";
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
@@ -31,7 +33,7 @@ export const LogBox = ({setUser}) => {
         event.preventDefault();
         signInWithEmailAndPassword(getAuth(), email, password)
             .then((userCredential) => {
-                setUser(userCredential.user);
+                setUser(userCredential.user.uid);
                 setLogInError(false);
             })
             .catch((error) => {
@@ -59,9 +61,12 @@ export const LogBox = ({setUser}) => {
         }
         createUserWithEmailAndPassword(getAuth(), email, password)
             .then((userCredential) => {
-                setUser(userCredential.user);
+                setUser(userCredential.user.uid);
                 setLogInError(false);
-            //    Dodać użytkownika do bazy danych
+                setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
+                    events: [],
+                    archive: []
+                });
             })
             .catch((error) => {
                 setLogInError(true);
