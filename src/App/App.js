@@ -7,17 +7,17 @@ import {Home} from "../Home/Home";
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 
 const App = () => {
-    const {isLogIn, userId} = useUserStatus();
+    const {isLogIn} = useUserStatus();
 
     return (
         <BrowserRouter>
             <div className="appContainer">
                 <Switch>
-                    <Route exact path="/">
-                        {isLogIn ? <Home user={userId} /> : <Redirect to="/login" />}
+                    <Route path="/home">
+                        {isLogIn ? <Home /> : <Redirect to="/" />}
                     </Route>
-                    <Route path="/login">
-                        {!isLogIn ? <LogBox /> : <Redirect to="/" />}
+                    <Route exact path="/">
+                        {!isLogIn ? <LogBox /> : <Redirect to="/home" />}
                     </Route>
                 </Switch>
             </div>

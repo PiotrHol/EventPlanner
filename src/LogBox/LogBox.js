@@ -42,7 +42,7 @@ export const LogBox = () => {
         setPersistence(auth, browserSessionPersistence).then(() => {
             return signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
-                    routeHistory.push("/");
+                    routeHistory.push("/home");
                 })
                 .catch((error) => {
                     setLogInError(true);
@@ -75,7 +75,7 @@ export const LogBox = () => {
                         events: [],
                         archive: []
                     });
-                    routeHistory.push("/");
+                    routeHistory.push("/home");
                 })
                 .catch((error) => {
                     setLogInError(true);
