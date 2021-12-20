@@ -2,10 +2,16 @@ import React, {useState} from "react";
 import "./logBox.scss";
 import {validation} from "../validation";
 import logo from "../images/logo.png"
-import { getFirestore } from "firebase/firestore"
-import { doc, setDoc } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { useHistory } from "react-router-dom";
+import {getFirestore} from "firebase/firestore"
+import {doc, setDoc} from "firebase/firestore";
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    setPersistence,
+    browserSessionPersistence
+} from "firebase/auth";
+import {useHistory} from "react-router-dom";
 
 export const LogBox = () => {
     const [newUserForm, setNewUserForm] = useState(false);
@@ -17,6 +23,7 @@ export const LogBox = () => {
     const [wrongAgainPasswordMessage, setWrongAgainPasswordMessage] = useState("");
     const [loginInError, setLogInError] = useState(false);
     const [loginInErrorMessage, setLogInErrorMessage] = useState("");
+    const auth = getAuth();
     const routeHistory = useHistory();
 
     const formChanger = event => {
@@ -32,15 +39,16 @@ export const LogBox = () => {
 
     const handleLogBtn = event => {
         event.preventDefault();
-        signInWithEmailAndPassword(getAuth(), email, password)
-            .then((userCredential) => {
-                setLogInError(false);
-                routeHistory.push("/");
-            })
-            .catch((error) => {
-                setLogInError(true);
-                setLogInErrorMessage("Niepoprawne dane");
-            });
+        setPersistence(auth, browserSessionPersistence).then(() => {
+            return signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    routeHistory.push("/");
+                })
+                .catch((error) => {
+                    setLogInError(true);
+                    setLogInErrorMessage("Niepoprawne dane");
+                });
+        });
     }
 
     const handleNewUserBtn = event => {
@@ -60,19 +68,20 @@ export const LogBox = () => {
             setWrongAgainPasswordMessage(errorRepeatedPasswordMessage);
             return;
         }
-        createUserWithEmailAndPassword(getAuth(), email, password)
-            .then((userCredential) => {
-                setLogInError(false);
-                setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
-                    events: [],
-                    archive: []
+        setPersistence(auth, browserSessionPersistence).then(() => {
+            return createUserWithEmailAndPassword(getAuth(), email, password)
+                .then((userCredential) => {
+                    setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
+                        events: [],
+                        archive: []
+                    });
+                    routeHistory.push("/");
+                })
+                .catch((error) => {
+                    setLogInError(true);
+                    setLogInErrorMessage("Wystąpił błąd. Sprubuj ponownie");
                 });
-                routeHistory.push("/");
-            })
-            .catch((error) => {
-                setLogInError(true);
-                setLogInErrorMessage("Wystąpił błąd. Sprubuj ponownie");
-            });
+        });
     }
 
     return (
@@ -91,7 +100,8 @@ export const LogBox = () => {
                 <p className="logBox--wrongInput">{wrongPasswordMessage}</p>
                 {newUserForm && (
                     <>
-                        <p className="logBox--infoBox">Hasło powinno mieć:<br/>min. 8 znaków, 1 dużą literę,<br/>1 cyfrę i 1 znak specjalny</p>
+                        <p className="logBox--infoBox">Hasło powinno mieć:<br/>min. 8 znaków, 1 dużą literę,<br/>1 cyfrę
+                            i 1 znak specjalny</p>
                         <p>Potwierdź hasło:</p>
                         <input type="password" value={repeatPassword}
                                onChange={event => setRepeatPassword(event.target.value)}/>
