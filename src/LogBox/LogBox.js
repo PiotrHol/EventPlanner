@@ -11,7 +11,6 @@ import {
     setPersistence,
     browserSessionPersistence
 } from "firebase/auth";
-import {useHistory} from "react-router-dom";
 
 export const LogBox = () => {
     const [newUserForm, setNewUserForm] = useState(false);
@@ -24,7 +23,6 @@ export const LogBox = () => {
     const [loginInError, setLogInError] = useState(false);
     const [loginInErrorMessage, setLogInErrorMessage] = useState("");
     const auth = getAuth();
-    const routeHistory = useHistory();
 
     const formChanger = event => {
         event.preventDefault();
@@ -41,9 +39,7 @@ export const LogBox = () => {
         event.preventDefault();
         setPersistence(auth, browserSessionPersistence).then(() => {
             return signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    routeHistory.push("/home");
-                })
+                .then()
                 .catch((error) => {
                     setLogInError(true);
                     setLogInErrorMessage("Niepoprawne dane");
@@ -74,8 +70,7 @@ export const LogBox = () => {
                     setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
                         events: [],
                         archive: []
-                    });
-                    routeHistory.push("/home");
+                    }).then();
                 })
                 .catch((error) => {
                     setLogInError(true);

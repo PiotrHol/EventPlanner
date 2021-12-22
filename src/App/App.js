@@ -19,6 +19,9 @@ const App = () => {
                     <Route exact path="/">
                         {!isLogIn ? <LogBox /> : <Redirect to="/home" />}
                     </Route>
+                    <Route path="*">
+                        <Redirect to="/" />
+                    </Route>
                 </Switch>
             </div>
         </BrowserRouter>
