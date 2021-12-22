@@ -2,24 +2,18 @@ import {useState, useEffect} from "react";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 
 export function useUserStatus() {
-    const [isLogIn, setIsLogIn] = useState(null);
-    const [userId, setUserId] = useState(null);
+    const [checkAuth, setCheckAuth] = useState({isLogIn: false, userId: ""});
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
             if (user) {
-                setUserId(user.uid);
-                setIsLogIn(true);
+                setCheckAuth({isLogIn: true, userId: user.uid});
             } else {
-                setUserId("");
-                setIsLogIn(false);
+                setCheckAuth({isLogIn: false, userId: ""});
             }
         });
         return () => unsubscribe();
     },[]);
 
-    return {
-        isLogIn,
-        userId
-    }
+    return checkAuth;
 }
