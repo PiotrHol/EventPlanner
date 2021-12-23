@@ -1,0 +1,188 @@
+@import "../scss/main";
+
+.homePage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 5px 0 $shadowColor;
+
+  .homePage--header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $mainGradient;
+
+    .homePage--logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+
+      @include mediaDesktop {
+        margin-left: 20px;
+      }
+
+      img {
+        width: 50px;
+
+        @include mediaTablet {
+          width: 60px;
+        }
+
+        @include mediaDesktop {
+          width: 80px;
+        }
+      }
+
+      h1 {
+        font-family: 'Bungee', cursive;
+        font-size: 24px;
+
+        @include mediaTablet {
+          font-size: 28px;
+        }
+
+        @include mediaDesktop {
+          font-size: 30px;
+        }
+
+        @include mediaMax {
+          font-size: 32px;
+        }
+      }
+    }
+
+    .homePage--menuIcon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      position: relative;
+      margin-right: 15px;
+      cursor: pointer;
+
+      .homePage--navIcon {
+        display: block;
+        background-color: $bgColor;
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        top: 12px;
+        transition: background 0.2s ease-out;
+
+        &::before, &::after {
+          content: "";
+          display: block;
+          background-color: $bgColor;
+          width: 100%;
+          height: 4px;
+          position: absolute;
+          transition: all 0.2s ease-out;
+        }
+
+        &::before {
+          top: -12px;
+        }
+
+        &::after {
+          top: 12px;
+        }
+      }
+
+      @include mediaHeader{
+        display: none;
+      }
+    }
+
+    .homePage--menuBtn {
+      display: none;
+
+      &:checked ~ .homePage--menuIcon span {
+        background: transparent;
+      }
+
+      &:checked ~ .homePage--menuIcon span::before {
+        transform: rotate(45deg);
+        top: 0;
+      }
+
+      &:checked ~ .homePage--menuIcon span::after {
+        transform: rotate(-45deg);
+        top: 0;
+      }
+
+      &:checked ~ .homePage--nav {
+        display: block;
+      }
+    }
+
+    .homePage--nav {
+      display: none;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 70px;
+      background: $bgColor;
+
+      @include mediaTablet {
+        top: 80px;
+      }
+
+      @include mediaHeader {
+        display: block;
+        position: static;
+        width: auto;
+        background: transparent;
+      }
+
+      ul {
+        @include mediaHeader {
+          display: flex;
+          margin-right: 15px;
+        }
+
+        li {
+          text-transform: uppercase;
+          font-family: 'Bungee', cursive;
+          font-size: 16px;
+          padding: 10px;
+          border-bottom: 2px solid $borderColor;
+          cursor: pointer;
+
+          @include mediaTablet {
+            font-size: 18px;
+          }
+
+          @include mediaHeader {
+            border: none;
+            margin-right: 10px;
+
+            &:hover {
+              background: $whiteColor;
+              color: $textColor;
+              border-radius: 10px;
+            }
+          }
+
+          @include mediaDesktop {
+            padding: 10px;
+            margin-right: 15px;
+          }
+
+          @include mediaMax {
+            font-size: 20px;
+            padding: 20px 20px;
+            margin: 0 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .homePage--main {
+    flex-grow: 1;
+    border: 1px solid $borderColor;
+    background-color: $whiteColor;
+  }
+}

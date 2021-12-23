@@ -10,9 +10,9 @@
 }
 
 .logBox {
-  width: 100%;
+  width: 95%;
   background-color: white;
-  margin-top: calc(100vh / 5);
+  margin: calc(100vh / 5) auto 0;
   box-shadow: 3px 3px 10px 0 $shadowColor;
   border-radius: 5px 5px 0 0;
   animation: show 1s ease-out;

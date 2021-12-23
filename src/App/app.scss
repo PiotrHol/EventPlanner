@@ -8,8 +8,13 @@ body {
 .appContainer {
   max-width: 1366px;
   margin: 0 auto;
-  padding: 0 15px;
-  @include mediaTablet {
-    padding: 0 30px;
+}
+
+a {
+  text-decoration: none;
+  color: $colorBlack;
+
+  &:focus {
+    outline: none;
   }
 }
