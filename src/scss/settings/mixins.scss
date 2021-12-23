@@ -4,6 +4,12 @@
   }
 }
 
+@mixin mediaHeader {
+  @media (min-width: 660px) {
+    @content;
+  }
+}
+
 @mixin mediaDesktop {
   @media (min-width: 768px) {
     @content;
