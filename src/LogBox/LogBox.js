@@ -40,7 +40,7 @@ export const LogBox = () => {
         setPersistence(auth, browserSessionPersistence).then(() => {
             return signInWithEmailAndPassword(auth, email, password)
                 .then()
-                .catch((error) => {
+                .catch(() => {
                     setLogInError(true);
                     setLogInErrorMessage("Niepoprawne dane");
                 });
@@ -68,11 +68,10 @@ export const LogBox = () => {
             return createUserWithEmailAndPassword(getAuth(), email, password)
                 .then((userCredential) => {
                     setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
-                        events: [],
-                        archive: []
+                        id: userCredential.user.uid
                     }).then();
                 })
-                .catch((error) => {
+                .catch(() => {
                     setLogInError(true);
                     setLogInErrorMessage("Wystąpił błąd. Sprubuj ponownie");
                 });
@@ -81,7 +80,7 @@ export const LogBox = () => {
 
     return (
         <div className="logBox">
-            <div className="logBox--bar"></div>
+            <div className="logBox--bar"/>
             <div className="logBox--logo">
                 <img src={logo} alt="Event planner logo"/>
                 <h1>Event<br/>Planner</h1>
