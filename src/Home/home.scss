@@ -184,5 +184,12 @@
     flex-grow: 1;
     border: 1px solid $borderColor;
     background-color: $whiteColor;
+    padding: 20px;
+    overflow-y: auto;
+    font-family: 'Vollkorn', serif;
+
+    @include mediaDesktop {
+      padding: 20px 50px;
+    }
   }
 }

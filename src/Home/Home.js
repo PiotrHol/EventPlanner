@@ -4,6 +4,7 @@ import {getAuth, signOut} from "firebase/auth";
 import {Link, Route, Switch, useRouteMatch} from "react-router-dom";
 import {useUserStatus} from "../useUserStatus";
 import logo from "../images/navLogo.png";
+import {Events} from "../Events/Events";
 
 export const Home = () => {
     const {userId} = useUserStatus();
@@ -28,7 +29,7 @@ export const Home = () => {
                 </div>
                 <input className="homePage--menuBtn" id="homePage--menuBtn" type="checkbox" checked={showMenu} onChange={handleShowMenu}/>
                 <label className="homePage--menuIcon" htmlFor="homePage--menuBtn">
-                    <span className="homePage--navIcon"></span>
+                    <span className="homePage--navIcon"/>
                 </label>
                 <nav className="homePage--nav">
                     <ul>
@@ -46,7 +47,7 @@ export const Home = () => {
                 <Switch>
                     <Route exact path={path}>
                         {/*{isLogIn ? <p>Events component</p> : <Redirect to="/" />}*/}
-                        <p className="temp">Events component</p>
+                        <Events user={userId}/>
                     </Route>
                     <Route path={`${path}/archives`}>
                         {/*{isLogIn ? <p>Archives component</p>: <Redirect to="/" />}*/}
