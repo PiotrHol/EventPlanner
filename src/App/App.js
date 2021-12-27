@@ -1,5 +1,6 @@
 import React from "react";
 import "./app.scss";
+// eslint-disable-next-line
 import appBase from "../firebase";
 import {useUserStatus} from "../useUserStatus";
 import {LogBox} from "../LogBox/LogBox";
