@@ -1,7 +1,8 @@
 import isEmail from "validator/es/lib/isEmail";
 import isStrongPassword from "validator/es/lib/isStrongPassword";
+import isEmpty from "validator/es/lib/isEmpty";
 
-export const validation = (email, password, repeatedPassword) => {
+const validation = (email, password, repeatedPassword) => {
     let isValidate = true;
     let errorLoginMessage = "";
     let errorPasswordMessage = "";
@@ -28,4 +29,19 @@ export const validation = (email, password, repeatedPassword) => {
         errorPasswordMessage,
         errorRepeatedPasswordMessage
     }
+}
+
+const addEventValidation = (...inputs) => {
+    let isValidate = true;
+    inputs.forEach(input => {
+        if (isEmpty(input)) {
+            isValidate = false;
+        }
+    });
+    return isValidate;
+}
+
+export {
+    validation,
+    addEventValidation
 }
