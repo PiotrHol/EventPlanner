@@ -1,15 +1,40 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./home.scss";
 import {getAuth, signOut} from "firebase/auth";
 import {Link, Route, Switch, useRouteMatch} from "react-router-dom";
 import {useUserStatus} from "../useUserStatus";
 import logo from "../images/navLogo.png";
 import {Events} from "../Events/Events";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 export const Home = () => {
     const {userId} = useUserStatus();
     let {path, url} = useRouteMatch();
     const [showMenu, setShowMenu] = useState(false);
+    const [eventsList, setEventsList] = useState([]);
+    const [archivesList, setArchivesList] = useState([]);
+
+    useEffect(() => {
+        if (userId !== "") {
+            const dataBase = getFirestore();
+            getDocs(collection(dataBase, "users", userId, "events")).then(allEvents => {
+                allEvents.forEach(singleEvent => {
+                    setEventsList(prev => [...prev, {
+                        ...singleEvent.data(),
+                        id: singleEvent.id
+                    }]);
+                });
+            });
+            getDocs(collection(dataBase, "users", userId, "archives")).then(allEvents => {
+                allEvents.forEach(singleEvent => {
+                    setArchivesList(prev => [...prev, {
+                        ...singleEvent.data(),
+                        id: singleEvent.id
+                    }]);
+                })
+            })
+        }
+    }, [userId]);
 
     const handleSignOutBtn = () => {
         const auth = getAuth();
@@ -46,11 +71,9 @@ export const Home = () => {
             <main className="homePage--main">
                 <Switch>
                     <Route exact path={path}>
-                        {/*{isLogIn ? <p>Events component</p> : <Redirect to="/" />}*/}
-                        <Events user={userId}/>
+                        <Events user={userId} events={eventsList}/>
                     </Route>
                     <Route path={`${path}/archives`}>
-                        {/*{isLogIn ? <p>Archives component</p>: <Redirect to="/" />}*/}
                         <p>Archives component</p>
                     </Route>
                 </Switch>
