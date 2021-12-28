@@ -67,9 +67,7 @@ export const LogBox = () => {
         setPersistence(auth, browserSessionPersistence).then(() => {
             return createUserWithEmailAndPassword(getAuth(), email, password)
                 .then((userCredential) => {
-                    setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {
-                        id: userCredential.user.uid
-                    }).then();
+                    setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {}).then();
                 })
                 .catch(() => {
                     setLogInError(true);
