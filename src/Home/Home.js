@@ -15,9 +15,13 @@ export const Home = () => {
     const [archivesList, setArchivesList] = useState([]);
 
     useEffect(() => {
-        if (userId !== "") {
+        getDataFromBase(userId);
+    }, [userId]);
+
+    const getDataFromBase = id => {
+        if (id !== "") {
             const dataBase = getFirestore();
-            getDocs(collection(dataBase, "users", userId, "events")).then(allEvents => {
+            getDocs(collection(dataBase, "users", id, "events")).then(allEvents => {
                 allEvents.forEach(singleEvent => {
                     setEventsList(prev => [...prev, {
                         ...singleEvent.data(),
@@ -25,7 +29,7 @@ export const Home = () => {
                     }]);
                 });
             });
-            getDocs(collection(dataBase, "users", userId, "archives")).then(allEvents => {
+            getDocs(collection(dataBase, "users", id, "archives")).then(allEvents => {
                 allEvents.forEach(singleEvent => {
                     setArchivesList(prev => [...prev, {
                         ...singleEvent.data(),
@@ -34,7 +38,7 @@ export const Home = () => {
                 })
             })
         }
-    }, [userId]);
+    }
 
     const handleSignOutBtn = () => {
         const auth = getAuth();
