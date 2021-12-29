@@ -1,0 +1,133 @@
+@import "../scss/main.scss";
+
+.homePage--event {
+    margin-top: 20px;
+    background: $eventBg;
+    box-shadow: 1px 1px 4px 0 $shadowColor;
+    border: 1px solid $borderColor;
+    color: $textColor;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Bungee', cursive;
+    padding: 20px;
+    font-size: 18px;
+
+    .homePage--event__name, .homePage--event__place, .homePage--event__date, .homePage--event__guests, .homePage--event__actions {
+        word-wrap: break-word;
+    }
+
+    .homePage--event__name {
+        width: 70%;
+
+        @include mediaTablet {
+            width: 40%;
+        }
+
+        @include mediaHeader {
+            width: 30%;
+        }
+
+        @include mediaDesktop {
+            width: 32%;
+            font-size: 20px;
+        }
+
+        @include mediaMax {
+            width: 28%;
+            font-size: 22px;
+        }
+    }
+
+    .homePage--event__place {
+        display: none;
+
+        @include mediaTablet {
+            display: block;
+            width: 40%;
+        }
+
+        @include mediaHeader {
+            width: 30%;
+        }
+
+        @include mediaDesktop {
+            width: 33%;
+        }
+
+        @include mediaMax {
+            width: 32%;
+        }
+    }
+
+    .homePage--event__date {
+        display: none;
+
+        @include mediaHeader {
+            display: block;
+            width: 30%;
+        }
+
+        @include mediaDesktop {
+            width: 20%;
+        }
+
+        @include mediaMax {
+            width: 15%;
+        }
+    }
+
+    .homePage--event__guests {
+        display: none;
+
+        @include mediaMax {
+            display: block;
+            width: 14%;
+            text-align: center;
+        }
+    }
+
+    .homePage--event__actions {
+        width: 30%;
+        display: flex;
+        justify-content: space-around;
+
+        @include mediaTablet {
+            width: 20%;
+        }
+
+        @include mediaHeader {
+            width: 10%;
+        }
+
+        @include mediaDesktop {
+            width: 15%;
+        }
+
+        @include mediaMax {
+            width: 11%;
+            display: block;
+            text-align: right;
+        }
+
+        span {
+            font-size: 22px;
+            margin: 0 5px;
+            cursor: pointer;
+
+            @include mediaTablet {
+                font-size: 24px;
+            }
+
+            @include mediaMax {
+                font-size: 26px;
+                margin: 0 10px;
+            }
+        }
+    }
+}
+
+.homePage--archive {
+    color: $shadowColor;
+}
