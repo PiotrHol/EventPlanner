@@ -12,7 +12,7 @@ export const Home = () => {
     let {path, url} = useRouteMatch();
     const [showMenu, setShowMenu] = useState(false);
     const [eventsList, setEventsList] = useState([]);
-    const [archivesList, setArchivesList] = useState([]);
+    const [archiveList, setArchiveList] = useState([]);
 
     useEffect(() => {
         getDataFromBase(userId);
@@ -21,6 +21,8 @@ export const Home = () => {
     const getDataFromBase = id => {
         if (id !== "") {
             const dataBase = getFirestore();
+            setEventsList([]);
+            setArchiveList([]);
             getDocs(collection(dataBase, "users", id, "events")).then(allEvents => {
                 allEvents.forEach(singleEvent => {
                     setEventsList(prev => [...prev, {
@@ -29,9 +31,9 @@ export const Home = () => {
                     }]);
                 });
             });
-            getDocs(collection(dataBase, "users", id, "archives")).then(allEvents => {
+            getDocs(collection(dataBase, "users", id, "archive")).then(allEvents => {
                 allEvents.forEach(singleEvent => {
-                    setArchivesList(prev => [...prev, {
+                    setArchiveList(prev => [...prev, {
                         ...singleEvent.data(),
                         id: singleEvent.id
                     }]);
@@ -65,7 +67,7 @@ export const Home = () => {
                         <Link to={`${url}`}>
                             <li onClick={handleShowMenu}>Wydarzenia</li>
                         </Link>
-                        <Link to={`${url}/archives`}>
+                        <Link to={`${url}/archive`}>
                             <li onClick={handleShowMenu}>Archiwum</li>
                         </Link>
                         <li onClick={handleSignOutBtn}>Wyloguj</li>
@@ -75,10 +77,10 @@ export const Home = () => {
             <main className="homePage--main">
                 <Switch>
                     <Route exact path={path}>
-                        <Events user={userId} events={eventsList}/>
+                        <Events user={userId} events={eventsList} isArchive={false} updateData={getDataFromBase}/>
                     </Route>
-                    <Route path={`${path}/archives`}>
-                        <p>Archives component</p>
+                    <Route path={`${path}/archive`}>
+                        <Events user={userId} events={archiveList} isArchive={true} updateData={getDataFromBase}/>
                     </Route>
                 </Switch>
             </main>
