@@ -17,11 +17,12 @@ export const Events = ({user, events, isArchive, updateData}) => {
             setIsValidate(false);
             return;
         }
-        addDoc(collection(getFirestore(), `users`, `${user}`, `events`), {
+        addDoc(collection(getFirestore(), "users", user, "events"), {
             name: eventName,
             place: eventPlace,
             date: `${eventDate.substr(8, 2)}.${eventDate.substr(5, 2)}.${eventDate.substr(0, 4)}`,
-            guests: []
+            guests: [],
+            tasks: []
         }).then(() => {
             setEventName("");
             setEventPlace("");
@@ -64,8 +65,8 @@ export const Events = ({user, events, isArchive, updateData}) => {
                     )}
                 </div>
                 <div className="homePage--events">
-                    {events.map(singleEvent => <EventInfo key={singleEvent.id} name={singleEvent.name} place={singleEvent.place} 
-                    date={singleEvent.date} guests={singleEvent.guests} isActive={true}/>)}
+                    {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
+                    isActive={true} update={updateData}/>)}
                 </div>
             </>
         );
@@ -73,8 +74,8 @@ export const Events = ({user, events, isArchive, updateData}) => {
     else {
         return (
             <div className="homePage--events">
-                {events.map(singleEvent => <EventInfo key={singleEvent.id} name={singleEvent.name} place={singleEvent.place} 
-                date={singleEvent.date} guests={singleEvent.guests} isActive={false}/>)}
+                {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
+                isActive={false} update={updateData}/>)}
                 {events.length === 0 && <h2 className="homePage--events__null">Brak wydarzeń</h2>}
             </div>
         );
