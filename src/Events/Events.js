@@ -54,11 +54,11 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
                             <form>
                                 <div className="homePage--addEvent__input">
                                     <h3>Nazwa</h3>
-                                    <input type="text" value={eventName} onChange={e => setEventName(e.target.value)}/>
+                                    <input type="text" maxLength={50} value={eventName} onChange={e => setEventName(e.target.value)}/>
                                 </div>
                                 <div className="homePage--addEvent__input">
                                     <h3>Miejsce</h3>
-                                    <input type="text" value={eventPlace} onChange={e => setEventPlace(e.target.value)}/>
+                                    <input type="text" maxLength={50} value={eventPlace} onChange={e => setEventPlace(e.target.value)}/>
                                 </div>
                                 <div className="homePage--addEvent__input">
                                     <h3>Data</h3>
