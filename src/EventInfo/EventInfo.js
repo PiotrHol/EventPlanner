@@ -2,7 +2,7 @@ import React from "react";
 import "./eventInfo.scss";
 import { addDoc, collection, deleteDoc, doc, getFirestore } from "firebase/firestore";
 
-export const EventInfo = ({user, data, isActive, update}) => {
+export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate}) => {
     const dataBase = getFirestore();
     const dataToSet = {
         name: data.name,
@@ -12,29 +12,44 @@ export const EventInfo = ({user, data, isActive, update}) => {
         tasks: data.tasks
     }
 
+    const setData = (stateSetter, data, id) => {
+        stateSetter(prev => [...prev, {
+            ...data,
+            id
+        }]);
+    }
+
+    const deleteData = (stateSetter, id) => {
+        stateSetter(prev => prev.filter(event => event.id !== id));
+    }
+
     const editBtnHandler = () => {
         
     }
 
     const archiveBtnHandler = () => {
-        addDoc(collection(dataBase, "users", user, "archive"), dataToSet).then(() => {
+        addDoc(collection(dataBase, "users", user, "archive"), dataToSet).then(archiveToSet => {
+            setData(archiveUpdate, dataToSet, archiveToSet.id);
+
             deleteDoc(doc(dataBase, "users", user, "events", data.id)).then(() => {
-                update(user);
+                deleteData(eventsUpdate, data.id);
             })
         });
     }
 
     const returnBtnHandler = () => {
-        addDoc(collection(dataBase, "users", user, "events"), dataToSet).then(() => {
+        addDoc(collection(dataBase, "users", user, "events"), dataToSet).then(eventToSet => {
+            setData(eventsUpdate, dataToSet, eventToSet.id);
+
             deleteDoc(doc(dataBase, "users", user, "archive", data.id)).then(() => {
-                update(user);
+                deleteData(archiveUpdate, data.id);
             })
         })
     }
 
     const trashBtnHandler = () => {
         deleteDoc(doc(dataBase, "users", user, "archive", data.id)).then(() => {
-            update(user);
+            deleteData(archiveUpdate, data.id);
         })
     }
 

@@ -15,15 +15,11 @@ export const Home = () => {
     const [archiveList, setArchiveList] = useState([]);
 
     useEffect(() => {
-        getDataFromBase(userId);
-    }, [userId]);
-
-    const getDataFromBase = id => {
-        if (id !== "") {
+        if (userId !== "") {
             const dataBase = getFirestore();
             setEventsList([]);
             setArchiveList([]);
-            getDocs(collection(dataBase, "users", id, "events")).then(allEvents => {
+            getDocs(collection(dataBase, "users", userId, "events")).then(allEvents => {
                 allEvents.forEach(singleEvent => {
                     setEventsList(prev => [...prev, {
                         ...singleEvent.data(),
@@ -31,7 +27,7 @@ export const Home = () => {
                     }]);
                 });
             });
-            getDocs(collection(dataBase, "users", id, "archive")).then(allEvents => {
+            getDocs(collection(dataBase, "users", userId, "archive")).then(allEvents => {
                 allEvents.forEach(singleEvent => {
                     setArchiveList(prev => [...prev, {
                         ...singleEvent.data(),
@@ -40,7 +36,7 @@ export const Home = () => {
                 })
             })
         }
-    }
+    }, [userId]);
 
     const handleSignOutBtn = () => {
         const auth = getAuth();
@@ -77,10 +73,12 @@ export const Home = () => {
             <main className="homePage--main">
                 <Switch>
                     <Route exact path={path}>
-                        <Events user={userId} events={eventsList} isArchive={false} updateData={getDataFromBase}/>
+                        <Events user={userId} events={eventsList} isArchive={false} updateEvents={data => setEventsList(data)} 
+                        updateArchive={data => setArchiveList(data)}/>
                     </Route>
                     <Route path={`${path}/archive`}>
-                        <Events user={userId} events={archiveList} isArchive={true} updateData={getDataFromBase}/>
+                        <Events user={userId} events={archiveList} isArchive={true} updateEvents={data => setEventsList(data)} 
+                        updateArchive={data => setArchiveList(data)}/>
                     </Route>
                 </Switch>
             </main>

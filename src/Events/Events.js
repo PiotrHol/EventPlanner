@@ -4,7 +4,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { addEventValidation } from "../validation";
 import { EventInfo } from "../EventInfo/EventInfo";
 
-export const Events = ({user, events, isArchive, updateData}) => {
+export const Events = ({user, events, isArchive, updateEvents, updateArchive}) => {
     const [isAddEvent, setIsAddEvent] = useState(false);
     const [eventName, setEventName] = useState("");
     const [eventPlace, setEventPlace] = useState("");
@@ -17,19 +17,25 @@ export const Events = ({user, events, isArchive, updateData}) => {
             setIsValidate(false);
             return;
         }
-        addDoc(collection(getFirestore(), "users", user, "events"), {
+
+        const dataToSet = {
             name: eventName,
             place: eventPlace,
             date: `${eventDate.substr(8, 2)}.${eventDate.substr(5, 2)}.${eventDate.substr(0, 4)}`,
             guests: [],
             tasks: []
-        }).then(() => {
+        }
+
+        addDoc(collection(getFirestore(), "users", user, "events"), dataToSet).then(dataFromSetting => {
+            updateEvents(prev => [...prev, {
+                ...dataToSet,
+                id: dataFromSetting.id
+            }])
             setEventName("");
             setEventPlace("");
             setEventDate("");
             setIsValidate(true);
             setIsAddEvent(false);
-            updateData(user);
         });
     }
     
@@ -66,7 +72,7 @@ export const Events = ({user, events, isArchive, updateData}) => {
                 </div>
                 <div className="homePage--events">
                     {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
-                    isActive={true} update={updateData}/>)}
+                    isActive={true} eventsUpdate={updateEvents} archiveUpdate={updateArchive}/>)}
                 </div>
             </>
         );
@@ -75,7 +81,7 @@ export const Events = ({user, events, isArchive, updateData}) => {
         return (
             <div className="homePage--events">
                 {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
-                isActive={false} update={updateData}/>)}
+                isActive={false} eventsUpdate={updateEvents} archiveUpdate={updateArchive}/>)}
                 {events.length === 0 && <h2 className="homePage--events__null">Brak wydarzeń</h2>}
             </div>
         );
