@@ -75,6 +75,7 @@ export const Events = ({user, events, isArchive, updateData}) => {
             <div className="homePage--events">
                 {events.map(singleEvent => <EventInfo key={singleEvent.id} name={singleEvent.name} place={singleEvent.place} 
                 date={singleEvent.date} guests={singleEvent.guests} isActive={false}/>)}
+                {events.length === 0 && <h2 className="homePage--events__null">Brak wydarzeń</h2>}
             </div>
         );
     }

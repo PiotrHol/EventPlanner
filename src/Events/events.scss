@@ -128,4 +128,20 @@
 .homePage--events {
   width: 100%;
   margin: 10px 0;
+  
+  .homePage--events__null {
+    font-family: 'Bungee', cursive;
+    color: $textColor;
+    letter-spacing: 0.05em;
+    font-size: 18px;
+    padding: 10px;
+
+    @include mediaTablet {
+      font-size: 20px;
+    }
+
+    @include mediaDesktop {
+      font-size: 22px;
+    }
+  }
 }
