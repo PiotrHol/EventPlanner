@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./home.scss";
 import {getAuth, signOut} from "firebase/auth";
-import {Link, Route, Switch, useRouteMatch} from "react-router-dom";
+import {Link, Redirect, Route, Switch, useRouteMatch} from "react-router-dom";
 import {useUserStatus} from "../useUserStatus";
 import logo from "../images/navLogo.png";
 import {Events} from "../Events/Events";
@@ -60,7 +60,7 @@ export const Home = () => {
                 </label>
                 <nav className="homePage--nav">
                     <ul>
-                        <Link to={`${url}`}>
+                        <Link to={`${url}/events`}>
                             <li onClick={handleShowMenu}>Wydarzenia</li>
                         </Link>
                         <Link to={`${url}/archive`}>
@@ -72,7 +72,8 @@ export const Home = () => {
             </header>
             <main className="homePage--main">
                 <Switch>
-                    <Route exact path={path}>
+                    <Route exact path={path}><Redirect to={`${path}/events`}/></Route>
+                    <Route path={`${path}/events`}>
                         <Events user={userId} events={eventsList} isArchive={false} updateEvents={data => setEventsList(data)} 
                         updateArchive={data => setArchiveList(data)}/>
                     </Route>

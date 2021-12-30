@@ -3,6 +3,7 @@ import "./events.scss";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { addEventValidation } from "../validation";
 import { EventInfo } from "../EventInfo/EventInfo";
+import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
 export const Events = ({user, events, isArchive, updateEvents, updateArchive}) => {
     const [isAddEvent, setIsAddEvent] = useState(false);
@@ -10,6 +11,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
     const [eventPlace, setEventPlace] = useState("");
     const [eventDate, setEventDate] = useState("");
     const [isValidate, setIsValidate] = useState(true);
+    let {path, url} = useRouteMatch();
 
     const addEventBtnHandler = event => {
         event.preventDefault();
@@ -41,40 +43,47 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
     
     if(!isArchive) {
         return (
-            <>
-                <div className="homePage--addEvent">
-                    <div className="homePage--addEvent__btn" onClick={() => {
-                        setIsAddEvent(prev => !prev);
-                        setIsValidate(true);
-                        }}>
-                        <span className="far fa-plus-square"/>Dodaj wydarzenie
-                    </div>
-                    {isAddEvent && (
-                        <div className="homePage--addEvent__box">
-                            <form>
-                                <div className="homePage--addEvent__input">
-                                    <h3>Nazwa</h3>
-                                    <input type="text" maxLength={50} value={eventName} onChange={e => setEventName(e.target.value)}/>
-                                </div>
-                                <div className="homePage--addEvent__input">
-                                    <h3>Miejsce</h3>
-                                    <input type="text" maxLength={50} value={eventPlace} onChange={e => setEventPlace(e.target.value)}/>
-                                </div>
-                                <div className="homePage--addEvent__input">
-                                    <h3>Data</h3>
-                                    <input type="date" value={eventDate} onChange={e => setEventDate(e.target.value)}/>
-                                </div>
-                                {!isValidate && <p>Pola nie mogą być puste!</p>}
-                                <button onClick={addEventBtnHandler}>Dodaj</button>
-                            </form>
+            <Switch>
+                <Route exact path={path}>
+                    <>
+                        <div className="homePage--addEvent">
+                            <div className="homePage--addEvent__btn" onClick={() => {
+                                setIsAddEvent(prev => !prev);
+                                setIsValidate(true);
+                            }}>
+                            <span className="far fa-plus-square"/>Dodaj wydarzenie
                         </div>
-                    )}
-                </div>
-                <div className="homePage--events">
-                    {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
-                    isActive={true} eventsUpdate={updateEvents} archiveUpdate={updateArchive}/>)}
-                </div>
-            </>
+                        {isAddEvent && (
+                            <div className="homePage--addEvent__box">
+                                <form>
+                                    <div className="homePage--addEvent__input">
+                                        <h3>Nazwa</h3>
+                                        <input type="text" maxLength={50} value={eventName} onChange={e => setEventName(e.target.value)}/>
+                                    </div>
+                                    <div className="homePage--addEvent__input">
+                                        <h3>Miejsce</h3>
+                                        <input type="text" maxLength={50} value={eventPlace} onChange={e => setEventPlace(e.target.value)}/>
+                                    </div>
+                                    <div className="homePage--addEvent__input">
+                                        <h3>Data</h3>
+                                        <input type="date" value={eventDate} onChange={e => setEventDate(e.target.value)}/>
+                                    </div>
+                                    {!isValidate && <p>Pola nie mogą być puste!</p>}
+                                    <button onClick={addEventBtnHandler}>Dodaj</button>
+                                </form>
+                            </div>
+                        )}
+                        </div>
+                        <div className="homePage--events">
+                            {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
+                            isActive={true} eventsUpdate={updateEvents} archiveUpdate={updateArchive} url={url}/>)}
+                        </div>
+                    </>
+                </Route>
+                {events.map(singleEvent => <Route key={singleEvent.id} path={`${path}/${singleEvent.id}`}>
+                    <Link to={path}>{singleEvent.name}</Link>
+                </Route>)}
+            </Switch>
         );
     }
     else {

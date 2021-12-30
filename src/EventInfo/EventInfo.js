@@ -1,8 +1,9 @@
 import React from "react";
 import "./eventInfo.scss";
 import { addDoc, collection, deleteDoc, doc, getFirestore } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
-export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate}) => {
+export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, url}) => {
     const dataBase = getFirestore();
     const dataToSet = {
         name: data.name,
@@ -21,10 +22,6 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate}) =
 
     const deleteData = (stateSetter, id) => {
         stateSetter(prev => prev.filter(event => event.id !== id));
-    }
-
-    const editBtnHandler = () => {
-        
     }
 
     const archiveBtnHandler = () => {
@@ -60,8 +57,14 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate}) =
             <div className="homePage--event__date">Data:<br/>{data.date}</div>
             <div className="homePage--event__guests">Goście:<br/>{data.guests.length}</div>
             <div className="homePage--event__actions">
-                <span className={`fas fa-${isActive ? `edit` : `undo-alt`}`} onClick={isActive ? editBtnHandler : returnBtnHandler} />
-                <span className={`fas fa-${isActive ? `archive` : `trash`}`} onClick={isActive ? archiveBtnHandler : trashBtnHandler} />
+                {isActive ? (
+                    <Link to={`${url}/${data.id}`}><span className="fas fa-edit homePage--event__editIcon" /></Link>
+                ) : (
+                    <span className="fas fa-undo-alt" onClick={returnBtnHandler} />
+                )}
+                
+                <span className={`fas fa-${isActive ? `archive` : `trash`}`} 
+                onClick={isActive ? archiveBtnHandler : trashBtnHandler} />
             </div>
         </div>
     );
