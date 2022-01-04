@@ -91,7 +91,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
             <div className="homePage--events">
                 {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
                 isActive={false} eventsUpdate={updateEvents} archiveUpdate={updateArchive}/>)}
-                {events.length === 0 && <h2 className="homePage--events__null">Brak wydarzeń</h2>}
+                {events.length === 0 && <h2 className="homePage--events__null">Brak wydarzeń w archiwum</h2>}
             </div>
         );
     }

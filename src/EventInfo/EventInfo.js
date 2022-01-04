@@ -58,12 +58,13 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
             <div className="homePage--event__guests">Goście:<br/>{data.guests.length}</div>
             <div className="homePage--event__actions">
                 {isActive ? (
-                    <Link to={`${url}/${data.id}`}><span className="fas fa-edit homePage--event__editIcon" /></Link>
+                    <Link to={`${url}/${data.id}`}><span className="fas fa-edit homePage--event__editIcon" title="Edytuj" /></Link>
                 ) : (
-                    <span className="fas fa-undo-alt" onClick={returnBtnHandler} />
+                    <span className="fas fa-undo-alt" title="Cofnij z archiwum" onClick={returnBtnHandler} />
                 )}
                 
-                <span className={`fas fa-${isActive ? `archive` : `trash`}`} 
+                <span className={`fas fa-${isActive ? `archive` : `trash`}`}
+                title={isActive ? "Do archiwum" : "Usuń"} 
                 onClick={isActive ? archiveBtnHandler : trashBtnHandler} />
             </div>
         </div>
