@@ -1,0 +1,9 @@
+@import "../scss/main.scss";
+
+.eventPage {
+    width: 100%;
+
+    @include mediaMax {
+        height: 100%;
+    }
+}

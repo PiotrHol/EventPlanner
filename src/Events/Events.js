@@ -3,7 +3,8 @@ import "./events.scss";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { addEventValidation } from "../validation";
 import { EventInfo } from "../EventInfo/EventInfo";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { Event } from "../Event/Event";
 
 export const Events = ({user, events, isArchive, updateEvents, updateArchive}) => {
     const [isAddEvent, setIsAddEvent] = useState(false);
@@ -81,7 +82,8 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
                     </>
                 </Route>
                 {events.map(singleEvent => <Route key={singleEvent.id} path={`${path}/${singleEvent.id}`}>
-                    <Link to={path}>{singleEvent.name}</Link>
+                    <Event id={singleEvent.id} name={singleEvent.name} place={singleEvent.place} date={singleEvent.date}
+                        tasks={singleEvent.tasks} quests={singleEvent.quests} eventUpdate={updateEvents}/>
                 </Route>)}
             </Switch>
         );
