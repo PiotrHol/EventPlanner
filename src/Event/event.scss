@@ -41,5 +41,17 @@
             border-radius: 5px 5px 0 0;
             border-bottom: 1px inset $borderColor;
         }
+
+        input {
+            outline: none;
+            border: none;
+            color: $textColor;
+            padding: 5px 0;
+            border-bottom: 2px solid $borderColor;
+
+            &:focus {
+                border-color: $textColor;
+            }
+        }
     }
 }
