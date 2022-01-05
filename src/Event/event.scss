@@ -2,8 +2,44 @@
 
 .eventPage {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
     @include mediaMax {
         height: 100%;
+    }
+
+    .eventPage--leftContent, .eventPage--rightContent {
+        width: 100%;
+        // border: 1px solid red;
+    }
+
+    @include mediaMax {
+        .eventPage--leftContent {
+            width: 62%;
+            margin-right: 2%;
+        }
+
+        .eventPage--rightContent {
+            width: 36%;
+        }
+    }
+
+    .eventPage--content {
+        background: $whiteColor;
+        border: 1px solid $borderColor;
+        border-radius: 5px 5px 0 0;
+        box-shadow: 1px 1px 4px 0 $shadowColor;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .eventPage--bar {
+            width: 100%;
+            height: 1.5em;
+            background: $mainGradient;
+            border-radius: 5px 5px 0 0;
+            border-bottom: 1px inset $borderColor;
+        }
     }
 }
