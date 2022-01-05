@@ -34,7 +34,7 @@ const validation = (email, password, repeatedPassword) => {
 const eventValidation = (...inputs) => {
     let isValidate = true;
     inputs.forEach(input => {
-        if (isEmpty(input)) {
+        if (isEmpty(input) || input.length > 50) {
             isValidate = false;
         }
     });
