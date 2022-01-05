@@ -31,7 +31,7 @@ const validation = (email, password, repeatedPassword) => {
     }
 }
 
-const addEventValidation = (...inputs) => {
+const eventValidation = (...inputs) => {
     let isValidate = true;
     inputs.forEach(input => {
         if (isEmpty(input)) {
@@ -43,5 +43,5 @@ const addEventValidation = (...inputs) => {
 
 export {
     validation,
-    addEventValidation
+    eventValidation
 }

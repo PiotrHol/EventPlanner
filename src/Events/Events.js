@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./events.scss";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import { addEventValidation } from "../validation";
+import { eventValidation } from "../validation";
 import { EventInfo } from "../EventInfo/EventInfo";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Event } from "../Event/Event";
@@ -16,7 +16,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
 
     const addEventBtnHandler = event => {
         event.preventDefault();
-        if (!addEventValidation(eventName, eventPlace, eventDate)) {
+        if (!eventValidation(eventName, eventPlace, eventDate)) {
             setIsValidate(false);
             return;
         }
