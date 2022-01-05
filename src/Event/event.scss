@@ -2,10 +2,9 @@
 
 .eventPage {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
 
     @include mediaMax {
+        display: flex;
         height: 100%;
     }
 
@@ -32,7 +31,7 @@
         box-shadow: 1px 1px 4px 0 $shadowColor;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         
         .eventPage--bar {
             width: 100%;
