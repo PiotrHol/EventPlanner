@@ -82,7 +82,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
                     </>
                 </Route>
                 {events.map(singleEvent => <Route key={singleEvent.id} path={`${path}/${singleEvent.id}`}>
-                    <Event id={singleEvent.id} name={singleEvent.name} place={singleEvent.place} date={singleEvent.date}
+                    <Event userId={user} id={singleEvent.id} name={singleEvent.name} place={singleEvent.place} date={singleEvent.date}
                         tasks={singleEvent.tasks} quests={singleEvent.quests} eventUpdate={updateEvents}/>
                 </Route>)}
             </Switch>
