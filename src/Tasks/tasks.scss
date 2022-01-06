@@ -90,6 +90,17 @@
                     margin: 5px 20px;
                 }
             }
+
+            .eventPage--tasks__wrongInput {
+                color: $redColor;
+                font-size: 16px;
+                padding: 5px 10px;
+
+                @include mediaTablet {
+                    padding: 10px 20px;
+                    font-size: 18px;
+                }
+            }
         }
     
         .eventPage--tasks__list {

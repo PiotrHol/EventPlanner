@@ -1,24 +1,54 @@
 import React, { useState } from "react";
 import "./tasks.scss";
+import { eventValidation } from "../validation";
+import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
 
 export const Tasks = ({user, eventId, tasks, updateEvent}) => {
     const [isAddTask, setIsAddTask] = useState(false);
     const [taskName, setTaskName] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [taskCost, setTaskCost] = useState("");
+    const [isValid, setIsValid] = useState(true);
 
     const addTaskBtnHandler = () => {
         setIsAddTask(prev => !prev);
         setTaskName("");
         setTaskDescription("");
         setTaskCost("");
+        if (!isValid) {
+            setIsValid(true);
+        }
     }
 
     const saveTaskBtnHandler = event => {
         event.preventDefault();
-        // 
-        setIsAddTask(false);
+        if (!eventValidation(taskName, taskDescription)) {
+            setIsValid(false);
+            return;
+        }
 
+        const dataToSet = {
+            id: Date.now(),
+            name: taskName,
+            description: taskDescription,
+            cost: taskCost
+        }
+
+        updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+            tasks: arrayUnion(dataToSet)
+        }).then(() => {
+            updateEvent(prev => {
+                return prev.map(event => {
+                    if (event.id === eventId) {
+                         event.tasks.push(dataToSet);
+                    }
+                    return event;
+                });
+            });
+        });
+
+        setIsAddTask(false);
+        setIsValid(true);
     }
 
     return (
@@ -43,10 +73,12 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
                             onChange={event => setTaskCost(event.target.value)} />
                         </label>
                         <button className="eventPage--tasks__newSaveBtn" onClick={saveTaskBtnHandler}>Dodaj</button>
+                        {!isValid && <p className="eventPage--tasks__wrongInput">Pola nazwy i opisu nie mogą być puste!</p>}
                     </form>
                 )}
                 <div className="eventPage--tasks__list">
                     <h3 className="eventPage--tasks__listTittle">Lista zadań:</h3>
+                    {tasks.map(task => <li key={task.id}>{task.name}<br/>{task.description}<br/>{task.cost}</li>)}
                 </div>
             </div>
         </div>
