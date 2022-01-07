@@ -1,0 +1,97 @@
+@import "../scss/main.scss";
+
+.eventPage--task {
+    width: 100%;
+    margin: 10px 0;
+    background: $eventBg;
+    color: $textColor;
+    border: 1px solid $borderColor;
+    padding: 10px;
+    word-wrap: break-word;
+    font-family: 'Vollkorn', serif;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+
+    .eventPage--task__info {
+        width: 75%;
+
+        @include mediaTablet {
+            width: 78%;
+        }
+
+        @include mediaHeader {
+            width: 85%;
+            display: flex;
+            align-items: center;
+        }
+
+        .eventPage--task__name, .eventPage--task__description {
+            padding: 5px;
+        }
+
+        .eventPage--task__name {
+            font-weight: 800;
+            font-size: 20px;
+
+            @include mediaHeader {
+                width: 40%;
+            }
+
+            @include mediaDesktop {
+                font-size: 22px;
+                width: 35%;
+            }
+
+            @include mediaMax {
+                font-size: 20px;
+            }
+        }
+
+        .eventPage--task__description {
+            @include mediaHeader {
+                width: 60%;
+            }
+
+            @include mediaDesktop {
+                width: 65%;
+            }
+        }
+    }
+
+    .eventPage--task__cost {
+        display: none;
+    }
+
+    .eventPage--task__actions {
+        width: 25%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        @include mediaTablet {
+            width: 22%;
+        }
+
+        @include mediaHeader {
+            width: 15%;
+        }
+
+        span {
+            font-size: 24px;
+            padding: 5px;
+            
+            @include mediaTablet {
+                font-size: 26px;
+            }
+        }
+    }
+}
+
+.eventPage--task__inActive {
+    color: $shadowColor;
+
+    .eventPage--task__info, .eventPage--task__cost {
+        text-decoration: line-through;
+    }
+}
