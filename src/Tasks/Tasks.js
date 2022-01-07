@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./tasks.scss";
 import { eventValidation } from "../validation";
 import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
+import { Task } from "../Task/Task";
 
 export const Tasks = ({user, eventId, tasks, updateEvent}) => {
     const [isAddTask, setIsAddTask] = useState(false);
@@ -79,7 +80,8 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
                 )}
                 <div className="eventPage--tasks__list">
                     <h3 className="eventPage--tasks__listTittle">Lista zadań:</h3>
-                    {tasks.map(task => <li key={task.id}>{task.name}<br/>{task.description}<br/>{task.cost}</li>)}
+                    {tasks.map(singleTask => <Task key={singleTask.id} userId={user} eventId={eventId} task={singleTask}
+                    eventUpdate={updateEvent} />)}
                 </div>
             </div>
         </div>
