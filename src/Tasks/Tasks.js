@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./tasks.scss";
 import { eventValidation } from "../validation";
-import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { Task } from "../Task/Task";
 
 export const Tasks = ({user, eventId, tasks, updateEvent}) => {
@@ -29,20 +29,20 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
         }
 
         const dataToSet = {
-            id: Date.now(),
             name: taskName,
             description: taskDescription,
             cost: taskCost,
             isDone: false
         }
 
-        updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
-            tasks: arrayUnion(dataToSet)
-        }).then(() => {
+        addDoc(collection(getFirestore(), "users", user, "events", eventId, "tasks"), dataToSet).then(dataFromSetting => {
             updateEvent(prev => {
                 return prev.map(event => {
                     if (event.id === eventId) {
-                         event.tasks.push(dataToSet);
+                         event.tasks.push({
+                             ...dataToSet,
+                             id: dataFromSetting.id
+                         });
                     }
                     return event;
                 });
