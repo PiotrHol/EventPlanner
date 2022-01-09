@@ -80,6 +80,7 @@
         span {
             font-size: 24px;
             padding: 5px;
+            cursor: pointer;
             
             @include mediaTablet {
                 font-size: 26px;

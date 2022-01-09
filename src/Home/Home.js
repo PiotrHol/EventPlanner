@@ -23,7 +23,8 @@ export const Home = () => {
                 allEvents.forEach(singleEvent => {
                     setEventsList(prev => [...prev, {
                         ...singleEvent.data(),
-                        id: singleEvent.id
+                        id: singleEvent.id,
+                        tasks: singleEvent.data().tasks.sort((a, b) => a.id - b.id)
                     }]);
                 });
             });
@@ -31,7 +32,8 @@ export const Home = () => {
                 allEvents.forEach(singleEvent => {
                     setArchiveList(prev => [...prev, {
                         ...singleEvent.data(),
-                        id: singleEvent.id
+                        id: singleEvent.id,
+                        tasks: singleEvent.data().tasks.sort((a, b) => a.id - b.id)
                     }]);
                 })
             })
