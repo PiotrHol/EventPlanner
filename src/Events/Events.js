@@ -25,7 +25,8 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
             name: eventName,
             place: eventPlace,
             date: `${eventDate.substr(8, 2)}.${eventDate.substr(5, 2)}.${eventDate.substr(0, 4)}`,
-            guests: []
+            guests: [],
+            tasks: []
         }
 
         addDoc(collection(getFirestore(), "users", user, "events"), dataToSet).then(dataFromSetting => {
