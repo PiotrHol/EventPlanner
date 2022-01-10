@@ -1,0 +1,141 @@
+@import "../scss/main.scss";
+
+.eventPage--guests {
+    width: 100%;
+    font-family: 'Vollkorn', serif;
+    font-size: 18px;
+    margin-top: 20px;
+
+    @include mediaMax {
+        margin-top: 0;
+        height: 55%;
+    }
+
+    .eventPage--guestsContent {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        @include mediaMax {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        button {
+            width: 80%;
+            background: $mainGradient;
+            border: 1px solid $borderColor;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: 'Bungee', cursive;
+            font-size: 14px;
+            margin: 10px 0;
+
+            @include mediaTablet {
+                width: 50%;
+                font-size: 16px;
+            }
+    
+            @include mediaHeader {
+                width: 200px;
+            }
+        }
+
+        .eventPage--guests__addGuest {
+            margin: 10px auto;
+
+            @include mediaTablet {
+                margin: 10px 20px;
+            }
+        }
+
+        .eventPage--guests__new {
+            width: 100%;
+
+            .eventPage--guestes__newInputs {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                @include mediaHeader {
+                    flex-direction: row;
+                }
+
+                @include mediaMax {
+                    flex-direction: column;
+                }
+
+                .eventPage--guests__newTittle {
+                    width: 100%;
+
+                    h3 {
+                        font-family: 'Bungee', cursive;
+                        font-size: 16px;
+                        padding: 5px 10px;
+                        letter-spacing: 0.02em;
+
+                        @include mediaTablet {
+                            padding: 5px 20px;
+                            font-size: 18px;
+                        }
+                    }
+                    input {
+                        width: 90%;
+                        margin: 5px 10px;
+                        font-size: 18px;
+
+                        @include mediaTablet {
+                            margin: 5px 20px;
+                        }
+                    }
+                }
+
+                .eventPage--guests__newGuestBtn {
+                    @include mediaTablet {
+                        align-self: flex-start;
+                        margin: 10px 20px;
+                    }
+
+                    @include mediaHeader {
+                        align-self: flex-end;
+                    }
+
+                    @include mediaMax {
+                        align-self: flex-start;
+                    }
+                }
+            }
+
+            .eventPage--guests__wrongInput {
+                color: $redColor;
+                font-size: 16px;
+                padding: 5px 10px;
+
+                @include mediaTablet {
+                    padding: 5px 20px;
+                    font-size: 18px;
+                }
+            }
+
+        }
+
+        .eventPage--guests__list {
+            width: 100%;
+            padding: 10px;
+
+            @include mediaTablet {
+                padding: 10px 20px 20px 20px;
+            }
+
+            .eventPage--guests__listTittle {
+                font-family: 'Bungee', cursive;
+                font-size: 16px;
+
+                @include mediaTablet {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
