@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./guests.scss";
 import { eventValidation } from "../validation";
 import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
+import { Guest } from "../Guest/Guest";
 
 export const Guests = ({user, eventId, guests, updateEvent}) => {
     const [isAddGuest, setIsAddGuest] = useState(false);
@@ -63,6 +64,8 @@ export const Guests = ({user, eventId, guests, updateEvent}) => {
                 <div className="eventPage--guests__list">
                     <h3 className="eventPage--guests__listTittle">Lista gości ({guests.length} {guests.length > 4 || guests.length < 2 
                     ? (guests.length === 1 ? "osoba" : "osób") : "osoby"}):</h3>
+                    {guests.map(singleGuest => <Guest key={singleGuest.id} userId={user} eventId={eventId} guest={singleGuest}
+                    eventUpdate={updateEvent} />)}
                 </div>
             </div>
         </div>
