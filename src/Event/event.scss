@@ -10,7 +10,17 @@
 
     .eventPage--leftContent, .eventPage--rightContent {
         width: 100%;
-        // border: 1px solid red;
+    }
+
+    .eventPage--rightContent {
+        @include mediaDesktop {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        @include mediaMax {
+            display: block;
+        }
     }
 
     @include mediaMax {

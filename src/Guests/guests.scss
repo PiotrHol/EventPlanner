@@ -6,9 +6,15 @@
     font-size: 18px;
     margin-top: 20px;
 
+    @include mediaDesktop {
+        width: 50%;
+        margin-right: 2%;
+    }
+
     @include mediaMax {
+        width: 100%;
         margin-top: 0;
-        height: 55%;
+        height: 65%;
     }
 
     .eventPage--guestsContent {

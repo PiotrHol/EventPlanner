@@ -21,10 +21,6 @@
     }
 
     @include mediaDesktop {
-        width: 60%;
-    }
-
-    @include mediaMax {
         width: 100%;
     }
 
