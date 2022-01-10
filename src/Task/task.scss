@@ -9,9 +9,13 @@
     padding: 10px;
     word-wrap: break-word;
     font-family: 'Vollkorn', serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     display: flex;
+
+    @include mediaHeader {
+        font-size: 18px;
+    }
 
     .eventPage--task__info {
         width: 75%;
@@ -32,7 +36,7 @@
 
         .eventPage--task__name {
             font-weight: 800;
-            font-size: 20px;
+            font-size: 18px;
 
             @include mediaHeader {
                 width: 40%;
