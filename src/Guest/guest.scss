@@ -1,0 +1,44 @@
+@import "../scss/main.scss";
+
+.eventPage--guest {
+    width: 100%;
+    margin: 10px 0;
+    background: $eventBg;
+    color: $textColor;
+    border: 1px solid $borderColor;
+    padding: 10px;
+    word-wrap: break-word;
+    font-family: 'Vollkorn', serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mediaHeader {
+        width: 80%;
+    }
+
+    @include mediaDesktop {
+        width: 60%;
+    }
+
+    @include mediaMax {
+        width: 100%;
+    }
+
+    h3 {
+        padding: 0 5px;
+    }
+
+    span {
+        cursor: pointer;
+        font-size: 24px;
+        padding: 0 5px;
+
+        @include mediaTablet {
+            font-size: 26px;
+        }
+    }
+}
