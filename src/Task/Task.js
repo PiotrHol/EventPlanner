@@ -55,8 +55,8 @@ export const Task = ({userId, eventId, task, eventUpdate}) => {
                 {(task.cost !== "") && task.cost}
             </div>
             <div className="eventPage--task__actions">
-                <span className={`${task.isDone ? `fas` : `far`} fa-check-square`} onClick={doneBtnHandler} />
-                <span className="fas fa-trash" onClick={trashBtnHandler} />
+                <span className={`${task.isDone ? `fas` : `far`} fa-check-square`} title="Wykonane" onClick={doneBtnHandler} />
+                <span className="fas fa-trash" title="Usuń" onClick={trashBtnHandler} />
             </div>
         </div>
     );
