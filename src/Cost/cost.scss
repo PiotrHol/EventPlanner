@@ -1,0 +1,86 @@
+@import "../scss/main.scss";
+
+.eventPage--cost {
+    width: 100%;
+    font-family: 'Vollkorn', serif;
+    font-size: 18px;
+    margin-top: 20px;
+
+    @include mediaDesktop {
+        width: 48%;
+    }
+
+    @include mediaMax {
+        width: 100%;
+        height: 33%;
+        margin-top: 3%;
+    }
+
+    .eventPage--costContent {
+        width: 100%;
+        padding: 10px;
+
+        @include mediaTablet {
+            padding: 10px 20px;
+        }
+
+        @include mediaMax {
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .eventPage--cost__main {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            font-family: 'Bungee', cursive;
+            font-size: 16px;
+
+            @include mediaTablet {
+                font-size: 18px;
+            }
+
+            .eventPage--cost__mainCost {
+                padding-left: 15px;
+                font-size: 18px;
+
+                @include mediaTablet {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .eventPage--cost__singleTitle {
+            margin: 10px 0 5px 0;
+            font-family: 'Bungee', cursive;
+            font-size: 14px;
+
+            @include mediaTablet {
+                font-size: 16px;
+            }
+        }
+
+        .eventPage--cost__single {
+            color: $shadowColor;
+
+            li {
+                padding: 5px 0;
+
+                span {
+                    font-size: 20px;
+                    margin-right: 10px;
+                    color: $textColor;
+
+                    @include mediaTablet {
+                        font-size: 22px;
+                    }
+                }
+            }
+
+            .eventPage--cost__singleCost {
+                color: $textColor;
+            }
+        }
+    }
+}
