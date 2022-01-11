@@ -3,6 +3,7 @@ import "./event.scss";
 import { Information } from "../Information/Information";
 import { Tasks } from "../Tasks/Tasks";
 import { Guests } from "../Guests/Guests";
+import { Cost } from "../Cost/Cost";
 
 export const Event = ({userId, id, name, place, date, tasks, guests, eventUpdate }) => {
   return (
@@ -13,6 +14,7 @@ export const Event = ({userId, id, name, place, date, tasks, guests, eventUpdate
       </div>
       <div className="eventPage--rightContent">
         <Guests user={userId} eventId={id} guests={guests} updateEvent={eventUpdate} />
+        <Cost tasks={tasks} />
       </div>
     </div>
   );
