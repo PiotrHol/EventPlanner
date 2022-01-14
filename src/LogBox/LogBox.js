@@ -30,6 +30,8 @@ export const LogBox = () => {
         setWrongEmailMessage("");
         setWrongPasswordMessage("");
         setWrongAgainPasswordMessage("");
+        setLogInError(false);
+        setLogInErrorMessage("");
         setEmail("");
         setPassword("");
         setRepeatPassword("");
@@ -78,43 +80,45 @@ export const LogBox = () => {
 
     return (
         <div className="logBox">
-            <div className="logBox--bar"/>
-            <div className="logBox--logo">
-                <img src={logo} alt="Event planner logo"/>
-                <h1>Event<br/>Planner</h1>
-            </div>
-            <form className="logBox--form">
-                <p>Email:</p>
-                <input type="email" value={email} onChange={event => setEmail(event.target.value)}/>
-                <p className="logBox--wrongInput">{wrongEmailMessage}</p>
-                <p>Hasło:</p>
-                <input type="password" value={password} onChange={event => setPassword(event.target.value)}/>
-                <p className="logBox--wrongInput">{wrongPasswordMessage}</p>
-                {newUserForm && (
-                    <>
-                        <p className="logBox--infoBox">Hasło powinno mieć:<br/>min. 8 znaków, 1 dużą literę,<br/>1 cyfrę
-                            i 1 znak specjalny</p>
-                        <p>Potwierdź hasło:</p>
-                        <input type="password" value={repeatPassword}
-                               onChange={event => setRepeatPassword(event.target.value)}/>
-                        <p className="logBox--wrongInput">{wrongAgainPasswordMessage}</p>
-                    </>
-                )}
-                {loginInError && <p className="logBox--wrongInput">{loginInErrorMessage}</p>}
-                <div className="logBox--buttons">
-                    {newUserForm ? (
+            <div className="logBox--content">
+                <div className="logBox--bar"/>
+                <div className="logBox--logo">
+                    <img src={logo} alt="Event planner logo"/>
+                    <h1>Event<br/>Planner</h1>
+                </div>
+                <form className="logBox--form">
+                    <p>Email:</p>
+                    <input type="email" value={email} onChange={event => setEmail(event.target.value)}/>
+                    <p className="logBox--wrongInput">{wrongEmailMessage}</p>
+                    <p>Hasło:</p>
+                    <input type="password" value={password} onChange={event => setPassword(event.target.value)}/>
+                    <p className="logBox--wrongInput">{wrongPasswordMessage}</p>
+                    {newUserForm && (
                         <>
-                            <button onClick={handleNewUserBtn}>Utwórz</button>
-                            <button onClick={formChanger}>Wróć</button>
-                        </>
-                    ) : (
-                        <>
-                            <button onClick={handleLogBtn}>Zaloguj się</button>
-                            <button onClick={formChanger}>Załóż konto</button>
+                            <p className="logBox--infoBox">Hasło powinno mieć:<br/>min. 8 znaków, 1 dużą literę,<br/>1 cyfrę
+                                i 1 znak specjalny</p>
+                            <p>Potwierdź hasło:</p>
+                            <input type="password" value={repeatPassword}
+                                onChange={event => setRepeatPassword(event.target.value)}/>
+                            <p className="logBox--wrongInput">{wrongAgainPasswordMessage}</p>
                         </>
                     )}
-                </div>
-            </form>
+                    {loginInError && <p className="logBox--wrongInput">{loginInErrorMessage}</p>}
+                    <div className="logBox--buttons">
+                        {newUserForm ? (
+                            <>
+                                <button onClick={handleNewUserBtn}>Utwórz</button>
+                                <button onClick={formChanger}>Wróć</button>
+                            </>
+                        ) : (
+                            <>
+                                <button onClick={handleLogBtn}>Zaloguj się</button>
+                                <button onClick={formChanger}>Załóż konto</button>
+                            </>
+                        )}
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }
