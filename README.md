@@ -7,9 +7,3 @@ The application used for planning and helping to organize various events. To use
 ## Demo
 
 https://piotrhol.github.io/EventPlanner/
-
-<!-- Dane logowania testowego konta / Test account login details: -->
-
-<!-- Login: -->
-
-<!-- Password:  -->
