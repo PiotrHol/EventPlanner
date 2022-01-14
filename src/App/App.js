@@ -5,13 +5,13 @@ import appBase from "../firebase";
 import {useUserStatus} from "../useUserStatus";
 import {LogBox} from "../LogBox/LogBox";
 import {Home} from "../Home/Home";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {HashRouter, Redirect, Route, Switch} from "react-router-dom";
 
 const App = () => {
     const {isLogIn} = useUserStatus();
 
     return (
-        <BrowserRouter>
+        <HashRouter basename="/">
             <div className="appContainer">
                 <Switch>
                     <Route path="/home">
@@ -20,12 +20,12 @@ const App = () => {
                     <Route exact path="/">
                         {!isLogIn ? <LogBox /> : <Redirect to="/home" />}
                     </Route>
-                    <Route path="*">
+                    <Route path="/*">
                         <Redirect to="/" />
                     </Route>
                 </Switch>
             </div>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
