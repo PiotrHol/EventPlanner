@@ -9,7 +9,7 @@ export const Guest = ({userId, eventId, guest, eventUpdate}) => {
         }).then(() => {
             eventUpdate(prev => prev.map(event => {
                 if (event.id === eventId) {
-                    event.guests = event.guests.filter(singleGuest => singleGuest.id !== guest.id);
+                    event.guests = event.guests.filter(({id}) => id !== guest.id);
                 }
                 return event;
             }));
