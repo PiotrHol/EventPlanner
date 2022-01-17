@@ -81,9 +81,9 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
                         </div>
                     </>
                 </Route>
-                {events.map(singleEvent => <Route key={singleEvent.id} path={`${path}/${singleEvent.id}`}>
-                    <Event userId={user} id={singleEvent.id} name={singleEvent.name} place={singleEvent.place} date={singleEvent.date}
-                        tasks={singleEvent.tasks} guests={singleEvent.guests} eventUpdate={updateEvents}/>
+                {events.map(({id, name, place, date, tasks, guests}) => <Route key={id} path={`${path}/${id}`}>
+                    <Event userId={user} id={id} name={name} place={place} date={date}
+                        tasks={tasks} guests={guests} eventUpdate={updateEvents}/>
                 </Route>)}
             </Switch>
         );
@@ -93,7 +93,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
             <div className="homePage--events">
                 {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
                 isActive={false} eventsUpdate={updateEvents} archiveUpdate={updateArchive}/>)}
-                {events.length === 0 && <h2 className="homePage--events__null">Brak wydarzeń w archiwum</h2>}
+                {!events.length && <h2 className="homePage--events__null">Brak wydarzeń w archiwum</h2>}
             </div>
         );
     }
