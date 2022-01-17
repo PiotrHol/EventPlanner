@@ -16,9 +16,7 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
         setTaskName("");
         setTaskDescription("");
         setTaskCost("");
-        if (!isValid) {
-            setIsValid(true);
-        }
+        !isValid && setIsValid(true);
     }
 
     const saveTaskBtnHandler = event => {
@@ -32,7 +30,7 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
             id: Date.now(),
             name: taskName,
             description: taskDescription,
-            cost: taskCost === "" ? 0 : parseFloat(parseFloat(taskCost).toFixed(2)),
+            cost: !taskCost ? 0 : parseFloat(parseFloat(taskCost).toFixed(2)),
             isDone: false
         }
 
