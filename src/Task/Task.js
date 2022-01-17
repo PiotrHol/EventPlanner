@@ -37,7 +37,7 @@ export const Task = ({userId, eventId, task, eventUpdate}) => {
             eventUpdate(prev => {
                 return prev.map(event => {
                     if (event.id === eventId) {
-                         event.tasks = event.tasks.filter(singleTask => singleTask.id !== task.id);
+                         event.tasks = event.tasks.filter(({id}) => id !== task.id);
                     }
                     return event;
                 });
