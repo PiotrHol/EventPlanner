@@ -13,8 +13,8 @@ export const Cost = ({tasks}) => {
                 </div>
                 <h3 className="eventPage--cost__singleTitle">Szczegółowe koszty:</h3>
                 <ul className="eventPage--cost__single">
-                    {tasks.map(task => task.cost !== 0 && <li key={task.id}>
-                    <span className="fas fa-caret-right"/>{task.name} - <span className="eventPage--cost__singleCost">{task.cost} zł</span>
+                    {tasks.map(({id, name, cost}) => cost && <li key={id}>
+                    <span className="fas fa-caret-right"/>{name} - <span className="eventPage--cost__singleCost">{cost} zł</span>
                     </li>)}
                 </ul>
             </div>
