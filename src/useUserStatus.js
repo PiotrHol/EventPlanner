@@ -5,13 +5,7 @@ export function useUserStatus() {
     const [checkAuth, setCheckAuth] = useState({isLogIn: false, userId: ""});
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
-            if (user) {
-                setCheckAuth({isLogIn: true, userId: user.uid});
-            } else {
-                setCheckAuth({isLogIn: false, userId: ""});
-            }
-        });
+        const unsubscribe = onAuthStateChanged(getAuth(), user => setCheckAuth({isLogIn: !!user, userId : user ? user.uid : ""}));
         return () => unsubscribe();
     },[]);
 
