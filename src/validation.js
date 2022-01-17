@@ -13,12 +13,12 @@ const validation = (email, password, repeatedPassword) => {
         errorLoginMessage = "Niepoprawny adres email";
     }
 
-    if (password === "" || !isStrongPassword(password)) {
+    if (!password || !isStrongPassword(password)) {
         isValidate = false;
         errorPasswordMessage = "Hasło jest za słabe";
     }
 
-    if (repeatedPassword === "" || repeatedPassword !== password) {
+    if (!repeatedPassword || repeatedPassword !== password) {
         isValidate = false;
         errorRepeatedPasswordMessage = "Hasła nie są takie same";
     }
