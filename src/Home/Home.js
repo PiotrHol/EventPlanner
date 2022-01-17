@@ -15,7 +15,7 @@ export const Home = () => {
     const [archiveList, setArchiveList] = useState([]);
 
     useEffect(() => {
-        if (userId !== "") {
+        if (userId) {
             const dataBase = getFirestore();
             setEventsList([]);
             setArchiveList([]);
