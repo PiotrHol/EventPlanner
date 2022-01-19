@@ -1,6 +1,7 @@
 import React from "react";
 import "./task.scss";
 import { doc, updateDoc, arrayUnion, arrayRemove, getFirestore } from "firebase/firestore";
+import classNames from "classnames";
 
 export const Task = ({userId, eventId, task, eventUpdate}) => {
     const doneBtnHandler = () => {
@@ -46,13 +47,14 @@ export const Task = ({userId, eventId, task, eventUpdate}) => {
     }
 
     return (
-        <div className={`eventPage--task ${task.isDone && `eventPage--task__inActive`}`}>
+        <div className={classNames("eventPage--task", {"eventPage--task__inActive": task.isDone})}>
             <div className="eventPage--task__info">
                 <div className="eventPage--task__name">{task.name}</div>
                 <div className="eventPage--task__description">{task.description}</div>
             </div>
             <div className="eventPage--task__actions">
-                <span className={`${task.isDone ? `fas` : `far`} fa-check-square`} title="Wykonane" onClick={doneBtnHandler} />
+                <span className={classNames({"fas": task.isDone, "far": !task.isDone}, "fa-check-square")} 
+                title="Wykonane" onClick={doneBtnHandler} />
                 <span className="fas fa-trash" title="Usuń" onClick={trashBtnHandler} />
             </div>
         </div>

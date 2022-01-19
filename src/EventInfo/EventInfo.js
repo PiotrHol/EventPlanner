@@ -2,6 +2,7 @@ import React from "react";
 import "./eventInfo.scss";
 import { addDoc, collection, deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 
 export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, url}) => {
     const dataBase = getFirestore();
@@ -24,7 +25,7 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
         stateSetter(prev => prev.filter(event => event.id !== id));
     }
 
-    const archiveBtnHandler = () => {
+    const archiveBtnHandler = () => { 
         addDoc(collection(dataBase, "users", user, "archive"), dataToSet).then(archiveToSet => {
             setData(archiveUpdate, dataToSet, archiveToSet.id);
 
@@ -51,7 +52,7 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
     }
 
     return (
-        <div className={`homePage--event ${!isActive && `homePage--archive`}`}>
+        <div className={classNames("homePage--event", {"homePage--archive": !isActive})}>
             <div className="homePage--event__name">{data.name}</div>
             <div className="homePage--event__place">Miejsce:<br/>{data.place}</div>
             <div className="homePage--event__date">Data:<br/>{data.date}</div>
@@ -63,7 +64,7 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
                     <span className="fas fa-undo-alt" title="Cofnij z archiwum" onClick={returnBtnHandler} />
                 )}
                 
-                <span className={`fas fa-${isActive ? `archive` : `trash`}`}
+                <span className={classNames("fas", {"fa-archive": isActive, "fa-trash": !isActive})}
                 title={isActive ? "Do archiwum" : "Usuń"} 
                 onClick={isActive ? archiveBtnHandler : trashBtnHandler} />
             </div>
