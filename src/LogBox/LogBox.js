@@ -39,13 +39,13 @@ export const LogBox = () => {
 
     const handleLogBtn = event => {
         event.preventDefault();
-        setPersistence(auth, browserSessionPersistence).then(() => {
-            return signInWithEmailAndPassword(auth, email, password)
-                .then()
-                .catch(() => {
-                    setLogInError(true);
-                    setLogInErrorMessage("Niepoprawne dane");
-                });
+        setPersistence(auth, browserSessionPersistence).then(async () => {
+            try {
+                return await signInWithEmailAndPassword(auth, email, password);
+            } catch {
+                setLogInError(true);
+                setLogInErrorMessage("Niepoprawne dane");
+            }
         });
     }
 
@@ -66,15 +66,15 @@ export const LogBox = () => {
             setWrongAgainPasswordMessage(errorRepeatedPasswordMessage);
             return;
         }
-        setPersistence(auth, browserSessionPersistence).then(() => {
-            return createUserWithEmailAndPassword(getAuth(), email, password)
-                .then((userCredential) => {
-                    setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {}).then();
-                })
-                .catch(() => {
-                    setLogInError(true);
-                    setLogInErrorMessage("Wystąpił błąd. Sprubuj ponownie");
-                });
+        setPersistence(auth, browserSessionPersistence).then(async () => {
+            try {
+                const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+                await setDoc(doc(getFirestore(), "users", `${userCredential.user.uid}`), {});
+            }
+            catch {
+                setLogInError(true);
+                setLogInErrorMessage("Wystąpił błąd. Sprubuj ponownie");
+            }
         });
     }
 
