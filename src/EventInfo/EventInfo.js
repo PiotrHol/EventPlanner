@@ -25,30 +25,23 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
         stateSetter(prev => prev.filter(event => event.id !== id));
     }
 
-    const archiveBtnHandler = () => { 
-        addDoc(collection(dataBase, "users", user, "archive"), dataToSet).then(archiveToSet => {
-            setData(archiveUpdate, dataToSet, archiveToSet.id);
-
-            deleteDoc(doc(dataBase, "users", user, "events", data.id)).then(() => {
-                deleteData(eventsUpdate, data.id);
-            })
-        });
+    const archiveBtnHandler = async () => {
+        const archiveToSet = await addDoc(collection(dataBase, "users", user, "archive"), dataToSet);
+        setData(archiveUpdate, dataToSet, archiveToSet.id);
+        await deleteDoc(doc(dataBase, "users", user, "events", data.id));
+        deleteData(eventsUpdate, data.id);
     }
 
-    const returnBtnHandler = () => {
-        addDoc(collection(dataBase, "users", user, "events"), dataToSet).then(eventToSet => {
-            setData(eventsUpdate, dataToSet, eventToSet.id);
-
-            deleteDoc(doc(dataBase, "users", user, "archive", data.id)).then(() => {
-                deleteData(archiveUpdate, data.id);
-            })
-        })
+    const returnBtnHandler = async () => {
+        const eventToSet = await addDoc(collection(dataBase, "users", user, "events"), dataToSet);
+        setData(eventsUpdate, dataToSet, eventToSet.id);
+        await deleteDoc(doc(dataBase, "users", user, "archive", data.id));
+        deleteData(archiveUpdate, data.id);
     }
 
-    const trashBtnHandler = () => {
-        deleteDoc(doc(dataBase, "users", user, "archive", data.id)).then(() => {
-            deleteData(archiveUpdate, data.id);
-        })
+    const trashBtnHandler = async () => {
+        await deleteDoc(doc(dataBase, "users", user, "archive", data.id));
+        deleteData(archiveUpdate, data.id);
     }
 
     return (
