@@ -19,7 +19,7 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
         !isValid && setIsValid(true);
     }
 
-    const saveTaskBtnHandler = event => {
+    const saveTaskBtnHandler = async (event) => {
         event.preventDefault();
         if (!eventValidation(taskName, taskDescription)) {
             setIsValid(false);
@@ -34,18 +34,18 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
             isDone: false
         }
 
-        updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+        await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
             tasks: arrayUnion(dataToSet)
-        }).then(() => {
-            updateEvent(prev => {
-                return prev.map(event => {
-                    if (event.id === eventId) {
-                        event.tasks.push(dataToSet);
-                    }
-                    return event;
-                });
-            })
         })
+        
+        updateEvent(prev => {
+            return prev.map(event => {
+                if (event.id === eventId) {
+                    event.tasks.push(dataToSet);
+                }
+                return event;
+            });
+        });
 
         setIsAddTask(false);
         setIsValid(true);
