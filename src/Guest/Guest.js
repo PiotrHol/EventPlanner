@@ -3,17 +3,17 @@ import "./guest.scss";
 import { doc, updateDoc, arrayRemove, getFirestore } from "firebase/firestore";
 
 export const Guest = ({userId, eventId, guest, eventUpdate}) => {
-    const deleteGuestBtnHandler = () => {
-        updateDoc(doc(getFirestore(), "users", userId, "events", eventId), {
+    const deleteGuestBtnHandler = async () => {
+        await updateDoc(doc(getFirestore(), "users", userId, "events", eventId), {
             guests: arrayRemove(guest)
-        }).then(() => {
-            eventUpdate(prev => prev.map(event => {
-                if (event.id === eventId) {
-                    event.guests = event.guests.filter(({id}) => id !== guest.id);
-                }
-                return event;
-            }));
         });
+
+        eventUpdate(prev => prev.map(event => {
+            if (event.id === eventId) {
+                event.guests = event.guests.filter(({id}) => id !== guest.id);
+            }
+            return event;
+        })); 
     }
 
     return (
