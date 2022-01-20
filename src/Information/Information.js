@@ -11,21 +11,20 @@ export const Information = ({user, eventId, name, place, date, updateEvent}) => 
     const [isEditPlace, setIsEditPlace] = useState(false);
     const [isEditDate, setIsEditDate] = useState(false);
 
-    const saveData = (userId, id, variableName, variable, value, isToSet, setData) => {
+    const saveData = async (userId, id, variableName, variable, value, isToSet, setData) => {
         if (isToSet && variable !== value) {
-            updateDoc(doc(getFirestore(), "users", userId, "events", id), {[variableName] : value}).then(() => {
-                setData(prev => {
-                    return prev.map(event => {
-                       if (event.id === id) {
-                            event = {
-                               ...event,
-                               [variableName] : value
-                           }
+            await updateDoc(doc(getFirestore(), "users", userId, "events", id), {[variableName] : value});
+            setData(prev => {
+                return prev.map(event => {
+                   if (event.id === id) {
+                        event = {
+                           ...event,
+                           [variableName] : value
                        }
-                       return event;
-                   });
+                   }
+                   return event;
                });
-            })
+           });
         }
     }
 
