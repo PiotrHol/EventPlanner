@@ -15,7 +15,7 @@ export const Guests = ({user, eventId, guests, updateEvent}) => {
         !isValid && setIsValid(true);
     }
 
-    const saveGuestBtnHandler = event => {
+    const saveGuestBtnHandler = async (event) => {
         event.preventDefault();
 
         if (!eventValidation(guestName)) {
@@ -28,16 +28,16 @@ export const Guests = ({user, eventId, guests, updateEvent}) => {
             name: guestName
         }
 
-        updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+        await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
             guests: arrayUnion(dataToSet)
-        }).then(() => {
-            updateEvent(prev => prev.map(event => {
-                if (event.id === eventId) {
-                    event.guests.push(dataToSet);
-                }
-                return event;
-            }));
         });
+
+        updateEvent(prev => prev.map(event => {
+            if (event.id === eventId) {
+                event.guests.push(dataToSet);
+            }
+            return event;
+        }));
 
         setIsAddGuest(false);
         setGuestName("");
