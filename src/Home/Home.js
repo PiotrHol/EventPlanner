@@ -16,10 +16,12 @@ export const Home = () => {
 
     useEffect(() => {
         if (userId) {
-            const dataBase = getFirestore();
-            setEventsList([]);
-            setArchiveList([]);
-            getDocs(collection(dataBase, "users", userId, "events")).then(allEvents => {
+            async function fetchData() {
+                const dataBase = getFirestore();
+                setEventsList([]);
+                setArchiveList([]);
+
+                const allEvents = await getDocs(collection(dataBase, "users", userId, "events"));
                 allEvents.forEach(singleEvent => {
                     setEventsList(prev => [...prev, {
                         ...singleEvent.data(),
@@ -27,23 +29,20 @@ export const Home = () => {
                         tasks: singleEvent.data().tasks.sort((a, b) => a.id - b.id)
                     }]);
                 });
-            });
-            getDocs(collection(dataBase, "users", userId, "archive")).then(allEvents => {
-                allEvents.forEach(singleEvent => {
+
+                const allArchive = await getDocs(collection(dataBase, "users", userId, "archive"));
+                allArchive.forEach(singleEvent => {
                     setArchiveList(prev => [...prev, {
                         ...singleEvent.data(),
                         id: singleEvent.id,
                         tasks: singleEvent.data().tasks.sort((a, b) => a.id - b.id)
                     }]);
-                })
-            })
+                });
+            }
+
+            fetchData();
         }
     }, [userId]);
-
-    const handleSignOutBtn = () => {
-        const auth = getAuth();
-        signOut(auth).then();
-    }
 
     const handleShowMenu = () => {
         setShowMenu(prev => !prev);
@@ -68,7 +67,7 @@ export const Home = () => {
                         <Link to={`${url}/archive`}>
                             <li onClick={handleShowMenu}>Archiwum</li>
                         </Link>
-                        <li onClick={handleSignOutBtn}>Wyloguj</li>
+                        <li onClick={() => signOut(getAuth())}>Wyloguj</li>
                     </ul>
                 </nav>
             </header>
