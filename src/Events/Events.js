@@ -14,7 +14,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
     const [isValidate, setIsValidate] = useState(true);
     let {path, url} = useRouteMatch();
 
-    const addEventBtnHandler = event => {
+    const addEventBtnHandler = async (event) => {
         event.preventDefault();
         if (!eventValidation(eventName, eventPlace, eventDate)) {
             setIsValidate(false);
@@ -29,17 +29,17 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
             tasks: []
         }
 
-        addDoc(collection(getFirestore(), "users", user, "events"), dataToSet).then(dataFromSetting => {
-            updateEvents(prev => [...prev, {
-                ...dataToSet,
-                id: dataFromSetting.id
-            }])
-            setEventName("");
-            setEventPlace("");
-            setEventDate("");
-            setIsValidate(true);
-            setIsAddEvent(false);
-        });
+        const dataFromSetting = await addDoc(collection(getFirestore(), "users", user, "events"), dataToSet);
+
+        updateEvents(prev => [...prev, {
+            ...dataToSet,
+            id: dataFromSetting.id
+        }]);
+        setEventName("");
+        setEventPlace("");
+        setEventDate("");
+        setIsValidate(true);
+        setIsAddEvent(false);
     }
     
     if(!isArchive) {
