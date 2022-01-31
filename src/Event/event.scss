@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.eventPage {
+.event-page {
     width: 100%;
 
     @include mediaMax {
@@ -8,11 +8,11 @@
         height: 100%;
     }
 
-    .eventPage__leftContent, .eventPage__rightContent {
+    .event-page__left-content, .event-page__right-content {
         width: 100%;
     }
 
-    .eventPage__rightContent {
+    .event-page__right-content {
         @include mediaDesktop {
             display: flex;
             align-items: flex-start;
@@ -24,17 +24,17 @@
     }
 
     @include mediaMax {
-        .eventPage__leftContent {
+        .event-page__left-content {
             width: 62%;
             margin-right: 2%;
         }
 
-        .eventPage__rightContent {
+        .event-page__right-content {
             width: 36%;
         }
     }
 
-    .eventPage__content {
+    .event-page__content {
         background: $whiteColor;
         border: 1px solid $borderColor;
         border-radius: 5px 5px 0 0;
@@ -43,7 +43,7 @@
         flex-direction: column;
         justify-content: flex-start;
         
-        .eventPage__bar {
+        .event-page__bar {
             width: 100%;
             height: 1.5em;
             background: $mainGradient;
