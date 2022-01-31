@@ -47,25 +47,25 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
             <Switch>
                 <Route exact path={path}>
                     <>
-                        <div className="homePage--addEvent">
-                            <div className="homePage--addEvent__btn" onClick={() => {
+                        <div className="home-page__add-event">
+                            <div className="home-page__add-event-btn" onClick={() => {
                                 setIsAddEvent(prev => !prev);
                                 setIsValidate(true);
                             }}>
                             <span className="far fa-plus-square"/>Dodaj wydarzenie
                         </div>
                         {isAddEvent && (
-                            <div className="homePage--addEvent__box">
+                            <div className="home-page__add-event-box">
                                 <form>
-                                    <div className="homePage--addEvent__input">
+                                    <div className="home-page__add-event-input">
                                         <h3>Nazwa</h3>
                                         <input type="text" maxLength={50} value={eventName} onChange={e => setEventName(e.target.value)}/>
                                     </div>
-                                    <div className="homePage--addEvent__input">
+                                    <div className="home-page__add-event-input">
                                         <h3>Miejsce</h3>
                                         <input type="text" maxLength={50} value={eventPlace} onChange={e => setEventPlace(e.target.value)}/>
                                     </div>
-                                    <div className="homePage--addEvent__input">
+                                    <div className="home-page__add-event-input">
                                         <h3>Data</h3>
                                         <input type="date" value={eventDate} onChange={e => setEventDate(e.target.value)}/>
                                     </div>
@@ -75,7 +75,7 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
                             </div>
                         )}
                         </div>
-                        <div className="homePage--events">
+                        <div className="home-page__events">
                             {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
                             isActive={true} eventsUpdate={updateEvents} archiveUpdate={updateArchive} url={url}/>)}
                         </div>
@@ -90,10 +90,10 @@ export const Events = ({user, events, isArchive, updateEvents, updateArchive}) =
     }
     else {
         return (
-            <div className="homePage--events">
+            <div className="home-page__events">
                 {events.map(singleEvent => <EventInfo key={singleEvent.id} user={user} data={singleEvent} 
                 isActive={false} eventsUpdate={updateEvents} archiveUpdate={updateArchive}/>)}
-                {!events.length && <h2 className="homePage--events__null">Brak wydarzeń w archiwum</h2>}
+                {!events.length && <h2 className="home-page__events-null">Brak wydarzeń w archiwum</h2>}
             </div>
         );
     }
