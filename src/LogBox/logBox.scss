@@ -9,7 +9,7 @@
   }
 }
 
-.logBox {
+.log-box {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
 
-  .logBox--content {
+  .log-box__content {
     width: 95%;
     background-color: $whiteColor;
     box-shadow: 3px 3px 10px 0 $shadowColor;
@@ -29,7 +29,7 @@
       width: 768px;
     }
 
-    .logBox--bar {
+    .log-box__bar {
       width: 100%;
       height: 2em;
       background: $mainGradient;
@@ -37,7 +37,7 @@
       border-bottom: 1px inset $borderColor;
     }
 
-    .logBox--logo {
+    .log-box__logo {
       width: 80%;
       margin: 0 auto;
       display: flex;
@@ -71,7 +71,7 @@
       }
     }
 
-    .logBox--form {
+    .log-box__form {
       width: 80%;
       margin: 0 auto;
       display: flex;
@@ -91,11 +91,11 @@
         }
       }
 
-      .logBox--wrongInput {
+      .log-box__wrong-input {
         color: $redColor;
       }
 
-      .logBox--infoBox {
+      .log-box__info-box {
         border: 1px solid $textColor;
         border-radius: 10px;
         padding: 10px;
@@ -118,7 +118,7 @@
         }
       }
 
-      .logBox--buttons {
+      .log-box__buttons {
         margin: 15px 0;
         display: flex;
         justify-content: space-between;

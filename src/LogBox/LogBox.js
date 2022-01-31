@@ -79,32 +79,32 @@ export const LogBox = () => {
     }
 
     return (
-        <div className="logBox">
-            <div className="logBox--content">
-                <div className="logBox--bar"/>
-                <div className="logBox--logo">
+        <div className="log-box">
+            <div className="log-box__content">
+                <div className="log-box__bar"/>
+                <div className="log-box__logo">
                     <img src={logo} alt="Event planner logo"/>
                     <h1>Event<br/>Planner</h1>
                 </div>
-                <form className="logBox--form">
+                <form className="log-box__form">
                     <p>Email:</p>
                     <input type="email" value={email} onChange={event => setEmail(event.target.value)}/>
-                    <p className="logBox--wrongInput">{wrongEmailMessage}</p>
+                    <p className="log-box__wrong-input">{wrongEmailMessage}</p>
                     <p>Hasło:</p>
                     <input type="password" value={password} onChange={event => setPassword(event.target.value)}/>
-                    <p className="logBox--wrongInput">{wrongPasswordMessage}</p>
+                    <p className="log-box__wrong-input">{wrongPasswordMessage}</p>
                     {newUserForm && (
                         <>
-                            <p className="logBox--infoBox">Hasło powinno mieć:<br/>min. 8 znaków, 1 dużą literę,<br/>1 cyfrę
+                            <p className="log-box__info-box">Hasło powinno mieć:<br/>min. 8 znaków, 1 dużą literę,<br/>1 cyfrę
                                 i 1 znak specjalny</p>
                             <p>Potwierdź hasło:</p>
                             <input type="password" value={repeatPassword}
                                 onChange={event => setRepeatPassword(event.target.value)}/>
-                            <p className="logBox--wrongInput">{wrongAgainPasswordMessage}</p>
+                            <p className="log-box__wrong-input">{wrongAgainPasswordMessage}</p>
                         </>
                     )}
-                    {loginInError && <p className="logBox--wrongInput">{loginInErrorMessage}</p>}
-                    <div className="logBox--buttons">
+                    {loginInError && <p className="log-box__wrong-input">{loginInErrorMessage}</p>}
+                    <div className="log-box__buttons">
                         {newUserForm ? (
                             <>
                                 <button onClick={handleNewUserBtn}>Utwórz</button>
