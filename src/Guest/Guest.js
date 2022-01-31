@@ -17,7 +17,7 @@ export const Guest = ({userId, eventId, guest, eventUpdate}) => {
     }
 
     return (
-        <div className="eventPage--guest">
+        <div className="event-page__guest">
             <h3>{guest.name}</h3>
             <span className="fas fa-trash" title="Usuń" onClick={deleteGuestBtnHandler} />
         </div>
