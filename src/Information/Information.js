@@ -57,22 +57,22 @@ export const Information = ({user, eventId, name, place, date, updateEvent}) => 
     }
 
     return (
-        <div className="eventPage--content eventPage--information">
-            <div className="eventPage--bar"/>
+        <div className="event-page__content event-page__information">
+            <div className="event-page__bar"/>
             <form>
-                <div className="eventPage--information__tittle">
+                <div className="event-page__information-title">
                     <h3>Nazwa wydarzenia:</h3>
                     <button onClick={nameEditBtn}>{isEditName ? "Zapisz" : "Edytuj"}</button>
                 </div>
                 {isEditName ? <input type="text" placeholder="Wydarzenie musi mieć nazwę" maxLength={50} value={eventName} 
                 onChange={e => setEventName(e.target.value)} /> : <h5>{eventName}</h5>}
-                <div className="eventPage--information__tittle">
+                <div className="event-page__information-title">
                     <h3>Miejsce wydarzenia:</h3>
                     <button onClick={placeEditBtn}>{isEditPlace ? "Zapisz" : "Edytuj"}</button>
                 </div>
                 {isEditPlace ? <input type="text" placeholder="Wydarzenie musi mieć miejsce" maxLength={50} value={eventPlace} 
                 onChange={e => setEventPlace(e.target.value)} /> : <h5>{eventPlace}</h5>}
-                <div className="eventPage--information__tittle">
+                <div className="event-page__information-title">
                     <h3>Data wydarzenia:</h3>
                     <button onClick={dateEditBtn}>{isEditDate ? "Zapisz" : "Edytuj"}</button>
                 </div>

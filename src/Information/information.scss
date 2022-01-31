@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.eventPage--information {
+.event-page__information {
     width: 100%;
     font-family: 'Vollkorn', serif;
     font-size: 18px;
@@ -24,7 +24,7 @@
             padding-bottom: 10px;
         }
 
-        .eventPage--information__tittle {
+        .event-page__information-title {
             width: 100%;
             display: flex;
             align-items: center;
