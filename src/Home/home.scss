@@ -1,20 +1,20 @@
 @import "../scss/main";
 
-.homePage {
+.home-page {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   box-shadow: 1px 1px 5px 0 $shadowColor;
 
-  .homePage--header {
+  .home-page__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: $mainGradient;
 
-    .homePage--logo {
+    .home-page__logo {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -54,7 +54,7 @@
       }
     }
 
-    .homePage--menuIcon {
+    .home-page__menu-icon {
       display: inline-block;
       width: 30px;
       height: 30px;
@@ -62,7 +62,7 @@
       margin-right: 15px;
       cursor: pointer;
 
-      .homePage--navIcon {
+      .home-page__nav-icon {
         display: block;
         background-color: $bgColor;
         width: 100%;
@@ -94,29 +94,29 @@
       }
     }
 
-    .homePage--menuBtn {
+    .home-page__menu-btn {
       display: none;
 
-      &:checked ~ .homePage--menuIcon span {
+      &:checked ~ .home-page__menu-icon span {
         background: transparent;
       }
 
-      &:checked ~ .homePage--menuIcon span::before {
+      &:checked ~ .home-page__menu-icon span::before {
         transform: rotate(45deg);
         top: 0;
       }
 
-      &:checked ~ .homePage--menuIcon span::after {
+      &:checked ~ .home-page__menu-icon span::after {
         transform: rotate(-45deg);
         top: 0;
       }
 
-      &:checked ~ .homePage--nav {
+      &:checked ~ .home-page__nav {
         display: block;
       }
     }
 
-    .homePage--nav {
+    .home-page__nav {
       display: none;
       width: 100%;
       position: absolute;
@@ -179,7 +179,7 @@
     }
   }
 
-  .homePage--main {
+  .home-page__main {
     flex-grow: 1;
     border: 1px solid $borderColor;
     background-color: $whiteColor;

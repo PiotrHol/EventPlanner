@@ -49,17 +49,17 @@ export const Home = () => {
     }
 
     return (
-        <div className="homePage">
-            <header className="homePage--header">
-                <div className="homePage--logo">
+        <div className="home-page">
+            <header className="home-page__header">
+                <div className="home-page__logo">
                     <img src={logo} alt="Event planner logo"/>
                     <h1>Event<br/>Planner</h1>
                 </div>
-                <input className="homePage--menuBtn" id="homePage--menuBtn" type="checkbox" checked={showMenu} onChange={handleShowMenu}/>
-                <label className="homePage--menuIcon" htmlFor="homePage--menuBtn">
-                    <span className="homePage--navIcon"/>
+                <input className="home-page__menu-btn" id="home-page__menu-btn" type="checkbox" checked={showMenu} onChange={handleShowMenu}/>
+                <label className="home-page__menu-icon" htmlFor="home-page__menu-btn">
+                    <span className="home-page__nav-icon"/>
                 </label>
-                <nav className="homePage--nav">
+                <nav className="home-page__nav">
                     <ul>
                         <Link to={`${url}/events`}>
                             <li onClick={handleShowMenu}>Wydarzenia</li>
@@ -71,7 +71,7 @@ export const Home = () => {
                     </ul>
                 </nav>
             </header>
-            <main className="homePage--main">
+            <main className="home-page__main">
                 <Switch>
                     <Route exact path={path}><Redirect to={`${path}/events`}/></Route>
                     <Route path={`${path}/events`}>
