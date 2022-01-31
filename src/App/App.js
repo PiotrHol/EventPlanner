@@ -12,7 +12,7 @@ const App = () => {
 
     return (
         <HashRouter basename="/">
-            <div className="appContainer">
+            <div className="app-container">
                 <Switch>
                     <Route path="/home">
                         {isLogIn ? <Home /> : <Redirect to="/" />}
