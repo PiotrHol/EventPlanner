@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.homePage--event {
+.homePage__event {
     margin-top: 20px;
     background: $eventBg;
     box-shadow: 1px 1px 4px 0 $shadowColor;
@@ -14,11 +14,11 @@
     padding: 20px;
     font-size: 18px;
 
-    .homePage--event__name, .homePage--event__place, .homePage--event__date, .homePage--event__guests, .homePage--event__actions {
+    .homePage__event-name, .homePage__event-place, .homePage__event-date, .homePage__event-guests, .homePage__event-actions {
         word-wrap: break-word;
     }
 
-    .homePage--event__name {
+    .homePage__event-name {
         width: 70%;
 
         @include mediaTablet {
@@ -40,7 +40,7 @@
         }
     }
 
-    .homePage--event__place {
+    .homePage__event-place {
         display: none;
 
         @include mediaTablet {
@@ -61,7 +61,7 @@
         }
     }
 
-    .homePage--event__date {
+    .homePage__event-date {
         display: none;
 
         @include mediaHeader {
@@ -78,7 +78,7 @@
         }
     }
 
-    .homePage--event__guests {
+    .homePage__event-guests {
         display: none;
 
         @include mediaMax {
@@ -88,7 +88,7 @@
         }
     }
 
-    .homePage--event__actions {
+    .homePage__event-actions {
         width: 30%;
         display: flex;
         justify-content: space-around;
@@ -126,12 +126,12 @@
             }
         }
 
-        .homePage--event__editIcon {
+        .homePage__event-edit-icon {
             color: $textColor;
         }
     }
 }
 
-.homePage--archive {
+.homePage__archive {
     color: $shadowColor;
 }

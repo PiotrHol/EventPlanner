@@ -45,14 +45,14 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
     }
 
     return (
-        <div className={classNames("homePage--event", {"homePage--archive": !isActive})}>
-            <div className="homePage--event__name">{data.name}</div>
-            <div className="homePage--event__place">Miejsce:<br/>{data.place}</div>
-            <div className="homePage--event__date">Data:<br/>{data.date}</div>
-            <div className="homePage--event__guests">Goście:<br/>{data.guests.length}</div>
-            <div className="homePage--event__actions">
+        <div className={classNames("homePage__event", {"homePage__archive": !isActive})}>
+            <div className="homePage__event-name">{data.name}</div>
+            <div className="homePage__event-place">Miejsce:<br/>{data.place}</div>
+            <div className="homePage__event-date">Data:<br/>{data.date}</div>
+            <div className="homePage__event-guests">Goście:<br/>{data.guests.length}</div>
+            <div className="homePage__event-actions">
                 {isActive ? (
-                    <Link to={`${url}/${data.id}`}><span className="fas fa-edit homePage--event__editIcon" title="Edytuj" /></Link>
+                    <Link to={`${url}/${data.id}`}><span className="fas fa-edit homePage__event-edit-icon" title="Edytuj" /></Link>
                 ) : (
                     <span className="fas fa-undo-alt" title="Cofnij z archiwum" onClick={returnBtnHandler} />
                 )}
