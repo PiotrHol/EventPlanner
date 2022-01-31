@@ -8,11 +8,11 @@ import { Cost } from "../Cost/Cost";
 export const Event = ({userId, id, name, place, date, tasks, guests, eventUpdate }) => {
   return (
     <div className="eventPage">
-      <div className="eventPage--leftContent">
+      <div className="eventPage__leftContent">
         <Information user={userId} eventId={id} name={name} place={place} date={date} updateEvent={eventUpdate} />
         <Tasks user={userId} eventId={id} tasks={tasks} updateEvent={eventUpdate} />
       </div>
-      <div className="eventPage--rightContent">
+      <div className="eventPage__rightContent">
         <Guests user={userId} eventId={id} guests={guests} updateEvent={eventUpdate} />
         <Cost tasks={tasks} />
       </div>

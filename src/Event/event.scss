@@ -8,11 +8,11 @@
         height: 100%;
     }
 
-    .eventPage--leftContent, .eventPage--rightContent {
+    .eventPage__leftContent, .eventPage__rightContent {
         width: 100%;
     }
 
-    .eventPage--rightContent {
+    .eventPage__rightContent {
         @include mediaDesktop {
             display: flex;
             align-items: flex-start;
@@ -24,17 +24,17 @@
     }
 
     @include mediaMax {
-        .eventPage--leftContent {
+        .eventPage__leftContent {
             width: 62%;
             margin-right: 2%;
         }
 
-        .eventPage--rightContent {
+        .eventPage__rightContent {
             width: 36%;
         }
     }
 
-    .eventPage--content {
+    .eventPage__content {
         background: $whiteColor;
         border: 1px solid $borderColor;
         border-radius: 5px 5px 0 0;
@@ -43,7 +43,7 @@
         flex-direction: column;
         justify-content: flex-start;
         
-        .eventPage--bar {
+        .eventPage__bar {
             width: 100%;
             height: 1.5em;
             background: $mainGradient;
