@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.eventPage--cost {
+.eventPage__cost {
     width: 100%;
     font-family: 'Vollkorn', serif;
     font-size: 18px;
@@ -16,7 +16,7 @@
         margin-top: 3%;
     }
 
-    .eventPage--costContent {
+    .eventPage__cost-content {
         width: 100%;
         padding: 10px;
 
@@ -29,7 +29,7 @@
             overflow-y: auto;
         }
 
-        .eventPage--cost__main {
+        .eventPage__cost-main {
             width: 100%;
             display: flex;
             align-items: center;
@@ -41,7 +41,7 @@
                 font-size: 18px;
             }
 
-            .eventPage--cost__mainCost {
+            .eventPage__cost-main-value {
                 padding-left: 15px;
                 font-size: 18px;
 
@@ -51,7 +51,7 @@
             }
         }
 
-        .eventPage--cost__singleTitle {
+        .eventPage__cost-single-title {
             margin: 10px 0 5px 0;
             font-family: 'Bungee', cursive;
             font-size: 14px;
@@ -61,7 +61,7 @@
             }
         }
 
-        .eventPage--cost__single {
+        .eventPage__cost-single {
             color: $shadowColor;
 
             li {
@@ -78,7 +78,7 @@
                 }
             }
 
-            .eventPage--cost__singleCost {
+            .eventPage__cost-single-value {
                 color: $textColor;
             }
         }
