@@ -45,24 +45,24 @@ export const Guests = ({user, eventId, guests, updateEvent}) => {
     }
 
     return (
-        <div className="eventPage--content eventPage--guests">
-            <div className="eventPage--bar"/>
-            <div className="eventPage--guestsContent">
-                <button className="eventPage--guests__addGuest" onClick={addGuestBtnHandler}>Dodaj gościa</button>
+        <div className="event-page__content event-page__guests">
+            <div className="event-page__bar"/>
+            <div className="event-page__guests-content">
+                <button className="event-page__guests-add-guest" onClick={addGuestBtnHandler}>Dodaj gościa</button>
                 {isAddGuest && (
-                    <form className="eventPage--guests__new">
-                        <div className="eventPage--guestes__newInputs">
-                            <label className="eventPage--guests__newTittle">
+                    <form className="event-page__guests-new">
+                        <div className="event-page__guests-new-inputs">
+                            <label className="event-page__guests-new-tittle">
                                 <h3>Imię i nazwisko:</h3>
                                 <input type="text" maxLength={50} value={guestName} onChange={event => setGuestName(event.target.value)} />
                             </label>
-                            <button className="eventPage--guests__newGuestBtn" onClick={saveGuestBtnHandler}>Dodaj</button>
+                            <button className="event-page__guests-new-btn" onClick={saveGuestBtnHandler}>Dodaj</button>
                         </div>
-                        {!isValid && <p className="eventPage--guests__wrongInput">Pole nie może być puste!</p>}
+                        {!isValid && <p className="event-page__guests-wrong-input">Pole nie może być puste!</p>}
                 </form>
                 )}
-                <div className="eventPage--guests__list">
-                    <h3 className="eventPage--guests__listTittle">Lista gości ({guests.length} {guests.length > 4 || guests.length < 2 
+                <div className="event-page__guests-list">
+                    <h3 className="event-page__guests-list-tittle">Lista gości ({guests.length} {guests.length > 4 || guests.length < 2 
                     ? (guests.length === 1 ? "osoba" : "osób") : "osoby"}):</h3>
                     {guests.map(singleGuest => <Guest key={singleGuest.id} userId={user} eventId={eventId} guest={singleGuest}
                     eventUpdate={updateEvent} />)}

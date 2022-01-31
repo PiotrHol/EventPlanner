@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.eventPage--guests {
+.event-page__guests {
     width: 100%;
     font-family: 'Vollkorn', serif;
     font-size: 18px;
@@ -17,7 +17,7 @@
         height: 65%;
     }
 
-    .eventPage--guestsContent {
+    .event-page__guests-content {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -47,7 +47,7 @@
             }
         }
 
-        .eventPage--guests__addGuest {
+        .event-page__guests-add-guest {
             margin: 10px auto;
 
             @include mediaTablet {
@@ -55,10 +55,10 @@
             }
         }
 
-        .eventPage--guests__new {
+        .event-page__guests-new {
             width: 100%;
 
-            .eventPage--guestes__newInputs {
+            .event-page__guests-new-inputs {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
@@ -72,7 +72,7 @@
                     flex-direction: column;
                 }
 
-                .eventPage--guests__newTittle {
+                .event-page__guests-new-tittle {
                     width: 100%;
 
                     h3 {
@@ -97,7 +97,7 @@
                     }
                 }
 
-                .eventPage--guests__newGuestBtn {
+                .event-page__guests-new-btn {
                     @include mediaTablet {
                         align-self: flex-start;
                         margin: 10px 20px;
@@ -113,7 +113,7 @@
                 }
             }
 
-            .eventPage--guests__wrongInput {
+            .event-page__guests-wrong-input {
                 color: $redColor;
                 font-size: 16px;
                 padding: 5px 10px;
@@ -126,7 +126,7 @@
 
         }
 
-        .eventPage--guests__list {
+        .event-page__guests-list {
             width: 100%;
             padding: 10px;
 
@@ -134,7 +134,7 @@
                 padding: 10px 20px 20px 20px;
             }
 
-            .eventPage--guests__listTittle {
+            .event-page__guests-list-tittle {
                 font-family: 'Bungee', cursive;
                 font-size: 16px;
 
