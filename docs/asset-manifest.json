@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/EventPlanner/static/css/main.8da7cbff.chunk.css",
-    "main.js": "/EventPlanner/static/js/main.c064cce2.chunk.js",
-    "main.js.map": "/EventPlanner/static/js/main.c064cce2.chunk.js.map",
+    "main.css": "/EventPlanner/static/css/main.0843e11f.chunk.css",
+    "main.js": "/EventPlanner/static/js/main.b8d9c5ca.chunk.js",
+    "main.js.map": "/EventPlanner/static/js/main.b8d9c5ca.chunk.js.map",
     "runtime-main.js": "/EventPlanner/static/js/runtime-main.ac8439f0.js",
     "runtime-main.js.map": "/EventPlanner/static/js/runtime-main.ac8439f0.js.map",
-    "static/js/2.198f6d21.chunk.js": "/EventPlanner/static/js/2.198f6d21.chunk.js",
-    "static/js/2.198f6d21.chunk.js.map": "/EventPlanner/static/js/2.198f6d21.chunk.js.map",
+    "static/js/2.3831079a.chunk.js": "/EventPlanner/static/js/2.3831079a.chunk.js",
+    "static/js/2.3831079a.chunk.js.map": "/EventPlanner/static/js/2.3831079a.chunk.js.map",
     "index.html": "/EventPlanner/index.html",
-    "static/css/main.8da7cbff.chunk.css.map": "/EventPlanner/static/css/main.8da7cbff.chunk.css.map",
-    "static/js/2.198f6d21.chunk.js.LICENSE.txt": "/EventPlanner/static/js/2.198f6d21.chunk.js.LICENSE.txt",
+    "static/css/main.0843e11f.chunk.css.map": "/EventPlanner/static/css/main.0843e11f.chunk.css.map",
+    "static/js/2.3831079a.chunk.js.LICENSE.txt": "/EventPlanner/static/js/2.3831079a.chunk.js.LICENSE.txt",
     "static/media/logo.c8c72d32.png": "/EventPlanner/static/media/logo.c8c72d32.png",
     "static/media/navLogo.24bfe863.png": "/EventPlanner/static/media/navLogo.24bfe863.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ac8439f0.js",
-    "static/js/2.198f6d21.chunk.js",
-    "static/css/main.8da7cbff.chunk.css",
-    "static/js/main.c064cce2.chunk.js"
+    "static/js/2.3831079a.chunk.js",
+    "static/css/main.0843e11f.chunk.css",
+    "static/js/main.b8d9c5ca.chunk.js"
   ]
 }
