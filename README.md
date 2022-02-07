@@ -17,16 +17,16 @@ React, Sass, React Router, Firebase, classnames, dotenv, validator
 
 - Login page
 
-<img src="src/images/screenshot1.png" width=500px />
+<img src="src/images/screenshot1.png" />
 
 - Events list page
 
-<img src="src/images/screenshot2.png" width=500px />
+<img src="src/images/screenshot2.png" />
 
 - Event page
 
-<img src="src/images/screenshot3.png" width=500px />
+<img src="src/images/screenshot3.png" />
 
 - Archive list page
 
-<img src="src/images/screenshot4.png" width=500px />
+<img src="src/images/screenshot4.png" />
