@@ -46,12 +46,12 @@ export const Task = ({userId, eventId, task, eventUpdate}) => {
     }
 
     return (
-        <div className={classNames("eventPage--task", {"eventPage--task__inActive": task.isDone})}>
-            <div className="eventPage--task__info">
-                <div className="eventPage--task__name">{task.name}</div>
-                <div className="eventPage--task__description">{task.description}</div>
+        <div className={classNames("event-page__task", {"event-page__task--inActive": task.isDone})}>
+            <div className="event-page__task-info">
+                <div className="event-page__task-name">{task.name}</div>
+                <div className="event-page__task-description">{task.description}</div>
             </div>
-            <div className="eventPage--task__actions">
+            <div className="event-page__task-actions">
                 <span className={classNames({"fas": task.isDone, "far": !task.isDone}, "fa-check-square")} 
                 title="Wykonane" onClick={doneBtnHandler} />
                 <span className="fas fa-trash" title="Usuń" onClick={trashBtnHandler} />

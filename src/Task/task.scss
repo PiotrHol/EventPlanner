@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.eventPage--task {
+.event-page__task {
     width: 100%;
     margin: 10px 0;
     background: $eventBg;
@@ -17,7 +17,7 @@
         font-size: 18px;
     }
 
-    .eventPage--task__info {
+    .event-page__task-info {
         width: 75%;
 
         @include mediaTablet {
@@ -30,11 +30,11 @@
             align-items: center;
         }
 
-        .eventPage--task__name, .eventPage--task__description {
+        .event-page__task-name, .event-page__task-description {
             padding: 5px;
         }
 
-        .eventPage--task__name {
+        .event-page__task-name {
             font-weight: 800;
             font-size: 18px;
 
@@ -52,7 +52,7 @@
             }
         }
 
-        .eventPage--task__description {
+        .event-page__task-description {
             @include mediaHeader {
                 width: 60%;
             }
@@ -63,7 +63,7 @@
         }
     }
 
-    .eventPage--task__actions {
+    .event-page__task-actions {
         width: 25%;
         display: flex;
         justify-content: space-around;
@@ -89,10 +89,10 @@
     }
 }
 
-.eventPage--task__inActive {
+.event-page__task--inActive {
     color: $shadowColor;
 
-    .eventPage--task__info, .eventPage--task__cost {
+    .event-page__task-info, .event-page__task-cost {
         text-decoration: line-through;
     }
 }
