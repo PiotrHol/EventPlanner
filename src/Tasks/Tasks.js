@@ -52,32 +52,32 @@ export const Tasks = ({user, eventId, tasks, updateEvent}) => {
     }
 
     return (
-        <div className="eventPage--content eventPage--tasks">
-            <div className="eventPage--bar"/>
-            <div className="eventPage--tasksContent">
-                <button className="eventPage--tasks__addTask" onClick={addTaskBtnHandler}>Dodaj zadanie</button>
+        <div className="event-page__content event-page__tasks">
+            <div className="event-page__bar"/>
+            <div className="event-page__tasks-content">
+                <button className="event-page__tasks-add-task" onClick={addTaskBtnHandler}>Dodaj zadanie</button>
                 {isAddTask && (
-                    <form className="eventPage--tasks__new">
-                        <label className="eventPage--tasks__newTittle">
+                    <form className="event-page__tasks-new">
+                        <label className="event-page__tasks-new-title">
                             <h3>Nazwa:</h3>
                             <input type="text" maxLength={50} value={taskName} onChange={event => setTaskName(event.target.value)} />
                         </label>
-                        <label className="eventPage--tasks__newTittle">
+                        <label className="event-page__tasks-new-title">
                             <h3>Opis:</h3>
                             <input type="text" maxLength={50} value={taskDescription} 
                             onChange={event => setTaskDescription(event.target.value)} />
                         </label>
-                        <label className="eventPage--tasks__newTittle">
+                        <label className="event-page__tasks-new-title">
                             <h3>Kwota:</h3>
                             <input type="number" placeholder="Opcjonalnie" maxLength={50} value={taskCost} 
                             onChange={event => setTaskCost(event.target.value)} />
                         </label>
-                        <button className="eventPage--tasks__newSaveBtn" onClick={saveTaskBtnHandler}>Dodaj</button>
-                        {!isValid && <p className="eventPage--tasks__wrongInput">Pola nazwy i opisu nie mogą być puste!</p>}
+                        <button className="event-page__tasks-new-save-btn" onClick={saveTaskBtnHandler}>Dodaj</button>
+                        {!isValid && <p className="event-page__tasks-wrong-input">Pola nazwy i opisu nie mogą być puste!</p>}
                     </form>
                 )}
-                <div className="eventPage--tasks__list">
-                    <h3 className="eventPage--tasks__listTittle">Lista zadań:</h3>
+                <div className="event-page__tasks-list">
+                    <h3 className="event-page__tasks-list-title">Lista zadań:</h3>
                     {tasks.map(singleTask => <Task key={singleTask.id} userId={user} eventId={eventId} task={singleTask}
                     eventUpdate={updateEvent} />)}
                 </div>

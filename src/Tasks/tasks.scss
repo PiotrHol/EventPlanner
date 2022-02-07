@@ -1,6 +1,6 @@
 @import "../scss/main.scss";
 
-.eventPage--tasks {
+.event-page__tasks {
     width: 100%;
     font-family: 'Vollkorn', serif;
     font-size: 18px;
@@ -11,7 +11,7 @@
         margin-top: 2%;
     }
 
-    .eventPage--tasksContent {
+    .event-page__tasks-content {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -40,7 +40,7 @@
             }
         }
     
-        .eventPage--tasks__addTask {
+        .event-page__tasks-add-task {
             margin: 10px auto;
     
             @include mediaTablet {
@@ -48,12 +48,12 @@
             }
         }
     
-        .eventPage--tasks__new {
+        .event-page__tasks-new {
             width: 100%;
             display: flex;
             flex-direction: column;
     
-            .eventPage--tasks__newTittle h3 {
+            .event-page__tasks-new-title h3 {
                 font-family: 'Bungee', cursive;
                 font-size: 16px;
                 padding: 5px 10px;
@@ -65,7 +65,7 @@
                 }
             }
     
-            .eventPage--tasks__newTittle input {
+            .event-page__tasks-new-title input {
                 width: 90%;
                 margin: 5px 10px;
                 font-size: 18px;
@@ -83,7 +83,7 @@
                 }
             }
     
-            .eventPage--tasks__newSaveBtn {
+            .event-page__tasks-new-save-btn {
                 margin: 5px auto;
     
                 @include mediaTablet {
@@ -91,7 +91,7 @@
                 }
             }
 
-            .eventPage--tasks__wrongInput {
+            .event-page__tasks-wrong-input {
                 color: $redColor;
                 font-size: 16px;
                 padding: 5px 10px;
@@ -103,14 +103,14 @@
             }
         }
     
-        .eventPage--tasks__list {
+        .event-page__tasks-list {
             padding: 10px;
     
             @include mediaTablet {
                 padding: 10px 20px;
             }
     
-            .eventPage--tasks__listTittle {
+            .event-page__tasks-list-title {
                 font-family: 'Bungee', cursive;
                 font-size: 16px;
     
