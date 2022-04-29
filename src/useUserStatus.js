@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { setUser } from "./redux/actions/eventsActions";
+import { setUser, clearEvents } from "./redux/actions/eventsActions";
 
 export function useUserStatus() {
   const [checkAuth, setCheckAuth] = useState({ isLogIn: false, userId: "" });
@@ -10,9 +10,16 @@ export function useUserStatus() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(getAuth(), (user) => {
       setCheckAuth({ isLogIn: !!user, userId: user ? user.uid : "" });
-      user ? dispatch(setUser(user.uid)) : dispatch(setUser(""));
+      if (user) {
+        dispatch(setUser(user.uid));
+      }
+      else {
+        dispatch(setUser(""));
+        dispatch(clearEvents());
+      }
     });
     return () => unsubscribe();
+    // eslint-disable-next-line
   }, []);
 
   return checkAuth;
