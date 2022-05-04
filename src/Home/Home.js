@@ -5,7 +5,6 @@ import { Link, Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import { useUserStatus } from "../useUserStatus";
 import logo from "../images/navLogo.png";
 import { Events } from "../Events/Events";
-import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { fetchEvents } from "../redux/reducers/eventsSlice";
 import { useSelector } from "react-redux";
@@ -22,41 +21,6 @@ export const Home = () => {
 
   useEffect(() => {
     if (userId) {
-      async function fetchData() {
-        const dataBase = getFirestore();
-        setEventsListTemp([]);
-        setArchiveListTemp([]);
-
-        const allEvents = await getDocs(
-          collection(dataBase, "users", userId, "events")
-        );
-        allEvents.forEach((singleEvent) => {
-          setEventsListTemp((prev) => [
-            ...prev,
-            {
-              ...singleEvent.data(),
-              id: singleEvent.id,
-              tasks: singleEvent.data().tasks.sort((a, b) => a.id - b.id),
-            },
-          ]);
-        });
-
-        const allArchive = await getDocs(
-          collection(dataBase, "users", userId, "archive")
-        );
-        allArchive.forEach((singleEvent) => {
-          setArchiveListTemp((prev) => [
-            ...prev,
-            {
-              ...singleEvent.data(),
-              id: singleEvent.id,
-              tasks: singleEvent.data().tasks.sort((a, b) => a.id - b.id),
-            },
-          ]);
-        });
-      }
-
-      fetchData();
       dispatch(fetchEvents);
     }
     // eslint-disable-next-line
