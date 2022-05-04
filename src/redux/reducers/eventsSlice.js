@@ -54,6 +54,11 @@ const eventsReducer = (state = initialState, { type, payload }) => {
         events: [],
         archive: [],
       };
+    case actionsType.addEvent:
+      return {
+        ...state,
+        events: [...state.events, payload],
+      };
     default:
       return state;
   }

@@ -2,6 +2,7 @@ const actionsType = {
   setUser: "events/setUser",
   setEvents: "events/setEvents",
   clearEvents: "events/clearEvents",
+  addEvent: "events/addEvent",
 };
 
 const setUser = (payload) => {
@@ -24,4 +25,11 @@ const clearEvents = () => {
   };
 };
 
-export { actionsType, setUser, setEvents, clearEvents };
+const addEvent = (payload) => {
+  return {
+    type: actionsType.addEvent,
+    payload,
+  };
+};
+
+export { actionsType, setUser, setEvents, clearEvents, addEvent };
