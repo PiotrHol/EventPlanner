@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./events.scss";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { setDoc, doc, getFirestore } from "firebase/firestore";
 import { eventValidation } from "../validation";
 import { EventInfo } from "../EventInfo/EventInfo";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
@@ -41,15 +41,17 @@ export const Events = ({
       tasks: [],
     };
 
-    const dataFromSetting = await addDoc(
-      collection(getFirestore(), "users", user, "events"),
+    const newEventId = Date.now().toString();
+
+    await setDoc(
+      doc(getFirestore(), "users", user, "events", newEventId),
       dataToSet
     );
 
     dispatch(
       addEvent({
         ...dataToSet,
-        id: dataFromSetting.id,
+        id: newEventId,
       })
     );
 

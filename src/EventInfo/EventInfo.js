@@ -1,6 +1,6 @@
 import React from "react";
 import "./eventInfo.scss";
-import { addDoc, collection, deleteDoc, doc, getFirestore } from "firebase/firestore";
+import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
@@ -26,15 +26,17 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
     }
 
     const archiveBtnHandler = async () => {
-        const archiveToSet = await addDoc(collection(dataBase, "users", user, "archive"), dataToSet);
-        setData(archiveUpdate, dataToSet, archiveToSet.id);
+        const newEventId = Date.now().toString();
+        await setDoc(doc(dataBase, "users", user, "archive", newEventId), dataToSet);
+        setData(archiveUpdate, dataToSet, newEventId);
         await deleteDoc(doc(dataBase, "users", user, "events", data.id));
         deleteData(eventsUpdate, data.id);
     }
 
     const returnBtnHandler = async () => {
-        const eventToSet = await addDoc(collection(dataBase, "users", user, "events"), dataToSet);
-        setData(eventsUpdate, dataToSet, eventToSet.id);
+        const newEventId = Date.now().toString();
+        await setDoc(doc(dataBase, "users", user, "events", newEventId), dataToSet);
+        setData(eventsUpdate, dataToSet, newEventId);
         await deleteDoc(doc(dataBase, "users", user, "archive", data.id));
         deleteData(archiveUpdate, data.id);
     }
