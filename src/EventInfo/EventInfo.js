@@ -3,6 +3,8 @@ import "./eventInfo.scss";
 import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
+import { moveToArchive } from "../redux/actions/eventsActions";
 
 export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, url}) => {
     const dataBase = getFirestore();
@@ -13,6 +15,7 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
         guests: data.guests,
         tasks: data.tasks
     }
+    const dispatch = useDispatch();
 
     const setData = (stateSetter, data, id) => {
         stateSetter(prev => [...prev, {
@@ -26,11 +29,9 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
     }
 
     const archiveBtnHandler = async () => {
-        const newEventId = Date.now().toString();
-        await setDoc(doc(dataBase, "users", user, "archive", newEventId), dataToSet);
-        setData(archiveUpdate, dataToSet, newEventId);
+        await setDoc(doc(dataBase, "users", user, "archive", data.id), dataToSet);
         await deleteDoc(doc(dataBase, "users", user, "events", data.id));
-        deleteData(eventsUpdate, data.id);
+        dispatch(moveToArchive(data))
     }
 
     const returnBtnHandler = async () => {
