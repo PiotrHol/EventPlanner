@@ -17,17 +17,6 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
     }
     const dispatch = useDispatch();
 
-    const setData = (stateSetter, data, id) => {
-        stateSetter(prev => [...prev, {
-            ...data,
-            id
-        }]);
-    }
-
-    const deleteData = (stateSetter, id) => {
-        stateSetter(prev => prev.filter(event => event.id !== id));
-    }
-
     const archiveBtnHandler = async () => {
         await setDoc(doc(dataBase, "users", user, "archive", data.id), dataToSet);
         await deleteDoc(doc(dataBase, "users", user, "events", data.id));
