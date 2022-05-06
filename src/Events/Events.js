@@ -120,8 +120,6 @@ export const Events = ({
                   user={user}
                   data={singleEvent}
                   isActive={true}
-                  eventsUpdate={updateEvents}
-                  archiveUpdate={updateArchive}
                   url={url}
                 />
               ))}
@@ -153,8 +151,6 @@ export const Events = ({
             user={user}
             data={singleEvent}
             isActive={false}
-            eventsUpdate={updateEvents}
-            archiveUpdate={updateArchive}
           />
         ))}
         {!events.length && (
