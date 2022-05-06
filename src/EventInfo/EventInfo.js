@@ -4,7 +4,7 @@ import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
-import { moveToArchive, moveToEvents } from "../redux/actions/eventsActions";
+import { moveToArchive, moveToEvents, deleteFromArchive } from "../redux/actions/eventsActions";
 
 export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, url}) => {
     const dataBase = getFirestore();
@@ -42,7 +42,7 @@ export const EventInfo = ({user, data, isActive, eventsUpdate, archiveUpdate, ur
 
     const trashBtnHandler = async () => {
         await deleteDoc(doc(dataBase, "users", user, "archive", data.id));
-        deleteData(archiveUpdate, data.id);
+        dispatch(deleteFromArchive(data));
     }
 
     return (
