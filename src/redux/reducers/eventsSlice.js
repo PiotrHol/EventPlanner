@@ -59,6 +59,14 @@ const eventsReducer = (state = initialState, { type, payload }) => {
         ...state,
         events: [...state.events, payload],
       };
+    case actionsType.moveToArchive:
+      return {
+        ...state,
+        events: state.events
+          .filter((event) => event.id !== payload.id)
+          .sort((a, b) => a.id - b.id),
+        archive: [...state.archive, payload].sort((a, b) => a.id - b.id),
+      };
     default:
       return state;
   }

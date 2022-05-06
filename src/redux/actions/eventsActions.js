@@ -3,6 +3,7 @@ const actionsType = {
   setEvents: "events/setEvents",
   clearEvents: "events/clearEvents",
   addEvent: "events/addEvent",
+  moveToArchive: "events/moveToArchive",
 };
 
 const setUser = (payload) => {
@@ -32,4 +33,18 @@ const addEvent = (payload) => {
   };
 };
 
-export { actionsType, setUser, setEvents, clearEvents, addEvent };
+const moveToArchive = (payload) => {
+  return {
+    type: actionsType.moveToArchive,
+    payload,
+  };
+};
+
+export {
+  actionsType,
+  setUser,
+  setEvents,
+  clearEvents,
+  addEvent,
+  moveToArchive,
+};
