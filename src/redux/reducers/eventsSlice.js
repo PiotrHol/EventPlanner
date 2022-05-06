@@ -45,8 +45,8 @@ const eventsReducer = (state = initialState, { type, payload }) => {
     case actionsType.setEvents:
       return {
         ...state,
-        events: payload.allEventsArray,
-        archive: payload.allArchiveArray,
+        events: payload.allEventsArray.sort((a, b) => a.id - b.id),
+        archive: payload.allArchiveArray.sort((a, b) => a.id - b.id),
       };
     case actionsType.clearEvents:
       return {
@@ -57,7 +57,7 @@ const eventsReducer = (state = initialState, { type, payload }) => {
     case actionsType.addEvent:
       return {
         ...state,
-        events: [...state.events, payload],
+        events: [...state.events, payload].sort((a, b) => a.id - b.id),
       };
     case actionsType.moveToArchive:
       return {
