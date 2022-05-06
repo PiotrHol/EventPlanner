@@ -4,13 +4,14 @@ import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   moveToArchive,
   moveToEvents,
   deleteFromArchive,
 } from "../redux/actions/eventsActions";
 
-export const EventInfo = ({ user, data, isActive, url }) => {
+export const EventInfo = ({ data, isActive, url }) => {
   const dataBase = getFirestore();
   const dataToSet = {
     name: data.name,
@@ -20,6 +21,7 @@ export const EventInfo = ({ user, data, isActive, url }) => {
     tasks: data.tasks,
   };
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const archiveBtnHandler = async () => {
     await setDoc(doc(dataBase, "users", user, "archive", data.id), dataToSet);

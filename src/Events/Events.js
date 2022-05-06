@@ -117,7 +117,6 @@ export const Events = ({
               {events.map((singleEvent) => (
                 <EventInfo
                   key={singleEvent.id}
-                  user={user}
                   data={singleEvent}
                   isActive={true}
                   url={url}
@@ -148,7 +147,6 @@ export const Events = ({
         {events.map((singleEvent) => (
           <EventInfo
             key={singleEvent.id}
-            user={user}
             data={singleEvent}
             isActive={false}
           />
