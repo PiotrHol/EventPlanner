@@ -75,6 +75,13 @@ const eventsReducer = (state = initialState, { type, payload }) => {
           .filter((event) => event.id !== payload.id)
           .sort((a, b) => a.id - b.id),
       };
+    case actionsType.deleteFromArchive:
+      return {
+        ...state,
+        archive: state.archive
+          .filter((event) => event.id !== payload)
+          .sort((a, b) => a.id - b.id),
+      };
     default:
       return state;
   }
