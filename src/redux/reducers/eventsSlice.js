@@ -82,6 +82,20 @@ const eventsReducer = (state = initialState, { type, payload }) => {
           .filter((event) => event.id !== payload)
           .sort((a, b) => a.id - b.id),
       };
+    case actionsType.updateEventData:
+      return {
+        ...state,
+        events: state.events.map((event) => {
+          if (event.id === payload.id) {
+            return {
+              ...event,
+              [payload.variableName]: payload.value,
+            };
+          } else {
+            return event;
+          }
+        }),
+      };
     default:
       return state;
   }
