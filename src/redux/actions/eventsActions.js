@@ -11,6 +11,7 @@ const actionsType = {
   setIsDoneTask: "events/setIsDoneTask",
   deleteTask: "events/deleteTask",
   addNewGuest: "events/addNewGuest",
+  deleteGuest: "events/deleteGuest",
 };
 
 const setUser = (payload) => {
@@ -96,6 +97,13 @@ const addNewGuest = (id, guest) => {
   };
 };
 
+const deleteGuest = (eventId, guestId) => {
+  return {
+    type: actionsType.deleteGuest,
+    payload: { eventId, guestId },
+  };
+};
+
 export {
   actionsType,
   setUser,
@@ -110,4 +118,5 @@ export {
   setIsDoneTask,
   deleteTask,
   addNewGuest,
+  deleteGuest,
 };

@@ -158,6 +158,22 @@ const eventsReducer = (state = initialState, { type, payload }) => {
           }
         }),
       };
+    case actionsType.deleteGuest:
+      return {
+        ...state,
+        events: state.events.map((event) => {
+          if (event.id === payload.eventId) {
+            return {
+              ...event,
+              guests: event.guests.filter(
+                (guest) => guest.id !== payload.guestId
+              ),
+            };
+          } else {
+            return event;
+          }
+        }),
+      };
     default:
       return state;
   }
