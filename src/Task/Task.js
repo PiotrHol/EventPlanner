@@ -1,61 +1,67 @@
 import React from "react";
 import "./task.scss";
-import { doc, updateDoc, arrayUnion, arrayRemove, getFirestore } from "firebase/firestore";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  getFirestore,
+} from "firebase/firestore";
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setIsDoneTask, deleteTask } from "../redux/actions/eventsActions";
 
-export const Task = ({userId, eventId, task, eventUpdate}) => {
-    const doneBtnHandler = async () => {
-        const dataToSet = {
-            ...task,
-            isDone: !task.isDone
-        }
+export const Task = ({ eventId, task }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
-        await updateDoc(doc(getFirestore(), "users", userId, "events", eventId), {
-            tasks: arrayRemove(task)
-        });
+  const doneBtnHandler = async () => {
+    const dataToSet = {
+      ...task,
+      isDone: !task.isDone,
+    };
 
-        await updateDoc(doc(getFirestore(), "users", userId, "events", eventId), {
-            tasks: arrayUnion(dataToSet)
-        });
+    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+      tasks: arrayRemove(task),
+    });
 
-        eventUpdate(prev => prev.map(event => {
-            if (event.id === eventId) {
-                event.tasks = event.tasks.map(singleTask => {
-                    if (singleTask.id === task.id) {
-                        return dataToSet;
-                    }
-                    return singleTask;
-                });
-            }
-            return event;
-        }));
-    }
+    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+      tasks: arrayUnion(dataToSet),
+    });
 
-    const trashBtnHandler = async () => {
-        await updateDoc(doc(getFirestore(), "users", userId, "events", eventId), {
-            tasks: arrayRemove(task)
-        });
-        eventUpdate(prev => {
-            return prev.map(event => {
-                if (event.id === eventId) {
-                    event.tasks = event.tasks.filter(({id}) => id !== task.id);
-                }
-                return event;
-            });
-        });
-    }
+    dispatch(setIsDoneTask(eventId, task.id, dataToSet));
+  };
 
-    return (
-        <div className={classNames("event-page__task", {"event-page__task--inActive": task.isDone})}>
-            <div className="event-page__task-info">
-                <div className="event-page__task-name">{task.name}</div>
-                <div className="event-page__task-description">{task.description}</div>
-            </div>
-            <div className="event-page__task-actions">
-                <span className={classNames({"fas": task.isDone, "far": !task.isDone}, "fa-check-square")} 
-                title="Wykonane" onClick={doneBtnHandler} />
-                <span className="fas fa-trash" title="Usuń" onClick={trashBtnHandler} />
-            </div>
-        </div>
-    );
-}
+  const trashBtnHandler = async () => {
+    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+      tasks: arrayRemove(task),
+    });
+
+    dispatch(deleteTask(eventId, task.id));
+  };
+
+  return (
+    <div
+      className={classNames("event-page__task", {
+        "event-page__task--inActive": task.isDone,
+      })}
+    >
+      <div className="event-page__task-info">
+        <div className="event-page__task-name">{task.name}</div>
+        <div className="event-page__task-description">{task.description}</div>
+      </div>
+      <div className="event-page__task-actions">
+        <span
+          className={classNames(
+            { fas: task.isDone, far: !task.isDone },
+            "fa-check-square"
+          )}
+          title="Wykonane"
+          onClick={doneBtnHandler}
+        />
+        <span className="fas fa-trash" title="Usuń" onClick={trashBtnHandler} />
+      </div>
+    </div>
+  );
+};
