@@ -8,6 +8,7 @@ const actionsType = {
   deleteFromArchive: "events/deleteFromArchive",
   updateEventData: "events/updateEventData",
   addNewTask: "events/addNewTask",
+  setIsDoneTask: "events/setIsDoneTask",
 };
 
 const setUser = (payload) => {
@@ -72,6 +73,13 @@ const addNewTask = (id, task) => {
   };
 };
 
+const setIsDoneTask = (eventId, taskId, task) => {
+  return {
+    type: actionsType.setIsDoneTask,
+    payload: { eventId, taskId, task },
+  };
+};
+
 export {
   actionsType,
   setUser,
@@ -83,4 +91,5 @@ export {
   deleteFromArchive,
   updateEventData,
   addNewTask,
+  setIsDoneTask,
 };

@@ -110,6 +110,26 @@ const eventsReducer = (state = initialState, { type, payload }) => {
           }
         }),
       };
+    case actionsType.setIsDoneTask:
+      return {
+        ...state,
+        events: state.events.map((event) => {
+          if (event.id === payload.eventId) {
+            return {
+              ...event,
+              tasks: event.tasks.map((task) => {
+                if (task.id === payload.taskId) {
+                  return payload.task;
+                } else {
+                  return task;
+                }
+              }),
+            };
+          } else {
+            return event;
+          }
+        }),
+      };
     default:
       return state;
   }
