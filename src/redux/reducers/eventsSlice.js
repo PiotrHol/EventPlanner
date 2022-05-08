@@ -144,6 +144,20 @@ const eventsReducer = (state = initialState, { type, payload }) => {
           }
         }),
       };
+    case actionsType.addNewGuest:
+      return {
+        ...state,
+        events: state.events.map((event) => {
+          if (event.id === payload.id) {
+            return {
+              ...event,
+              guests: [...event.guests, payload.guest],
+            };
+          } else {
+            return event;
+          }
+        }),
+      };
     default:
       return state;
   }
