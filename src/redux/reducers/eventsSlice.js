@@ -130,6 +130,20 @@ const eventsReducer = (state = initialState, { type, payload }) => {
           }
         }),
       };
+    case actionsType.deleteTask:
+      return {
+        ...state,
+        events: state.events.map((event) => {
+          if (event.id === payload.eventId) {
+            return {
+              ...event,
+              tasks: event.tasks.filter((task) => task.id !== payload.taskId),
+            };
+          } else {
+            return event;
+          }
+        }),
+      };
     default:
       return state;
   }
