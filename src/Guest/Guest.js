@@ -1,25 +1,30 @@
 import React from "react";
 import "./guest.scss";
 import { doc, updateDoc, arrayRemove, getFirestore } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { deleteGuest } from "../redux/actions/eventsActions";
 
-export const Guest = ({userId, eventId, guest, eventUpdate}) => {
-    const deleteGuestBtnHandler = async () => {
-        await updateDoc(doc(getFirestore(), "users", userId, "events", eventId), {
-            guests: arrayRemove(guest)
-        });
+export const Guest = ({ eventId, guest }) => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
-        eventUpdate(prev => prev.map(event => {
-            if (event.id === eventId) {
-                event.guests = event.guests.filter(({id}) => id !== guest.id);
-            }
-            return event;
-        })); 
-    }
+  const deleteGuestBtnHandler = async () => {
+    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+      guests: arrayRemove(guest),
+    });
 
-    return (
-        <div className="event-page__guest">
-            <h3>{guest.name}</h3>
-            <span className="fas fa-trash" title="Usuń" onClick={deleteGuestBtnHandler} />
-        </div>
-    );
-}
+    dispatch(deleteGuest(eventId, guest.id));
+  };
+
+  return (
+    <div className="event-page__guest">
+      <h3>{guest.name}</h3>
+      <span
+        className="fas fa-trash"
+        title="Usuń"
+        onClick={deleteGuestBtnHandler}
+      />
+    </div>
+  );
+};
