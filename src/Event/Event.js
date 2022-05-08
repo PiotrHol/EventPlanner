@@ -10,7 +10,7 @@ export const Event = ({userId, id, name, place, date, tasks, guests, eventUpdate
     <div className="event-page">
       <div className="event-page__left-content">
         <Information eventId={id} name={name} place={place} date={date} />
-        <Tasks user={userId} eventId={id} tasks={tasks} updateEvent={eventUpdate} />
+        <Tasks eventId={id} tasks={tasks} />
       </div>
       <div className="event-page__right-content">
         <Guests user={userId} eventId={id} guests={guests} updateEvent={eventUpdate} />
