@@ -5,7 +5,7 @@ import { Tasks } from "../Tasks/Tasks";
 import { Guests } from "../Guests/Guests";
 import { Cost } from "../Cost/Cost";
 
-export const Event = ({userId, id, name, place, date, tasks, guests, eventUpdate }) => {
+export const Event = ({ id, name, place, date, tasks, guests }) => {
   return (
     <div className="event-page">
       <div className="event-page__left-content">
@@ -13,7 +13,7 @@ export const Event = ({userId, id, name, place, date, tasks, guests, eventUpdate
         <Tasks eventId={id} tasks={tasks} />
       </div>
       <div className="event-page__right-content">
-        <Guests user={userId} eventId={id} guests={guests} updateEvent={eventUpdate} />
+        <Guests eventId={id} guests={guests} />
         <Cost tasks={tasks} />
       </div>
     </div>

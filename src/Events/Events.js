@@ -128,14 +128,12 @@ export const Events = ({
         {events.map(({ id, name, place, date, tasks, guests }) => (
           <Route key={id} path={`${path}/${id}`}>
             <Event
-              userId={user}
               id={id}
               name={name}
               place={place}
               date={date}
               tasks={tasks}
               guests={guests}
-              eventUpdate={updateEvents}
             />
           </Route>
         ))}
