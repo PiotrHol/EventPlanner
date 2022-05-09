@@ -6,15 +6,10 @@ import { EventInfo } from "../EventInfo/EventInfo";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Event } from "../Event/Event";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { addEvent } from "../redux/actions/eventsActions";
 
-export const Events = ({
-  user,
-  events,
-  isArchive,
-  updateEvents,
-  updateArchive,
-}) => {
+export const Events = ({ events, isArchive }) => {
   const [isAddEvent, setIsAddEvent] = useState(false);
   const [eventName, setEventName] = useState("");
   const [eventPlace, setEventPlace] = useState("");
@@ -22,6 +17,7 @@ export const Events = ({
   const [isValidate, setIsValidate] = useState(true);
   let { path, url } = useRouteMatch();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const addEventBtnHandler = async (event) => {
     event.preventDefault();
@@ -143,11 +139,7 @@ export const Events = ({
     return (
       <div className="home-page__events">
         {events.map((singleEvent) => (
-          <EventInfo
-            key={singleEvent.id}
-            data={singleEvent}
-            isActive={false}
-          />
+          <EventInfo key={singleEvent.id} data={singleEvent} isActive={false} />
         ))}
         {!events.length && (
           <h2 className="home-page__events-null">Brak wydarzeń w archiwum</h2>
