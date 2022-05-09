@@ -13,8 +13,6 @@ export const Home = () => {
   const { userId } = useUserStatus();
   let { path, url } = useRouteMatch();
   const [showMenu, setShowMenu] = useState(false);
-  const [eventsListTemp, setEventsListTemp] = useState([]);
-  const [archiveListTemp, setArchiveListTemp] = useState([]);
   const dispatch = useDispatch();
   const eventsList = useSelector((state) => state.events);
   const archiveList = useSelector((state) => state.archive);
@@ -69,22 +67,10 @@ export const Home = () => {
             <Redirect to={`${path}/events`} />
           </Route>
           <Route path={`${path}/events`}>
-            <Events
-              user={userId}
-              events={eventsList}
-              isArchive={false}
-              updateEvents={(data) => setEventsListTemp(data)}
-              updateArchive={(data) => setArchiveListTemp(data)}
-            />
+            <Events events={eventsList} isArchive={false} />
           </Route>
           <Route path={`${path}/archive`}>
-            <Events
-              user={userId}
-              events={archiveList}
-              isArchive={true}
-              updateEvents={(data) => setEventsListTemp(data)}
-              updateArchive={(data) => setArchiveListTemp(data)}
-            />
+            <Events events={archiveList} isArchive={true} />
           </Route>
         </Switch>
       </main>
