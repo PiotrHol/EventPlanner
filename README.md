@@ -11,7 +11,7 @@ https://piotrhol.github.io/EventPlanner/
 
 ## Technologies
 
-React, Sass, React Router, Firebase, classnames, dotenv, validator
+React, Sass, React Router, Firebase, Redux, classnames, dotenv, validator
 
 ## Example screenshots
 
