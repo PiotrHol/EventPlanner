@@ -5,14 +5,17 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 1px 1px 5px 0 $shadowColor;
 
   .home-page__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: $mainGradient;
+    background: transparent;
+
+    @include mediaHeader {
+      align-items: flex-end;
+    }
 
     .home-page__logo {
       display: flex;
@@ -31,7 +34,7 @@
           width: 60px;
         }
 
-        @include mediaDesktop {
+        @include mediaMax {
           width: 80px;
         }
       }
@@ -45,7 +48,7 @@
         }
 
         @include mediaDesktop {
-          font-size: 30px;
+          font-size: 26px;
         }
 
         @include mediaMax {
@@ -56,36 +59,40 @@
 
     .home-page__menu-icon {
       display: inline-block;
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
       position: relative;
       margin-right: 15px;
       cursor: pointer;
-
+      background: $whiteColor;
+      border-radius: 10px;
       .home-page__nav-icon {
         display: block;
-        background-color: $bgColor;
-        width: 100%;
+        background-color: $btnColorHover;
+        width: 30px;
         height: 4px;
         position: absolute;
-        top: 12px;
+        top: 23px;
+        left: 10px;
+        border-radius: 10px;
 
         &::before, &::after {
           content: "";
           display: block;
-          background-color: $bgColor;
-          width: 100%;
+          background-color: $btnColorHover;
+          width: 30px;
           height: 4px;
+          border-radius: 10px;
           position: absolute;
           transition: all 0.2s ease-out;
         }
 
         &::before {
-          top: -12px;
+          top: -11px;
         }
 
         &::after {
-          top: 12px;
+          top: 11px;
         }
       }
 
@@ -96,6 +103,10 @@
 
     .home-page__menu-btn {
       display: none;
+      -webkit-transition: display .4s ease-out;
+      -moz-transition: display .4s ease-out;
+      -o-transition: display .4s ease-out;
+      transition: display .4s ease-out;
 
       &:checked ~ .home-page__menu-icon span {
         background: transparent;
@@ -113,6 +124,10 @@
 
       &:checked ~ .home-page__nav {
         display: block;
+        -webkit-transition: display .4s ease-out;
+        -moz-transition: display .4s ease-out;
+        -o-transition: display .4s ease-out;
+        transition: display .4s ease-out;
       }
     }
 
@@ -122,7 +137,7 @@
       position: absolute;
       left: 0;
       top: 70px;
-      background: $bgColor;
+      background: $whiteColor;
 
       @include mediaTablet {
         top: 80px;
@@ -157,11 +172,24 @@
             border: none;
             margin-right: 10px;
             padding: 10px;
+            background: $borderColor;
+            border-style: solid;
+            border-color: $whiteColor;
+            border-width:  1px 1px 0 1px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 5px 5px 15px 0 $shadowColor;
 
-            &:hover {
+            &.home-page__active-menu-item {
               background: $whiteColor;
-              color: $textColor;
-              border-radius: 10px;
+            }
+
+            &:hover:not(.home-page__active-menu-item) {
+              background: $btnTextColor;
+              color: $btnColorHover;
+              -webkit-transition: color .4s ease-out;
+              -moz-transition: color .4s ease-out;
+              -o-transition: color .4s ease-out;
+              transition: color .4s ease-out;
             }
           }
 
@@ -181,11 +209,12 @@
 
   .home-page__main {
     flex-grow: 1;
-    border: 1px solid $borderColor;
     background-color: $whiteColor;
     padding: 20px;
     overflow-y: auto;
     font-family: 'Vollkorn', serif;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 5px 15px 15px 0 $shadowColor;
 
     @include mediaDesktop {
       padding: 20px 40px;

@@ -3,7 +3,7 @@ import "./home.scss";
 import { getAuth, signOut } from "firebase/auth";
 import { Link, Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import { useUserStatus } from "../useUserStatus";
-import logo from "../images/navLogo.png";
+import logo from "../images/logo.png";
 import { Events } from "../Events/Events";
 import { useDispatch } from "react-redux";
 import { fetchEvents } from "../redux/reducers/eventsSlice";
@@ -16,6 +16,7 @@ export const Home = () => {
   const dispatch = useDispatch();
   const eventsList = useSelector((state) => state.events);
   const archiveList = useSelector((state) => state.archive);
+  const [isArchivePage, setIsArchivePage] = useState(false);
 
   useEffect(() => {
     if (userId) {
@@ -27,6 +28,16 @@ export const Home = () => {
   const handleShowMenu = () => {
     setShowMenu((prev) => !prev);
   };
+
+  const handleEventsMenu = () => {
+    setIsArchivePage(false);
+    handleShowMenu();
+  };
+
+  const handleArchiveMenu = () => {
+    setIsArchivePage(true);
+    handleShowMenu();
+  }
 
   return (
     <div className="home-page">
@@ -52,10 +63,10 @@ export const Home = () => {
         <nav className="home-page__nav">
           <ul>
             <Link to={`${url}/events`}>
-              <li onClick={handleShowMenu}>Wydarzenia</li>
+              <li className={!isArchivePage ? "home-page__active-menu-item" : ""} onClick={handleEventsMenu}>Wydarzenia</li>
             </Link>
             <Link to={`${url}/archive`}>
-              <li onClick={handleShowMenu}>Archiwum</li>
+              <li className={isArchivePage ? "home-page__active-menu-item" : ""} onClick={handleArchiveMenu}>Archiwum</li>
             </Link>
             <li onClick={() => signOut(getAuth())}>Wyloguj</li>
           </ul>
