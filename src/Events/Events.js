@@ -109,6 +109,9 @@ export const Events = ({ events, isArchive }) => {
                 </div>
               )}
             </div>
+            <div className="home-page__header">
+              <h2 className="home-page__title">Moje wydarzenia:</h2>
+            </div>
             <div className="home-page__events">
               {events.map((singleEvent) => (
                 <EventInfo
@@ -138,6 +141,7 @@ export const Events = ({ events, isArchive }) => {
   } else {
     return (
       <div className="home-page__events">
+        <h2 className="home-page__title">Archiwum wydarzeń:</h2>
         {events.map((singleEvent) => (
           <EventInfo key={singleEvent.id} data={singleEvent} isActive={false} />
         ))}
