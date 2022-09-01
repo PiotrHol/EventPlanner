@@ -1,164 +1,166 @@
 @import "../scss/main";
 
-.home-page__add-event {
-  width: 100%;
-
-  @include mediaTablet {
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  @include mediaDesktop {
-    width: 60%;
-    margin: 0;
-  }
-
-  @include mediaMax {
-    width: 50%;
-  }
-
-  .home-page__add-event-btn {
+.home-page {
+  &__add-event {
     width: 100%;
-    background: $mainGradient;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    font-family: 'Bungee', cursive;
-    border-radius: 15px;
-    color: $bgColor;
-    letter-spacing: 0.05em;
-    box-shadow: 2px 2px 2px 0 $shadowColor;
-    cursor: pointer;
-
+  
     @include mediaTablet {
-      width: 70%;
+      width: 90%;
+      margin: 0 auto;
     }
-
+  
     @include mediaDesktop {
-      font-size: 18px;
+      width: 60%;
+      margin: 0;
     }
-
+  
     @include mediaMax {
-      width: 320px;
-      font-size: 20px;
+      width: 50%;
     }
-
-    span {
-      margin-right: 5px;
-      font-size: 1.5em;
-    }
-  }
-
-  .home-page__add-event-box {
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 15px;
-    background: $bgColor;
-    box-shadow: 2px 2px 4px 0 $shadowColor;
-
-    @include mediaDesktop {
-      margin-top: 20px;
-    }
-
-    form {
+  
+    &-btn {
       width: 100%;
-
-      .home-page__add-event-input {
+      background: $mainGradient;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      font-family: 'Bungee', cursive;
+      border-radius: 15px;
+      color: $bgColor;
+      letter-spacing: 0.05em;
+      box-shadow: 2px 2px 2px 0 $shadowColor;
+      cursor: pointer;
+  
+      @include mediaTablet {
+        width: 70%;
+      }
+  
+      @include mediaDesktop {
+        font-size: 18px;
+      }
+  
+      @include mediaMax {
+        width: 320px;
+        font-size: 20px;
+      }
+  
+      span {
+        margin-right: 5px;
+        font-size: 1.5em;
+      }
+    }
+  
+    &-box {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 15px;
+      background: $bgColor;
+      box-shadow: 2px 2px 4px 0 $shadowColor;
+  
+      @include mediaDesktop {
+        margin-top: 20px;
+      }
+  
+      form {
         width: 100%;
-
-        h3 {
+  
+        .home-page__add-event-input {
+          width: 100%;
+  
+          h3 {
+            font-family: 'Bungee', cursive;
+  
+            @include mediaDesktop {
+              font-size: 16px;
+            }
+  
+            @include mediaMax {
+              font-size: 18px;
+            }
+          }
+  
+          input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px 5px;
+            outline: none;
+            border: none;
+            font-size: 16px;
+            color: $textColor;
+            border-bottom: 2px solid $borderColor;
+  
+            &:focus {
+              border-color: $textColor;
+            }
+          }
+        }
+  
+        p {
+          color: $redColor;
+          padding: 10px 5px;
+        }
+  
+        button {
           font-family: 'Bungee', cursive;
-
+          background: $mainGradient;
+          border: none;
+          padding: 10px;
+          border-radius: 10px;
+          box-shadow: 2px 2px 2px 0 $shadowColor;
+  
+          @include mediaTablet {
+            padding: 10px 20px;
+          }
+  
           @include mediaDesktop {
+            padding: 10px 30px;
             font-size: 16px;
           }
-
+  
           @include mediaMax {
             font-size: 18px;
           }
         }
-
-        input {
-          width: 100%;
-          margin: 10px 0;
-          padding: 10px 5px;
-          outline: none;
-          border: none;
-          font-size: 16px;
-          color: $textColor;
-          border-bottom: 2px solid $borderColor;
-
-          &:focus {
-            border-color: $textColor;
-          }
-        }
-      }
-
-      p {
-        color: $redColor;
-        padding: 10px 5px;
-      }
-
-      button {
-        font-family: 'Bungee', cursive;
-        background: $mainGradient;
-        border: none;
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 2px 0 $shadowColor;
-
-        @include mediaTablet {
-          padding: 10px 20px;
-        }
-
-        @include mediaDesktop {
-          padding: 10px 30px;
-          font-size: 16px;
-        }
-
-        @include mediaMax {
-          font-size: 18px;
-        }
       }
     }
   }
-}
 
-.home-page__title {
-  font-family: 'Bungee', cursive;
-  font-size: 18px;
-  font-weight: 500;
-  color: $textColor;
-  letter-spacing: 0.5px;
-  margin: 20px 0 10px;
-
-  @include mediaTablet {
-    font-size: 20px;
-  }
-
-  @include mediaDesktop {
-    font-size: 22px;
-  }
-}
-
-.home-page__events {
-  width: 100%;
-  margin: 10px 0;
-  
-  .home-page__events-null {
+  &__title {
     font-family: 'Bungee', cursive;
-    color: $textColor;
-    letter-spacing: 0.05em;
     font-size: 18px;
-    padding: 10px;
-
+    font-weight: 500;
+    color: $textColor;
+    letter-spacing: 0.5px;
+    margin: 20px 0 10px;
+  
     @include mediaTablet {
       font-size: 20px;
     }
-
+  
     @include mediaDesktop {
       font-size: 22px;
+    }
+  }
+
+  &__events {
+    width: 100%;
+    margin: 10px 0;
+    
+    &-null {
+      font-family: 'Bungee', cursive;
+      color: $textColor;
+      letter-spacing: 0.05em;
+      font-size: 18px;
+      padding: 10px;
+  
+      @include mediaTablet {
+        font-size: 20px;
+      }
+  
+      @include mediaDesktop {
+        font-size: 22px;
+      }
     }
   }
 }
