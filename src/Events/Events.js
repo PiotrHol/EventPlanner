@@ -5,6 +5,7 @@ import { eventValidation } from "../validation";
 import { EventInfo } from "../EventInfo/EventInfo";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Event } from "../Event/Event";
+import { Button } from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addEvent } from "../redux/actions/eventsActions";
@@ -63,17 +64,18 @@ export const Events = ({ events, isArchive }) => {
       <Switch>
         <Route exact path={path}>
           <>
-            <div className="home-page__add-event">
-              <div
-                className="home-page__add-event-btn"
-                onClick={() => {
+            <div className="home-page__content-header">
+              <h2 className="home-page__content-title">Moje wydarzenia:</h2>
+              <Button
+                onClickFunction={() => {
                   setIsAddEvent((prev) => !prev);
                   setIsValidate(true);
                 }}
-              >
-                <span className="far fa-plus-square" />
-                Dodaj wydarzenie
-              </div>
+                icon="far fa-plus-square"
+                text="Dodaj wydarzenie"
+              />
+            </div>
+            <div className="home-page__add-event">
               {isAddEvent && (
                 <div className="home-page__add-event-box">
                   <form>
@@ -108,9 +110,6 @@ export const Events = ({ events, isArchive }) => {
                   </form>
                 </div>
               )}
-            </div>
-            <div className="home-page__header">
-              <h2 className="home-page__title">Moje wydarzenia:</h2>
             </div>
             <div className="home-page__events">
               {events.map((singleEvent) => (

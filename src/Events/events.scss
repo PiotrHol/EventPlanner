@@ -126,7 +126,14 @@
     }
   }
 
-  &__title {
+  &__content-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__content-title {
     font-family: 'Bungee', cursive;
     font-size: 18px;
     font-weight: 500;
