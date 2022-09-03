@@ -1,43 +1,63 @@
 @import "../scss/main";
 
 .button {
-    font-family: 'Bungee', cursive;
-    font-size: 14px;
-    padding: 8px 6px;
-    margin: 5px 0;
-    background: $mainGradient;
-    border: none;
-    color: $btnTextColor;
-    border-radius: 8px;
-    border: 1px solid $borderColor;
-    cursor: pointer;
-    width: fit-content;
-    -webkit-transition: color .4s ease-out, border .4s ease-out;
-    -moz-transition: color .4s ease-out, border .4s ease-out;
-    -o-transition: color .4s ease-out, border .4s ease-out;
-    transition: color .4s ease-out, border .4s ease-out;
+  font-family: "Bungee", cursive;
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px 0;
+  background: $mainGradient;
+  border: none;
+  color: $btnTextColor;
+  border-radius: 8px;
+  border: 1px solid $borderColor;
+  cursor: pointer;
+  width: fit-content;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  -webkit-transition: color 1s ease-out, border 1s ease-out;
+  -moz-transition: color 1s ease-out, border 1s ease-out;
+  -o-transition: color 1s ease-out, border 1s ease-out;
+  transition: color 1s ease-out, border 1s ease-out;
 
-    &:hover {
-      background: $btnTextColor;
-      color: $btnColorHover;
-      border-color: $btnColorHover;
-      -webkit-transition: color .4s ease-out, border .4s ease-out;
-      -moz-transition: color .4s ease-out, border .4s ease-out;
-      -o-transition: color .4s ease-out, border .4s ease-out;
-      transition: color .4s ease-out, border .4s ease-out;
-    }
-
-    @include mediaTablet {
-      font-size: 16px;
-      padding: 10px 12px;
-    }
+  &:hover {
+    background: $btnTextColor;
+    color: $btnColorHover;
+    border-color: $btnColorHover;
+    -webkit-transition: color 1s ease-out, border 1s ease-out;
+    -moz-transition: color 1s ease-out, border 1s ease-out;
+    -o-transition: color 1s ease-out, border 1s ease-out;
+    transition: color 1s ease-out, border 1s ease-out;
 
     @include mediaDesktop {
-      font-size: 18px;
-      padding: 12px 16px;
+      .button__text {
+        opacity: 1;
+      }
     }
+  }
 
-    &__icon {
-        margin-right: 5px;
+  @include mediaTablet {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  @include mediaDesktop {
+    font-size: 18px;
+    padding: 16px;
+  }
+
+  &__icon {
+    margin-right: 0;
+    font-size: 18px;
+
+    @include mediaDesktop {
+      margin-right: 10px;
+      font-size: 20px;
     }
+  }
+
+  &__text {
+    display: inline-block;
+    opacity: 0;
+  }
 }
