@@ -2,7 +2,7 @@ import React from "react";
 import "./button.scss";
 import { useState, useEffect, useRef } from "react";
 
-export const Button = ({ icon, text }) => {
+export const Button = ({onClickFunction, icon, text }) => {
   const [firstButtonWidth, setFirstButtonWidth] = useState(0);
   const [buttonWidth, setButtonWidth] = useState("fit-content");
   const [afterRenderButtonWidth, setAfterRenderButtonWidth] = useState(0);
@@ -40,7 +40,7 @@ export const Button = ({ icon, text }) => {
       setOnHoverIntervalId(
         setInterval(() => {
           if (buttonRef.current.offsetWidth < firstButtonWidth) {
-            setButtonWidth((prev) => prev + 1);
+            setButtonWidth((prev) => prev + 2);
           } else {
             clearInterval(onHoverIntervalId);
           }
@@ -57,7 +57,7 @@ export const Button = ({ icon, text }) => {
       setOffHoverIntervalId(
         setInterval(() => {
           if (buttonRef.current.offsetWidth > afterRenderButtonWidth) {
-            setButtonWidth((prev) => prev - 1);
+            setButtonWidth((prev) => prev - 2);
           } else {
             clearInterval(offHoverIntervalId);
           }
@@ -73,6 +73,7 @@ export const Button = ({ icon, text }) => {
       style={{ width: buttonWidth }}
       onMouseEnter={onHoverFunction}
       onMouseLeave={offHoverFunction}
+      onClick={onClickFunction}
     >
       <span className={`${icon} button__icon`} />
       <span className="button__text">{text}</span>
