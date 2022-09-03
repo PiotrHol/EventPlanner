@@ -6,6 +6,7 @@ import { EventInfo } from "../EventInfo/EventInfo";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Event } from "../Event/Event";
 import { Button } from "../Button/Button";
+import { Popup } from "../Popup/Popup";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addEvent } from "../redux/actions/eventsActions";
@@ -16,6 +17,7 @@ export const Events = ({ events, isArchive }) => {
   const [eventPlace, setEventPlace] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [isValidate, setIsValidate] = useState(true);
+  const [isShowAddEventPopup, setIsShowAddEventPopup] = useState(false);
   let { path, url } = useRouteMatch();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -70,11 +72,15 @@ export const Events = ({ events, isArchive }) => {
                 onClickFunction={() => {
                   setIsAddEvent((prev) => !prev);
                   setIsValidate(true);
+                  setIsShowAddEventPopup(true);
                 }}
                 icon="far fa-plus-square"
                 text="Dodaj wydarzenie"
               />
             </div>
+            <Popup isShow={isShowAddEventPopup} setIsShow={(value) => setIsShowAddEventPopup(value)}>
+              Add event form
+            </Popup>
             <div className="home-page__add-event">
               {isAddEvent && (
                 <div className="home-page__add-event-box">
@@ -140,7 +146,7 @@ export const Events = ({ events, isArchive }) => {
   } else {
     return (
       <div className="home-page__events">
-        <h2 className="home-page__title">Archiwum wydarzeń:</h2>
+        <h2 className="home-page__content-title">Archiwum wydarzeń:</h2>
         {events.map((singleEvent) => (
           <EventInfo key={singleEvent.id} data={singleEvent} isActive={false} />
         ))}
