@@ -1,0 +1,62 @@
+@import "../scss/main";
+
+.popup {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__content {
+        width: 90%;
+        max-height: 80vh;
+        background-color: $whiteColor;
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        padding: 30px;
+        border-radius: 10px;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        @include mediaDesktop {
+            width: 70%;
+            padding: 30px 50px 40px;
+        }
+
+        @include mediaMax {
+            width: 50%;
+        }
+    }
+
+    &__close {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        &-btn {
+            display: inline-block;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 1s ease-out;
+
+            &:hover {
+                transform: rotate(180deg);
+            }
+
+            @include mediaDesktop {
+                font-size: 35px;
+            }
+
+            @include mediaMax {
+                font-size: 40px;
+            }
+        }
+    }
+}
