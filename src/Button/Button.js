@@ -2,7 +2,7 @@ import React from "react";
 import "./button.scss";
 import { useState, useEffect, useRef } from "react";
 
-export const Button = ({onClickFunction, icon, text }) => {
+export const Button = ({ onClickFunction, icon, text }) => {
   const [firstButtonWidth, setFirstButtonWidth] = useState(0);
   const [buttonWidth, setButtonWidth] = useState("fit-content");
   const [afterRenderButtonWidth, setAfterRenderButtonWidth] = useState(0);
@@ -16,6 +16,12 @@ export const Button = ({onClickFunction, icon, text }) => {
     setButtonWidth(buttonRef.current.offsetHeight);
     setAfterRenderButtonWidth(buttonRef.current.offsetHeight);
     setWindowXDimension(window.innerWidth);
+
+    return () => {
+      clearInterval(onHoverIntervalId);
+      clearInterval(offHoverIntervalId);
+    };
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -37,15 +43,14 @@ export const Button = ({onClickFunction, icon, text }) => {
       if (buttonRef.current.offsetWidth < firstButtonWidth) {
         clearInterval(offHoverIntervalId);
       }
-      setOnHoverIntervalId(
-        setInterval(() => {
-          if (buttonRef.current.offsetWidth < firstButtonWidth) {
-            setButtonWidth((prev) => prev + 2);
-          } else {
-            clearInterval(onHoverIntervalId);
-          }
-        }, 5)
-      );
+      const intervalId = setInterval(() => {
+        if (buttonRef.current.offsetWidth < firstButtonWidth) {
+          setButtonWidth((prev) => prev + 2);
+        } else {
+          clearInterval(intervalId);
+        }
+      }, 5);
+      setOnHoverIntervalId(intervalId);
     }
   };
 
@@ -54,15 +59,14 @@ export const Button = ({onClickFunction, icon, text }) => {
       if (buttonRef.current.offsetWidth > afterRenderButtonWidth) {
         clearInterval(onHoverIntervalId);
       }
-      setOffHoverIntervalId(
-        setInterval(() => {
-          if (buttonRef.current.offsetWidth > afterRenderButtonWidth) {
-            setButtonWidth((prev) => prev - 2);
-          } else {
-            clearInterval(offHoverIntervalId);
-          }
-        }, 5)
-      );
+      const intervalId = setInterval(() => {
+        if (buttonRef.current.offsetWidth > afterRenderButtonWidth) {
+          setButtonWidth((prev) => prev - 2);
+        } else {
+          clearInterval(intervalId);
+        }
+      }, 5);
+      setOffHoverIntervalId(intervalId);
     }
   };
 
