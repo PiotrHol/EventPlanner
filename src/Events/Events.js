@@ -7,6 +7,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { Event } from "../Event/Event";
 import { Button } from "../Button/Button";
 import { Popup } from "../Popup/Popup";
+import { AddEvent } from "../AddEvent/AddEvent";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addEvent } from "../redux/actions/eventsActions";
@@ -76,12 +77,13 @@ export const Events = ({ events, isArchive }) => {
                 }}
                 icon="far fa-plus-square"
                 text="Dodaj wydarzenie"
+                isStatic={false}
               />
             </div>
             <Popup isShow={isShowAddEventPopup} setIsShow={(value) => setIsShowAddEventPopup(value)}>
-              Add event form
+              <AddEvent setIsShow={(value) => setIsShowAddEventPopup(value)} />
             </Popup>
-            <div className="home-page__add-event">
+            {/* <div className="home-page__add-event">
               {isAddEvent && (
                 <div className="home-page__add-event-box">
                   <form>
@@ -116,7 +118,7 @@ export const Events = ({ events, isArchive }) => {
                   </form>
                 </div>
               )}
-            </div>
+            </div> */}
             <div className="home-page__events">
               {events.map((singleEvent) => (
                 <EventInfo
