@@ -15,6 +15,7 @@
   overflow: hidden;
   white-space: nowrap;
   display: flex;
+  align-items: center;
   -webkit-transition: color 1s ease-out, border 1s ease-out;
   -moz-transition: color 1s ease-out, border 1s ease-out;
   -o-transition: color 1s ease-out, border 1s ease-out;
@@ -50,6 +51,10 @@
     margin-right: 0;
     font-size: 18px;
 
+    &--static {
+      margin-right: 5px;
+    }
+
     @include mediaDesktop {
       margin-right: 10px;
       font-size: 20px;
@@ -59,5 +64,9 @@
   &__text {
     display: inline-block;
     opacity: 0;
+
+    &--static {
+      opacity: 1;
+    }
   }
 }
