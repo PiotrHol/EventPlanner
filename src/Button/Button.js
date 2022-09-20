@@ -40,6 +40,7 @@ export const Button = ({ onClickFunction, icon, text, isStatic }) => {
 
       return () => window.removeEventListener("resize", handleResize);
     }
+    // eslint-disable-next-line
   }, [windowXDimension]);
 
   const onHoverFunction = () => {
