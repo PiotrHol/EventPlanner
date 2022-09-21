@@ -80,13 +80,14 @@ export const Button = ({ onClickFunction, icon, text, isStatic }) => {
   };
 
   return (
-    <div
+    <button
       className="button"
       ref={buttonRef}
       style={{ width: buttonWidth }}
       onMouseEnter={onHoverFunction}
       onMouseLeave={offHoverFunction}
-      onClick={onClickFunction}
+      onClick={onClickFunction && onClickFunction}
+      type="submit"
     >
       <span
         className={
@@ -102,6 +103,6 @@ export const Button = ({ onClickFunction, icon, text, isStatic }) => {
       >
         {text}
       </span>
-    </div>
+    </button>
   );
 };
