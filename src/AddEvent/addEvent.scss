@@ -38,11 +38,12 @@
     font-weight: 500;
     padding: 2px 4px;
     transition: top 0.2s ease-out;
+    cursor: pointer;
 
     &--focus {
       top: -15px;
       left: 0;
-      background-color: $whiteColor;
+      background-color: transparent;
       transition: top 0.2s ease-out;
     }
 
@@ -60,13 +61,30 @@
     color: $textColor;
     border-bottom: 2px solid $borderColor;
     background: transparent;
+    cursor: pointer;
+
+    &--date {
+      color: transparent;
+    }
+
+    &--focus {
+      color: $textColor;
+    }
+
+    &--error {
+      border-bottom: 2px solid $redColor !important;
+      & + .add-event__label {
+        color: $redColor;
+      }
+    }
 
     &:focus {
       border-color: $textColor;
+      color: $textColor;
       & + .add-event__label {
         top: -15px;
         left: 0;
-        background-color: $whiteColor;
+        background-color: transparent;
         transition: top 0.2s ease-out;
       }
     }
