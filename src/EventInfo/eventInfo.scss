@@ -1,6 +1,7 @@
 @import "../scss/main.scss";
 
-.home-page__event {
+.home-page {
+  &__event {
     margin-top: 20px;
     background: $eventBg;
     box-shadow: 1px 1px 4px 0 $shadowColor;
@@ -10,128 +11,133 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Bungee', cursive;
+    font-family: "Bungee", cursive;
     padding: 20px;
     font-size: 18px;
+  }
 
-    .home-page__event-name, .home-page__event-place, .home-page__event-date, .home-page__event-guests, .home-page__event-actions {
-        word-wrap: break-word;
+  &__event-name,
+  &__event-place,
+  &__event-date,
+  &__event-guests,
+  &__event-actions {
+    word-wrap: break-word;
+  }
+
+  &__event-name {
+    width: 70%;
+
+    @include mediaTablet {
+      width: 40%;
     }
 
-    .home-page__event-name {
-        width: 70%;
-
-        @include mediaTablet {
-            width: 40%;
-        }
-
-        @include mediaHeader {
-            width: 30%;
-        }
-
-        @include mediaDesktop {
-            width: 32%;
-            font-size: 20px;
-        }
-
-        @include mediaMax {
-            width: 28%;
-            font-size: 22px;
-        }
+    @include mediaHeader {
+      width: 30%;
     }
 
-    .home-page__event-place {
-        display: none;
-
-        @include mediaTablet {
-            display: block;
-            width: 40%;
-        }
-
-        @include mediaHeader {
-            width: 30%;
-        }
-
-        @include mediaDesktop {
-            width: 33%;
-        }
-
-        @include mediaMax {
-            width: 32%;
-        }
+    @include mediaDesktop {
+      width: 32%;
+      font-size: 20px;
     }
 
-    .home-page__event-date {
-        display: none;
+    @include mediaMax {
+      width: 28%;
+      font-size: 22px;
+    }
+  }
 
-        @include mediaHeader {
-            display: block;
-            width: 30%;
-        }
+  &__event-place {
+    display: none;
 
-        @include mediaDesktop {
-            width: 20%;
-        }
-
-        @include mediaMax {
-            width: 15%;
-        }
+    @include mediaTablet {
+      display: block;
+      width: 40%;
     }
 
-    .home-page__event-guests {
-        display: none;
-
-        @include mediaMax {
-            display: block;
-            width: 14%;
-            text-align: center;
-        }
+    @include mediaHeader {
+      width: 30%;
     }
 
-    .home-page__event-actions {
-        width: 30%;
-        display: flex;
-        justify-content: space-around;
-
-        @include mediaTablet {
-            width: 20%;
-        }
-
-        @include mediaHeader {
-            width: 10%;
-        }
-
-        @include mediaDesktop {
-            width: 15%;
-        }
-
-        @include mediaMax {
-            width: 11%;
-            display: block;
-            text-align: right;
-        }
-
-        span {
-            font-size: 22px;
-            margin: 0 5px;
-            cursor: pointer;
-
-            @include mediaTablet {
-                font-size: 24px;
-            }
-
-            @include mediaMax {
-                font-size: 26px;
-                margin: 0 10px;
-            }
-        }
-
-        .home-page__event-edit-icon {
-            color: $textColor;
-        }
+    @include mediaDesktop {
+      width: 33%;
     }
-}
 
-.home-page__archive {
+    @include mediaMax {
+      width: 32%;
+    }
+  }
+
+  &__event-date {
+    display: none;
+
+    @include mediaHeader {
+      display: block;
+      width: 30%;
+    }
+
+    @include mediaDesktop {
+      width: 20%;
+    }
+
+    @include mediaMax {
+      width: 15%;
+    }
+  }
+
+  &__event-guests {
+    display: none;
+
+    @include mediaMax {
+      display: block;
+      width: 14%;
+      text-align: center;
+    }
+  }
+
+  &__event-actions {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+
+    @include mediaTablet {
+      width: 20%;
+    }
+
+    @include mediaHeader {
+      width: 10%;
+    }
+
+    @include mediaDesktop {
+      width: 15%;
+    }
+
+    @include mediaMax {
+      width: 11%;
+      display: block;
+      text-align: right;
+    }
+
+    span {
+      font-size: 22px;
+      margin: 0 5px;
+      cursor: pointer;
+
+      @include mediaTablet {
+        font-size: 24px;
+      }
+
+      @include mediaMax {
+        font-size: 26px;
+        margin: 0 10px;
+      }
+    }
+
+    &__event-edit-icon {
+      color: $textColor;
+    }
+  }
+
+  &__archive {
     color: $shadowColor;
+  }
 }
