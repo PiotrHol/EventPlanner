@@ -3,7 +3,7 @@
 .button {
   font-family: "Bungee", cursive;
   font-size: 16px;
-  padding: 10px;
+  padding: 11px;
   margin: 5px 0;
   background: $mainGradient;
   border: none;
@@ -44,7 +44,7 @@
 
   @include mediaDesktop {
     font-size: 18px;
-    padding: 16px;
+    padding: 16px 18px;
   }
 
   &__icon {
@@ -55,9 +55,17 @@
       margin-right: 5px;
     }
 
+    &::before {
+      font-size: 20px;
+    }
+
     @include mediaDesktop {
       margin-right: 10px;
       font-size: 20px;
+
+      &::before {
+        font-size: 24px;
+      }
     }
   }
 
