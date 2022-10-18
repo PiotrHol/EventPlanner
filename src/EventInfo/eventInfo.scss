@@ -3,17 +3,23 @@
 .home-page {
   &__event {
     margin-top: 20px;
-    background: $eventBg;
-    box-shadow: 1px 1px 4px 0 $shadowColor;
-    border: 1px solid $borderColor;
+    background: $eventInfoBg;
+    box-shadow: 0px 0px 8px 2px $shadowColor;
+    border-left: 12px solid;
+    border-image: $mainGradient;
+    border-image-slice: 1;
     color: $textColor;
     width: 100%;
+    min-height: 90px;
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     font-family: "Bungee", cursive;
-    padding: 20px;
+    padding: 0 12px;
     font-size: 18px;
+    line-height: 24px;
+    overflow: hidden;
   }
 
   &__event-name,
@@ -22,17 +28,18 @@
   &__event-guests,
   &__event-actions {
     word-wrap: break-word;
+    padding: 12px 0;
+  }
+
+  &__event-label {
+    color: $btnColorHover;
   }
 
   &__event-name {
-    width: 70%;
-
-    @include mediaTablet {
-      width: 40%;
-    }
+    width: 45%;
 
     @include mediaHeader {
-      width: 30%;
+      width: 40%;
     }
 
     @include mediaDesktop {
@@ -47,12 +54,8 @@
   }
 
   &__event-place {
-    display: none;
-
-    @include mediaTablet {
-      display: block;
-      width: 40%;
-    }
+    display: block;
+    width: 40%;
 
     @include mediaHeader {
       width: 30%;
@@ -72,7 +75,7 @@
 
     @include mediaHeader {
       display: block;
-      width: 30%;
+      width: 20%;
     }
 
     @include mediaDesktop {
@@ -95,16 +98,26 @@
   }
 
   &__event-actions {
-    width: 30%;
-    display: flex;
-    justify-content: space-around;
+    width: 50%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background: $eventInfoActionsBg;
+    border-left: 2px solid $shadowColor;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(0);
+    transition: transform 1s ease-in-out;
+    line-height: normal;
 
     @include mediaTablet {
-      width: 20%;
+      width: 40%;
     }
 
     @include mediaHeader {
-      width: 10%;
+      width: 30%;
     }
 
     @include mediaDesktop {
@@ -117,23 +130,59 @@
       text-align: right;
     }
 
-    span {
-      font-size: 22px;
-      margin: 0 5px;
+    &--hide {
+      transform: translateX(100%);
+    }
+
+    &-box {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    &-link {
+      width: 90%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      margin: 5px 0;
+      background: $btnTextColor;
+      border: 0.5px solid $btnColorHover;
+      border-radius: 20px;
+      padding: 8px 0;
+      color: $textColor;
+
+      @include mediaTablet {
+        width: 85%;
+        font-size: 14px;
+      }
+
+      a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: $textColor;
+      }
+    }
+
+    &-icon {
+      font-size: 14px;
+      margin-right: 4px;
       cursor: pointer;
 
       @include mediaTablet {
-        font-size: 24px;
+        font-size: 16px;
+        margin-right: 5px;
       }
 
       @include mediaMax {
         font-size: 26px;
-        margin: 0 10px;
+        margin-right: 10px;
       }
-    }
-
-    &__event-edit-icon {
-      color: $textColor;
     }
   }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./eventInfo.scss";
 import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
@@ -12,6 +12,7 @@ import {
 } from "../redux/actions/eventsActions";
 
 export const EventInfo = ({ data, isActive, url }) => {
+  const [showActionsSection, setShowActionsSection] = useState(false);
   const dataBase = getFirestore();
   const dataToSet = {
     name: data.name,
@@ -45,47 +46,58 @@ export const EventInfo = ({ data, isActive, url }) => {
       className={classNames("home-page__event", {
         "home-page__archive": !isActive,
       })}
+      onClick={() => setShowActionsSection((prev) => !prev)}
     >
       <div className="home-page__event-name">{data.name}</div>
       <div className="home-page__event-place">
-        Miejsce:
+        <span className="home-page__event-label">Miejsce:</span>
         <br />
         {data.place}
       </div>
       <div className="home-page__event-date">
-        Data:
+        <span className="home-page__event-label">Data:</span>
         <br />
         {data.date}
       </div>
       <div className="home-page__event-guests">
-        Goście:
+        <span className="home-page__event-label">Goście:</span>
         <br />
         {data.guests.length}
       </div>
-      <div className="home-page__event-actions">
-        {isActive ? (
-          <Link to={`${url}/${data.id}`}>
-            <span
-              className="fas fa-edit home-page__event-edit-icon"
-              title="Edytuj"
-            />
-          </Link>
-        ) : (
-          <span
-            className="fas fa-undo-alt"
-            title="Cofnij z archiwum"
-            onClick={returnBtnHandler}
-          />
-        )}
+      <div
+        className={classNames("home-page__event-actions", {
+          "home-page__event-actions--hide": !showActionsSection,
+        })}
+      >
+        <div className="home-page__event-actions-box">
+          {isActive ? (
+            <span className="home-page__event-actions-link">
+              <Link to={`${url}/${data.id}`}>
+                <span className="fas fa-edit home-page__event-actions-icon" />
+                Edytuj
+              </Link>
+            </span>
+          ) : (
+            <span className="home-page__event-actions-link">
+              <span
+                className="fas fa-undo-alt home-page__event-actions-icon"
+                onClick={returnBtnHandler}
+              />
+              Przywróć
+            </span>
+          )}
 
-        <span
-          className={classNames("fas", {
-            "fa-archive": isActive,
-            "fa-trash": !isActive,
-          })}
-          title={isActive ? "Do archiwum" : "Usuń"}
-          onClick={isActive ? archiveBtnHandler : trashBtnHandler}
-        />
+          <span className="home-page__event-actions-link">
+            <span
+              className={classNames("fas home-page__event-actions-icon", {
+                "fa-archive": isActive,
+                "fa-trash": !isActive,
+              })}
+              onClick={isActive ? archiveBtnHandler : trashBtnHandler}
+            />
+            {isActive ? "Archiwizuj" : "Usuń"}
+          </span>
+        </div>
       </div>
     </div>
   );
