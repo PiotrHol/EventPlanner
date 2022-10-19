@@ -46,7 +46,8 @@ export const EventInfo = ({ data, isActive, url }) => {
       className={classNames("home-page__event", {
         "home-page__archive": !isActive,
       })}
-      onClick={() => setShowActionsSection((prev) => !prev)}
+      onClick={() => setShowActionsSection(prev => !prev)}
+      onMouseLeave={() => setShowActionsSection(false)}
     >
       <div className="home-page__event-name">{data.name}</div>
       <div className="home-page__event-place">
@@ -71,29 +72,31 @@ export const EventInfo = ({ data, isActive, url }) => {
       >
         <div className="home-page__event-actions-box">
           {isActive ? (
-            <span className="home-page__event-actions-link">
-              <Link to={`${url}/${data.id}`}>
+            <Link to={`${url}/${data.id}`}>
+              <span className="home-page__event-actions-link">
                 <span className="fas fa-edit home-page__event-actions-icon" />
                 Edytuj
-              </Link>
-            </span>
+              </span>
+            </Link>
           ) : (
-            <span className="home-page__event-actions-link">
-              <span
-                className="fas fa-undo-alt home-page__event-actions-icon"
-                onClick={returnBtnHandler}
-              />
+            <span
+              className="home-page__event-actions-link"
+              onClick={returnBtnHandler}
+            >
+              <span className="fas fa-undo-alt home-page__event-actions-icon" />
               Przywróć
             </span>
           )}
 
-          <span className="home-page__event-actions-link">
+          <span
+            className="home-page__event-actions-link"
+            onClick={isActive ? archiveBtnHandler : trashBtnHandler}
+          >
             <span
               className={classNames("fas home-page__event-actions-icon", {
                 "fa-archive": isActive,
                 "fa-trash": !isActive,
               })}
-              onClick={isActive ? archiveBtnHandler : trashBtnHandler}
             />
             {isActive ? "Archiwizuj" : "Usuń"}
           </span>

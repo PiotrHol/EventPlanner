@@ -10,7 +10,7 @@
     border-image-slice: 1;
     color: $textColor;
     width: 100%;
-    min-height: 90px;
+    min-height: 100px;
     position: relative;
     display: flex;
     justify-content: space-around;
@@ -20,6 +20,12 @@
     font-size: 18px;
     line-height: 24px;
     overflow: hidden;
+
+    &:hover {
+      .home-page__event-actions {
+        transform: translateX(0) !important;
+      }
+    }
   }
 
   &__event-name,
@@ -43,12 +49,11 @@
     }
 
     @include mediaDesktop {
-      width: 32%;
       font-size: 20px;
     }
 
     @include mediaMax {
-      width: 28%;
+      width: 30%;
       font-size: 22px;
     }
   }
@@ -60,14 +65,6 @@
     @include mediaHeader {
       width: 30%;
     }
-
-    @include mediaDesktop {
-      width: 33%;
-    }
-
-    @include mediaMax {
-      width: 32%;
-    }
   }
 
   &__event-date {
@@ -75,10 +72,6 @@
 
     @include mediaHeader {
       display: block;
-      width: 20%;
-    }
-
-    @include mediaDesktop {
       width: 20%;
     }
 
@@ -92,7 +85,7 @@
 
     @include mediaMax {
       display: block;
-      width: 14%;
+      width: 15%;
       text-align: center;
     }
   }
@@ -121,13 +114,11 @@
     }
 
     @include mediaDesktop {
-      width: 15%;
+      width: 30%;
     }
 
     @include mediaMax {
-      width: 11%;
-      display: block;
-      text-align: right;
+      width: 20%;
     }
 
     &--hide {
@@ -141,6 +132,15 @@
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
+
+      a {
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: $textColor;
+        cursor: default;
+      }
     }
 
     &-link {
@@ -149,23 +149,33 @@
       justify-content: center;
       align-items: center;
       font-size: 12px;
-      margin: 5px 0;
-      background: $btnTextColor;
+      margin: 4px 0;
+      background-color: $btnTextColor;
       border: 0.5px solid $btnColorHover;
       border-radius: 20px;
       padding: 8px 0;
       color: $textColor;
+      cursor: pointer;
+      transition: background-color .3s ease-in-out, color .3s ease-in-out, border-color .3s ease-in-out, font-size .3s ease-in-out;
 
       @include mediaTablet {
         width: 85%;
         font-size: 14px;
       }
 
-      a {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        color: $textColor;
+      @include mediaDesktop {
+        width: 75%;
+      }
+
+      &:hover {
+        background-color: $eventInfoBg;
+        color: $btnColorHover;
+        border-color: $btnColorHover;
+        font-size: 12.5px;
+
+        @include mediaTablet {
+          font-size: 14.5px;
+        }
       }
     }
 
@@ -180,7 +190,7 @@
       }
 
       @include mediaMax {
-        font-size: 26px;
+        font-size: 18px;
         margin-right: 10px;
       }
     }
