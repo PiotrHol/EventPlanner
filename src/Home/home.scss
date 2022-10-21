@@ -219,6 +219,13 @@
     box-shadow: 5px 15px 15px 0 $shadowColor;
     position: relative;
 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+         display: none;
+    }
+
     // &::after, &::before {
     //   content: "";
     //   display: block;
