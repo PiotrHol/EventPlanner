@@ -64,11 +64,11 @@ export const Button = ({ onClickFunction, icon, text, isStatic }) => {
   const offHoverFunction = () => {
     if (!isStatic) {
       if (window.innerWidth >= 768) {
-        if (buttonRef.current.offsetWidth > afterRenderButtonWidth) {
+        if (buttonRef.current && buttonRef.current.offsetWidth > afterRenderButtonWidth) {
           clearInterval(onHoverIntervalId);
         }
         const intervalId = setInterval(() => {
-          if (buttonRef.current.offsetWidth > afterRenderButtonWidth) {
+          if (buttonRef.current && buttonRef.current.offsetWidth > afterRenderButtonWidth) {
             setButtonWidth((prev) => prev - 2);
           } else {
             clearInterval(intervalId);
