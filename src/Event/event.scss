@@ -4,8 +4,18 @@
   width: 100%;
 
   @include mediaMax {
-    display: flex;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__main-content {
+      width: 100%;
+
+      @include mediaMax {
+          flex-grow: 1;
+          display: flex;
+      }
   }
 
   &__left-content,
