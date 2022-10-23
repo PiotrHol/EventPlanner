@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./event.scss";
 import { Information } from "../Information/Information";
 import { Tasks } from "../Tasks/Tasks";
 import { Guests } from "../Guests/Guests";
 import { Cost } from "../Cost/Cost";
 import { Button } from "../Button/Button";
+import classNames from "classnames";
 
 export const Event = ({ id, name, place, date, tasks, guests }) => {
+  const [eventName, setEventName] = useState(name);
+  const [isEditName, setIsEditName] = useState(false);
+
+  const editOrSaveBtnHandler = () => {
+    setIsEditName((prev) => !prev);
+  };
+
   return (
     <div className="event-page">
       <div className="event-page__nav-bar">
         <div className="event-page__nav-bar-title">
-          <h1>{name}</h1>
+          {isEditName ? (
+            <input
+              type="text"
+              className="event-page__nav-bar-input"
+              placeholder={name}
+              maxLength={50}
+              value={eventName}
+              onChange={(e) => setEventName(e.target.value)}
+            />
+          ) : (
+            <h1>{name}</h1>
+          )}
+          <span
+            className={classNames("event-page__nav-bar-title-icon far", {
+              "fa-edit": !isEditName,
+              "fa-save": isEditName,
+            })}
+            onClick={editOrSaveBtnHandler}
+            title={isEditName ? "Zapisz" : "Edytuj"}
+          />
         </div>
         <div className="event-page__nav-bar-icons">
           <Button
