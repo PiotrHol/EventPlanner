@@ -9,13 +9,55 @@
     flex-direction: column;
   }
 
-  &__main-content {
-      width: 100%;
+  &__nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 
-      @include mediaMax {
-          flex-grow: 1;
-          display: flex;
+    &-title {
+      h1 {
+        font-family: 'Bungee', cursive;
+        font-size: 18px;
+        line-height: 22px;
+
+        @include mediaDesktop {
+          font-size: 20px;
+          line-height: 24px;
+        }
+
+        @include mediaMax {
+          font-size: 22px;
+          line-height: 26px;
+        }
       }
+    }
+
+    &-icons {
+        display: flex;
+
+        .button:first-child {
+            margin-right: 5px;
+
+            @include mediaDesktop {
+                margin-right: 10px;
+            }
+
+            @include mediaMax {
+                margin-right: 15px;
+            }
+        }
+    }
+  }
+
+  &__main-content {
+    width: 100%;
+
+    @include mediaMax {
+      flex-grow: 1;
+      display: flex;
+    }
   }
 
   &__left-content,
