@@ -6,10 +6,12 @@ import { Guests } from "../Guests/Guests";
 import { Cost } from "../Cost/Cost";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
+import { useHistory } from "react-router-dom";
 
 export const Event = ({ id, name, place, date, tasks, guests }) => {
   const [eventName, setEventName] = useState(name);
   const [isEditName, setIsEditName] = useState(false);
+  const history = useHistory();
 
   const editOrSaveBtnHandler = () => {
     setIsEditName((prev) => !prev);
@@ -42,7 +44,7 @@ export const Event = ({ id, name, place, date, tasks, guests }) => {
         </div>
         <div className="event-page__nav-bar-icons">
           <Button
-            onClickFunction={() => console.log("Back")}
+            onClickFunction={() => history.push("/home/events")}
             icon="fas fa-chevron-left"
             text="Powrót"
             isStatic={false}
