@@ -7,14 +7,39 @@ import { Cost } from "../Cost/Cost";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
 import { useHistory } from "react-router-dom";
+import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { moveToArchive } from "../redux/actions/eventsActions";
 
 export const Event = ({ id, name, place, date, tasks, guests }) => {
   const [eventName, setEventName] = useState(name);
   const [isEditName, setIsEditName] = useState(false);
   const history = useHistory();
+  const dataBase = getFirestore();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const editOrSaveBtnHandler = () => {
     setIsEditName((prev) => !prev);
+  };
+
+  const toArchiveBtnHandler = async () => {
+    let dataToSet = {
+      name,
+      place,
+      date,
+      guests,
+      tasks,
+    };
+    await setDoc(doc(dataBase, "users", user, "archive", id), dataToSet);
+    await deleteDoc(doc(dataBase, "users", user, "events", id));
+    dataToSet = {
+      ...dataToSet,
+      id,
+    };
+    dispatch(moveToArchive(dataToSet));
+    history.push("/home/events");
   };
 
   return (
@@ -50,7 +75,7 @@ export const Event = ({ id, name, place, date, tasks, guests }) => {
             isStatic={false}
           />
           <Button
-            onClickFunction={() => console.log("To archive")}
+            onClickFunction={toArchiveBtnHandler}
             icon="fas fa-archive"
             text="Archiwizuj"
             isStatic={false}
