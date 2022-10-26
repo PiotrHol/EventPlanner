@@ -58,6 +58,10 @@
       border-bottom: 2px solid $borderColor;
       padding: 5px 0;
 
+      &--error {
+        border-color: $redColor;
+      }
+
       &:focus {
         border-color: $textColor;
       }

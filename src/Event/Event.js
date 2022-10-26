@@ -14,6 +14,7 @@ import { moveToArchive } from "../redux/actions/eventsActions";
 
 export const Event = ({ id, name, place, date, tasks, guests }) => {
   const [eventName, setEventName] = useState(name);
+  const [eventNameError, setEventNameError] = useState(false);
   const [isEditName, setIsEditName] = useState(false);
   const history = useHistory();
   const dataBase = getFirestore();
@@ -21,6 +22,11 @@ export const Event = ({ id, name, place, date, tasks, guests }) => {
   const user = useSelector((state) => state.user);
 
   const editOrSaveBtnHandler = () => {
+    if (isEditName && !eventName) {
+      setEventNameError(true);
+      return;
+    }
+    setEventNameError(false);
     setIsEditName((prev) => !prev);
   };
 
@@ -49,7 +55,9 @@ export const Event = ({ id, name, place, date, tasks, guests }) => {
           {isEditName ? (
             <input
               type="text"
-              className="event-page__nav-bar-input"
+              className={classNames("event-page__nav-bar-input", {
+                "event-page__nav-bar-input--error": eventNameError,
+              })}
               placeholder={name}
               maxLength={50}
               value={eventName}
