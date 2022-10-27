@@ -7,10 +7,16 @@ import { Cost } from "../Cost/Cost";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
 import { useHistory } from "react-router-dom";
-import { setDoc, deleteDoc, doc, getFirestore } from "firebase/firestore";
+import {
+  setDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+  getFirestore,
+} from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { moveToArchive } from "../redux/actions/eventsActions";
+import { moveToArchive, updateEventData } from "../redux/actions/eventsActions";
 
 export const Event = ({ id, name, place, date, tasks, guests }) => {
   const [eventName, setEventName] = useState(name);
@@ -21,12 +27,19 @@ export const Event = ({ id, name, place, date, tasks, guests }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const editOrSaveBtnHandler = () => {
-    if (isEditName && !eventName) {
-      setEventNameError(true);
-      return;
+  const editOrSaveBtnHandler = async () => {
+    if (isEditName && name !== eventName) {
+      if (!eventName) {
+        setEventNameError(true);
+        return;
+      } else {
+        setEventNameError(false);
+        await updateDoc(doc(getFirestore(), "users", user, "events", id), {
+          name: eventName,
+        });
+        dispatch(updateEventData(id, "name", eventName));
+      }
     }
-    setEventNameError(false);
     setIsEditName((prev) => !prev);
   };
 
