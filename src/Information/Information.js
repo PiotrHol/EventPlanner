@@ -7,12 +7,10 @@ import { useSelector } from "react-redux";
 import { updateEventData } from "../redux/actions/eventsActions";
 
 export const Information = ({ eventId, name, place, date }) => {
-  const [eventName, setEventName] = useState(name);
   const [eventPlace, setEventPlace] = useState(place);
   const [eventDate, setEventDate] = useState(
     `${date.substr(6, 4)}-${date.substr(3, 2)}-${date.substr(0, 2)}`
   );
-  const [isEditName, setIsEditName] = useState(false);
   const [isEditPlace, setIsEditPlace] = useState(false);
   const [isEditDate, setIsEditDate] = useState(false);
   const user = useSelector((state) => state.user);
@@ -32,15 +30,6 @@ export const Information = ({ eventId, name, place, date }) => {
       });
       dispatch(updateEventData(id, variableName, value));
     }
-  };
-
-  const nameEditBtn = (event) => {
-    event.preventDefault();
-    if (!eventValidation(eventName)) {
-      return;
-    }
-    saveData(user, eventId, "name", name, eventName, isEditName);
-    setIsEditName((prev) => !prev);
   };
 
   const placeEditBtn = (event) => {
@@ -75,23 +64,6 @@ export const Information = ({ eventId, name, place, date }) => {
     <div className="event-page__content event-page__information">
       <div className="event-page__bar" />
       <form>
-        <div className="event-page__information-title">
-          <h3>Nazwa wydarzenia:</h3>
-          <button onClick={nameEditBtn}>
-            {isEditName ? "Zapisz" : "Edytuj"}
-          </button>
-        </div>
-        {isEditName ? (
-          <input
-            type="text"
-            placeholder="Wydarzenie musi mieć nazwę"
-            maxLength={50}
-            value={eventName}
-            onChange={(e) => setEventName(e.target.value)}
-          />
-        ) : (
-          <h5>{eventName}</h5>
-        )}
         <div className="event-page__information-title">
           <h3>Miejsce wydarzenia:</h3>
           <button onClick={placeEditBtn}>
