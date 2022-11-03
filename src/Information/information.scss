@@ -16,12 +16,12 @@
 
     &-content {
       width: 100%;
-      min-height: calc(100% - 1.5em);
+      min-height: calc(100% - 1.5rem);
       border: 2px solid $borderColor;
       border-top: none;
 
       @include mediaDesktop {
-        min-height: calc(100% - 1.95em);
+        min-height: calc(100% - 2rem);
       }
 
       form {

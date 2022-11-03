@@ -148,14 +148,14 @@
 
   &__bar {
     width: 100%;
-    height: 1.5em;
+    min-height: 1.5rem;
     background: $eventBarBg;
     background-size: contain;
     background-repeat: repeat-x;
     background-position: left;
 
     @include mediaDesktop {
-      height: 1.95em;
+      min-height: 2rem;
     }
   }
 }
