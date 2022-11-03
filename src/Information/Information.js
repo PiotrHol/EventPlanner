@@ -63,43 +63,45 @@ export const Information = ({ eventId, name, place, date }) => {
   return (
     <div className="event-page__content event-page__information">
       <div className="event-page__bar" />
-      <form>
-        <div className="event-page__information-title">
-          <h3>Miejsce wydarzenia:</h3>
-          <button onClick={placeEditBtn}>
-            {isEditPlace ? "Zapisz" : "Edytuj"}
-          </button>
-        </div>
-        {isEditPlace ? (
-          <input
-            type="text"
-            placeholder="Wydarzenie musi mieć miejsce"
-            maxLength={50}
-            value={eventPlace}
-            onChange={(e) => setEventPlace(e.target.value)}
-          />
-        ) : (
-          <h5>{eventPlace}</h5>
-        )}
-        <div className="event-page__information-title">
-          <h3>Data wydarzenia:</h3>
-          <button onClick={dateEditBtn}>
-            {isEditDate ? "Zapisz" : "Edytuj"}
-          </button>
-        </div>
-        {isEditDate ? (
-          <input
-            type="date"
-            value={eventDate}
-            onChange={(e) => setEventDate(e.target.value)}
-          />
-        ) : (
-          <h5>{`${eventDate.substr(8, 2)}.${eventDate.substr(
-            5,
-            2
-          )}.${eventDate.substr(0, 4)}`}</h5>
-        )}
-      </form>
+      <div className="event-page__information-content">
+        <form>
+          <div className="event-page__information-title">
+            <h3>Miejsce wydarzenia:</h3>
+            <button onClick={placeEditBtn}>
+              {isEditPlace ? "Zapisz" : "Edytuj"}
+            </button>
+          </div>
+          {isEditPlace ? (
+            <input
+              type="text"
+              placeholder="Wydarzenie musi mieć miejsce"
+              maxLength={50}
+              value={eventPlace}
+              onChange={(e) => setEventPlace(e.target.value)}
+            />
+          ) : (
+            <h5>{eventPlace}</h5>
+          )}
+          <div className="event-page__information-title">
+            <h3>Data wydarzenia:</h3>
+            <button onClick={dateEditBtn}>
+              {isEditDate ? "Zapisz" : "Edytuj"}
+            </button>
+          </div>
+          {isEditDate ? (
+            <input
+              type="date"
+              value={eventDate}
+              onChange={(e) => setEventDate(e.target.value)}
+            />
+          ) : (
+            <h5>{`${eventDate.substr(8, 2)}.${eventDate.substr(
+              5,
+              2
+            )}.${eventDate.substr(0, 4)}`}</h5>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
