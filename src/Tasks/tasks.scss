@@ -1,125 +1,125 @@
 @import "../scss/main.scss";
 
-.event-page__tasks {
+.event-page {
+  &__tasks {
     width: 100%;
-    font-family: 'Vollkorn', serif;
+    font-family: "Vollkorn", serif;
     font-size: 18px;
     margin-top: 20px;
-    
+
     @include mediaMax {
-        height: 58%;
-        margin-top: 2%;
+      height: 58%;
+      margin-top: 2%;
     }
 
-    .event-page__tasks-content {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
+    &-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      @include mediaMax {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      button {
+        width: 80%;
+        background: $mainGradient;
+        border: 1px solid $borderColor;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-family: "Bungee", cursive;
+        font-size: 14px;
+
+        @include mediaTablet {
+          font-size: 16px;
+          width: 50%;
+        }
+
+        @include mediaHeader {
+          width: 200px;
+        }
+      }
+    }
+
+    &-add-task {
+      margin: 10px auto;
+
+      @include mediaTablet {
+        margin: 10px 20px;
+      }
+    }
+
+    &-new {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      &-title h3 {
+        font-family: "Bungee", cursive;
+        font-size: 16px;
+        padding: 5px 10px;
+        letter-spacing: 0.02em;
+
+        @include mediaTablet {
+          font-size: 18px;
+          padding: 7px 20px;
+        }
+      }
+
+      &-title input {
+        width: 90%;
+        margin: 5px 10px;
+        font-size: 18px;
+
+        @include mediaTablet {
+          margin: 5px 20px;
+        }
+
+        @include mediaHeader {
+          width: 70%;
+        }
 
         @include mediaMax {
-            height: 100%;
-            overflow-y: auto;
+          width: 90%;
         }
+      }
 
-        button {
-            width: 80%;
-            background: $mainGradient;
-            border: 1px solid $borderColor;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-family: 'Bungee', cursive;
-            font-size: 14px;
-    
-            @include mediaTablet {
-                font-size: 16px;
-                width: 50%;
-            }
-    
-            @include mediaHeader {
-                width: 200px;
-            }
-        }
-    
-        .event-page__tasks-add-task {
-            margin: 10px auto;
-    
-            @include mediaTablet {
-                margin: 10px 20px;
-            }
-        }
-    
-        .event-page__tasks-new {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-    
-            .event-page__tasks-new-title h3 {
-                font-family: 'Bungee', cursive;
-                font-size: 16px;
-                padding: 5px 10px;
-                letter-spacing: 0.02em;
-    
-                @include mediaTablet {
-                    font-size: 18px;
-                    padding: 7px 20px;
-                }
-            }
-    
-            .event-page__tasks-new-title input {
-                width: 90%;
-                margin: 5px 10px;
-                font-size: 18px;
-    
-                @include mediaTablet {
-                    margin: 5px 20px;
-                }
-    
-                @include mediaHeader {
-                    width: 70%;
-                }
-    
-                @include mediaMax {
-                    width: 90%;
-                }
-            }
-    
-            .event-page__tasks-new-save-btn {
-                margin: 5px auto;
-    
-                @include mediaTablet {
-                    margin: 5px 20px;
-                }
-            }
+      &-save-btn {
+        margin: 5px auto;
 
-            .event-page__tasks-wrong-input {
-                color: $redColor;
-                font-size: 16px;
-                padding: 5px 10px;
-
-                @include mediaTablet {
-                    padding: 10px 20px;
-                    font-size: 18px;
-                }
-            }
+        @include mediaTablet {
+          margin: 5px 20px;
         }
-    
-        .event-page__tasks-list {
-            padding: 10px;
-    
-            @include mediaTablet {
-                padding: 10px 20px;
-            }
-    
-            .event-page__tasks-list-title {
-                font-family: 'Bungee', cursive;
-                font-size: 16px;
-    
-                @include mediaTablet {
-                    font-size: 18px;
-                }
-            }   
-        }
+      }
     }
 
-    
+    &-wrong-input {
+      color: $redColor;
+      font-size: 16px;
+      padding: 5px 10px;
+
+      @include mediaTablet {
+        padding: 10px 20px;
+        font-size: 18px;
+      }
+    }
+
+    &-list {
+      padding: 10px;
+
+      @include mediaTablet {
+        padding: 10px 20px;
+      }
+
+      &-title {
+        font-family: "Bungee", cursive;
+        font-size: 16px;
+
+        @include mediaTablet {
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }
