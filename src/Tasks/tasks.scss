@@ -16,6 +16,13 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      min-height: calc(100% - 1.5rem);
+      border: 2px solid $borderColor;
+      border-top: none;
+
+      @include mediaDesktop {
+        min-height: calc(100% - 2rem);
+      }
 
       @include mediaMax {
         height: 100%;
