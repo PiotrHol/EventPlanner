@@ -1,147 +1,148 @@
 @import "../scss/main.scss";
 
-.event-page__guests {
+.event-page {
+  &__guests {
     width: 100%;
-    font-family: 'Vollkorn', serif;
+    font-family: "Vollkorn", serif;
     font-size: 18px;
     margin-top: 20px;
 
     @include mediaDesktop {
-        width: 50%;
-        margin-right: 2%;
+      width: 50%;
+      margin-right: 2%;
     }
 
     @include mediaMax {
-        width: 100%;
-        margin-top: 0;
-        height: 65%;
+      width: 100%;
+      margin-top: 0;
+      height: 65%;
     }
 
-    .event-page__guests-content {
+    &-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      @include mediaMax {
+        height: 100%;
+        overflow-y: auto;
+      }
+
+      button {
+        width: 80%;
+        background: $mainGradient;
+        border: 1px solid $borderColor;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-family: "Bungee", cursive;
+        font-size: 14px;
+        margin: 10px 0;
+
+        @include mediaTablet {
+          width: 50%;
+          font-size: 16px;
+        }
+
+        @include mediaHeader {
+          width: 200px;
+        }
+      }
+    }
+
+    &-add-guest {
+      margin: 10px auto;
+
+      @include mediaTablet {
+        margin: 10px 20px;
+      }
+    }
+
+    &-new {
+      width: 100%;
+
+      &-inputs {
         width: 100%;
         display: flex;
         flex-direction: column;
+        align-items: center;
+
+        @include mediaHeader {
+          flex-direction: row;
+        }
 
         @include mediaMax {
-            height: 100%;
-            overflow-y: auto;
+          flex-direction: column;
+        }
+      }
+
+      &-tittle {
+        width: 100%;
+
+        h3 {
+          font-family: "Bungee", cursive;
+          font-size: 16px;
+          padding: 5px 10px;
+          letter-spacing: 0.02em;
+
+          @include mediaTablet {
+            padding: 5px 20px;
+            font-size: 18px;
+          }
+        }
+        input {
+          width: 90%;
+          margin: 5px 10px;
+          font-size: 18px;
+
+          @include mediaTablet {
+            margin: 5px 0px 5px 20px;
+          }
+        }
+      }
+
+      &-btn {
+        @include mediaTablet {
+          align-self: flex-start;
+          margin: 10px 20px;
         }
 
-        button {
-            width: 80%;
-            background: $mainGradient;
-            border: 1px solid $borderColor;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-family: 'Bungee', cursive;
-            font-size: 14px;
-            margin: 10px 0;
-
-            @include mediaTablet {
-                width: 50%;
-                font-size: 16px;
-            }
-    
-            @include mediaHeader {
-                width: 200px;
-            }
+        @include mediaHeader {
+          align-self: flex-end;
         }
 
-        .event-page__guests-add-guest {
-            margin: 10px auto;
-
-            @include mediaTablet {
-                margin: 10px 20px;
-            }
+        @include mediaMax {
+          align-self: flex-start;
         }
-
-        .event-page__guests-new {
-            width: 100%;
-
-            .event-page__guests-new-inputs {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-
-                @include mediaHeader {
-                    flex-direction: row;
-                }
-
-                @include mediaMax {
-                    flex-direction: column;
-                }
-
-                .event-page__guests-new-tittle {
-                    width: 100%;
-
-                    h3 {
-                        font-family: 'Bungee', cursive;
-                        font-size: 16px;
-                        padding: 5px 10px;
-                        letter-spacing: 0.02em;
-
-                        @include mediaTablet {
-                            padding: 5px 20px;
-                            font-size: 18px;
-                        }
-                    }
-                    input {
-                        width: 90%;
-                        margin: 5px 10px;
-                        font-size: 18px;
-
-                        @include mediaTablet {
-                            margin: 5px 0px 5px 20px;
-                        }
-                    }
-                }
-
-                .event-page__guests-new-btn {
-                    @include mediaTablet {
-                        align-self: flex-start;
-                        margin: 10px 20px;
-                    }
-
-                    @include mediaHeader {
-                        align-self: flex-end;
-                    }
-
-                    @include mediaMax {
-                        align-self: flex-start;
-                    }
-                }
-            }
-
-            .event-page__guests-wrong-input {
-                color: $redColor;
-                font-size: 16px;
-                padding: 5px 10px;
-
-                @include mediaTablet {
-                    padding: 5px 20px;
-                    font-size: 18px;
-                }
-            }
-
-        }
-
-        .event-page__guests-list {
-            width: 100%;
-            padding: 10px;
-
-            @include mediaTablet {
-                padding: 10px 20px 20px 20px;
-            }
-
-            .event-page__guests-list-tittle {
-                font-family: 'Bungee', cursive;
-                font-size: 16px;
-
-                @include mediaTablet {
-                    font-size: 18px;
-                }
-            }
-        }
+      }
     }
+
+    &-wrong-input {
+      color: $redColor;
+      font-size: 16px;
+      padding: 5px 10px;
+
+      @include mediaTablet {
+        padding: 5px 20px;
+        font-size: 18px;
+      }
+    }
+
+    &-list {
+      width: 100%;
+      padding: 10px;
+
+      @include mediaTablet {
+        padding: 10px 20px 20px 20px;
+      }
+
+      &-tittle {
+        font-family: "Bungee", cursive;
+        font-size: 16px;
+
+        @include mediaTablet {
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }
