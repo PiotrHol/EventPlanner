@@ -1,86 +1,88 @@
 @import "../scss/main.scss";
 
-.event-page__cost {
+.event-page {
+  &__cost {
     width: 100%;
-    font-family: 'Vollkorn', serif;
+    font-family: "Vollkorn", serif;
     font-size: 18px;
     margin-top: 20px;
 
     @include mediaDesktop {
-        width: 48%;
+      width: 48%;
     }
 
     @include mediaMax {
-        width: 100%;
-        height: 33%;
-        margin-top: 3%;
+      width: 100%;
+      height: 33%;
+      margin-top: 3%;
     }
 
-    .event-page__cost-content {
-        width: 100%;
-        padding: 10px;
+    &-content {
+      width: 100%;
+      padding: 10px;
+
+      @include mediaTablet {
+        padding: 10px 20px;
+      }
+
+      @include mediaMax {
+        height: 100%;
+        overflow-y: auto;
+      }
+    }
+
+    &-main {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      font-family: "Bungee", cursive;
+      font-size: 16px;
+
+      @include mediaTablet {
+        font-size: 18px;
+      }
+
+      &-value {
+        padding-left: 15px;
+        font-size: 18px;
 
         @include mediaTablet {
-            padding: 10px 20px;
+          font-size: 20px;
         }
-
-        @include mediaMax {
-            height: 100%;
-            overflow-y: auto;
-        }
-
-        .event-page__cost-main {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            font-family: 'Bungee', cursive;
-            font-size: 16px;
-
-            @include mediaTablet {
-                font-size: 18px;
-            }
-
-            .event-page__cost-main-value {
-                padding-left: 15px;
-                font-size: 18px;
-
-                @include mediaTablet {
-                    font-size: 20px;
-                }
-            }
-        }
-
-        .event-page__cost-single-title {
-            margin: 10px 0 5px 0;
-            font-family: 'Bungee', cursive;
-            font-size: 14px;
-
-            @include mediaTablet {
-                font-size: 16px;
-            }
-        }
-
-        .event-page__cost-single {
-            color: $shadowColor;
-
-            li {
-                padding: 5px 0;
-
-                span {
-                    font-size: 20px;
-                    margin-right: 10px;
-                    color: $textColor;
-
-                    @include mediaTablet {
-                        font-size: 22px;
-                    }
-                }
-            }
-
-            .event-page__cost-single-value {
-                color: $textColor;
-            }
-        }
+      }
     }
+
+    &-single {
+      color: $shadowColor;
+
+      &-title {
+        margin: 10px 0 5px 0;
+        font-family: "Bungee", cursive;
+        font-size: 14px;
+
+        @include mediaTablet {
+          font-size: 16px;
+        }
+      }
+
+      li {
+        padding: 5px 0;
+
+        span {
+          font-size: 20px;
+          margin-right: 10px;
+          color: $textColor;
+
+          @include mediaTablet {
+            font-size: 22px;
+          }
+        }
+      }
+
+      &-value {
+        color: $textColor;
+      }
+    }
+  }
 }
