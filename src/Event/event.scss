@@ -98,7 +98,7 @@
     width: 100%;
 
     @include mediaMax {
-      flex-grow: 1;
+      height: 90%;
       display: flex;
     }
   }
