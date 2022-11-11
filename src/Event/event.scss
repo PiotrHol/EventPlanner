@@ -25,6 +25,7 @@
         font-family: "Bungee", cursive;
         font-size: 18px;
         line-height: 22px;
+        color: $textColor;
 
         @include mediaDesktop {
           font-size: 20px;
