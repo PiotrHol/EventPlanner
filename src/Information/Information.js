@@ -5,6 +5,7 @@ import { eventValidation } from "../validation";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { updateEventData } from "../redux/actions/eventsActions";
+import classNames from "classnames";
 
 export const Information = ({ eventId, name, place, date }) => {
   const [eventPlace, setEventPlace] = useState(place);
@@ -69,7 +70,13 @@ export const Information = ({ eventId, name, place, date }) => {
             <div className="event-page__information-title">
               <h3>Gdzie:</h3>
               <button onClick={placeEditBtn}>
-                <span className="far fa-edit" title="Edytuj" />
+                <span
+                  className={classNames("far", {
+                    "fa-save": isEditPlace,
+                    "fa-edit": !isEditPlace,
+                  })}
+                  title={isEditPlace ? "Zapisz" : "Edytuj"}
+                />
               </button>
             </div>
             {isEditPlace ? (
@@ -88,7 +95,13 @@ export const Information = ({ eventId, name, place, date }) => {
             <div className="event-page__information-title">
               <h3>Kiedy:</h3>
               <button onClick={dateEditBtn}>
-                <span className="far fa-edit" title="Edytuj" />
+                <span
+                  className={classNames("far", {
+                    "fa-save": isEditDate,
+                    "fa-edit": !isEditDate,
+                  })}
+                  title={isEditDate ? "Zapisz" : "Edytuj"}
+                />
               </button>
             </div>
             {isEditDate ? (

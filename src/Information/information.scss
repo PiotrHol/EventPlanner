@@ -32,7 +32,7 @@
       flex-direction: column;
       align-items: flex-start;
 
-      @include mediaDesktop {
+      @include mediaHeader {
         flex-direction: row;
       }
 
@@ -44,14 +44,16 @@
       input {
         margin: 10px 0;
         width: 90%;
-        font-size: 18px;
-
-        @include mediaDesktop {
-          margin: 15px 0;
-        }
+        font-size: 15px;
+        font-family: "Bungee", cursive;
 
         @include mediaHeader {
           width: 70%;
+        }
+
+        @include mediaDesktop {
+          margin: 15px 0;
+          font-size: 17px;
         }
 
         @include mediaMax {
@@ -62,8 +64,9 @@
       h5 {
         width: 90%;
         padding: 2px 0;
+        font-family: "Bungee", cursive;
         color: $textColor;
-        font-weight: 600;
+        font-size: 15px;
         letter-spacing: 0.02em;
         line-height: 22px;
         margin: 10px 0;
@@ -73,12 +76,8 @@
         }
 
         @include mediaDesktop {
-          font-size: 22px;
+          font-size: 17px;
           margin: 15px 0;
-        }
-
-        @include mediaMax {
-          font-size: 20px;
         }
       }
     }
@@ -98,10 +97,11 @@
 
       h3 {
         font-family: "Bungee", cursive;
+        margin-right: 12px;
+        color: $btnColorHover;
         font-size: 16px;
-        margin-right: 10px;
 
-        @include mediaTablet {
+        @include mediaDesktop {
           font-size: 18px;
         }
       }
@@ -109,13 +109,8 @@
       button {
         border: none;
         background: transparent;
-        font-family: "Bungee", cursive;
-        font-size: 14px;
+        font-size: 20px;
         cursor: pointer;
-
-        @include mediaTablet {
-          font-size: 16px;
-        }
       }
     }
   }
