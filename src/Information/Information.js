@@ -35,30 +35,36 @@ export const Information = ({ eventId, name, place, date }) => {
 
   const placeEditBtn = (event) => {
     event.preventDefault();
-    if (!eventValidation(eventPlace)) {
-      return;
+    if (isEditPlace) {
+      if (eventValidation(eventPlace)) {
+        saveData(user, eventId, "place", place, eventPlace, isEditPlace);
+        setIsEditPlace((prev) => !prev);
+      }
+    } else {
+      setIsEditPlace((prev) => !prev);
     }
-    saveData(user, eventId, "place", place, eventPlace, isEditPlace);
-    setIsEditPlace((prev) => !prev);
   };
 
   const dateEditBtn = (event) => {
     event.preventDefault();
-    if (!eventValidation(eventDate)) {
-      return;
+    if (isEditDate) {
+      if (eventValidation(eventDate)) {
+        saveData(
+          user,
+          eventId,
+          "date",
+          date,
+          `${eventDate.substr(8, 2)}.${eventDate.substr(
+            5,
+            2
+          )}.${eventDate.substr(0, 4)}`,
+          isEditDate
+        );
+        setIsEditDate((prev) => !prev);
+      }
+    } else {
+      setIsEditDate((prev) => !prev);
     }
-    saveData(
-      user,
-      eventId,
-      "date",
-      date,
-      `${eventDate.substr(8, 2)}.${eventDate.substr(5, 2)}.${eventDate.substr(
-        0,
-        4
-      )}`,
-      isEditDate
-    );
-    setIsEditDate((prev) => !prev);
   };
 
   return (
