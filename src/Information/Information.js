@@ -80,7 +80,7 @@ export const Information = ({ eventId, name, place, date }) => {
               </button>
             </div>
             {isEditPlace ? (
-              <input
+              <textarea
                 type="text"
                 placeholder="Wydarzenie musi mieć miejsce"
                 maxLength={50}
