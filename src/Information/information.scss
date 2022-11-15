@@ -68,6 +68,14 @@
         border: none;
         border-bottom: 2px solid $borderColor;
         resize: none;
+
+        &:focus {
+          border-color: $textColor;
+        }
+      }
+
+      &--error {
+        border-color: $redColor !important;
       }
 
       h5 {

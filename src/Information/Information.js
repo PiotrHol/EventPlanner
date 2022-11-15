@@ -14,6 +14,8 @@ export const Information = ({ eventId, name, place, date }) => {
   );
   const [isEditPlace, setIsEditPlace] = useState(false);
   const [isEditDate, setIsEditDate] = useState(false);
+  const [eventPlaceError, setEventPlaceError] = useState(false);
+  const [eventDateError, setEventDateError] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -39,6 +41,9 @@ export const Information = ({ eventId, name, place, date }) => {
       if (eventValidation(eventPlace)) {
         saveData(user, eventId, "place", place, eventPlace, isEditPlace);
         setIsEditPlace((prev) => !prev);
+        setEventPlaceError(false);
+      } else {
+        setEventPlaceError(true);
       }
     } else {
       setIsEditPlace((prev) => !prev);
@@ -61,6 +66,9 @@ export const Information = ({ eventId, name, place, date }) => {
           isEditDate
         );
         setIsEditDate((prev) => !prev);
+        setEventDateError(false);
+      } else {
+        setEventDateError(true);
       }
     } else {
       setIsEditDate((prev) => !prev);
@@ -88,7 +96,10 @@ export const Information = ({ eventId, name, place, date }) => {
             {isEditPlace ? (
               <textarea
                 type="text"
-                placeholder="Wydarzenie musi mieć miejsce"
+                className={classNames({
+                  "event-page__information-form--error": eventPlaceError,
+                })}
+                placeholder={place}
                 maxLength={50}
                 value={eventPlace}
                 onChange={(e) => setEventPlace(e.target.value)}
@@ -113,6 +124,9 @@ export const Information = ({ eventId, name, place, date }) => {
             {isEditDate ? (
               <input
                 type="date"
+                className={classNames({
+                  "event-page__information-form--error": eventDateError,
+                })}
                 value={eventDate}
                 onChange={(e) => setEventDate(e.target.value)}
               />
