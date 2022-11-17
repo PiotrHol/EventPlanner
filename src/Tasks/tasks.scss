@@ -12,6 +12,14 @@
       margin-top: 2%;
     }
 
+    &-header {
+      width: 100%;
+      padding: 20px 20px 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     &-content {
       width: 100%;
       display: flex;
@@ -119,17 +127,14 @@
     }
 
     &-list {
-      padding: 10px;
-
-      @include mediaTablet {
-        padding: 10px 20px;
-      }
+      padding: 0 20px 10px;
 
       &-title {
         font-family: "Bungee", cursive;
         font-size: 16px;
+        color: $btnColorHover;
 
-        @include mediaTablet {
+        @include mediaDesktop {
           font-size: 18px;
         }
       }

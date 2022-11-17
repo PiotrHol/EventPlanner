@@ -3,6 +3,7 @@ import "./tasks.scss";
 import { eventValidation } from "../validation";
 import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
 import { Task } from "../Task/Task";
+import { Button } from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addNewTask } from "../redux/actions/eventsActions";
@@ -102,8 +103,16 @@ export const Tasks = ({ eventId, tasks }) => {
             )}
           </form>
         )}
-        <div className="event-page__tasks-list">
+        <div className="event-page__tasks-header">
           <h3 className="event-page__tasks-list-title">Lista zadań:</h3>
+          <Button
+            onClickFunction={() => console.log("Open add task popup")}
+            icon="fas fa-folder-plus"
+            text="Dodaj"
+            isStatic={true}
+          />
+        </div>
+        <div className="event-page__tasks-list">
           {tasks.map((singleTask) => (
             <Task key={singleTask.id} eventId={eventId} task={singleTask} />
           ))}
