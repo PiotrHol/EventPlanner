@@ -56,7 +56,7 @@ export const Tasks = ({ eventId, tasks }) => {
     <div className="event-page__content event-page__tasks">
       <div className="event-page__bar" />
       <div className="event-page__tasks-content">
-        <button
+        {/* <button
           className="event-page__tasks-add-task"
           onClick={addTaskBtnHandler}
         >
@@ -104,7 +104,7 @@ export const Tasks = ({ eventId, tasks }) => {
               </p>
             )}
           </form>
-        )}
+        )} */}
         <div className="event-page__tasks-header">
           <h3 className="event-page__tasks-list-title">Lista zadań:</h3>
           <Button

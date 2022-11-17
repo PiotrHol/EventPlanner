@@ -44,87 +44,87 @@
       }
 
       button {
-        width: 80%;
-        background: $mainGradient;
-        border: 1px solid $borderColor;
+        // width: 80%;
+        // background: $mainGradient;
+        // border: 1px solid $borderColor;
         padding: 5px 10px;
-        border-radius: 5px;
+        // border-radius: 5px;
         font-family: "Bungee", cursive;
         font-size: 14px;
 
         @include mediaTablet {
           font-size: 16px;
-          width: 50%;
+          // width: 50%;
         }
 
         @include mediaHeader {
-          width: 200px;
+          // width: 200px;
         }
       }
     }
 
-    &-add-task {
-      margin: 10px auto;
+    // &-add-task {
+    //   margin: 10px auto;
 
-      @include mediaTablet {
-        margin: 10px 20px;
-      }
-    }
+    //   @include mediaTablet {
+    //     margin: 10px 20px;
+    //   }
+    // }
 
-    &-new {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
+    // &-new {
+    //   width: 100%;
+    //   display: flex;
+    //   flex-direction: column;
 
-      &-title h3 {
-        font-family: "Bungee", cursive;
-        font-size: 16px;
-        padding: 5px 10px;
-        letter-spacing: 0.02em;
+    //   &-title h3 {
+    //     font-family: "Bungee", cursive;
+    //     font-size: 16px;
+    //     padding: 5px 10px;
+    //     letter-spacing: 0.02em;
 
-        @include mediaTablet {
-          font-size: 18px;
-          padding: 7px 20px;
-        }
-      }
+    //     @include mediaTablet {
+    //       font-size: 18px;
+    //       padding: 7px 20px;
+    //     }
+    //   }
 
-      &-title input {
-        width: 90%;
-        margin: 5px 10px;
-        font-size: 18px;
+    //   &-title input {
+    //     width: 90%;
+    //     margin: 5px 10px;
+    //     font-size: 18px;
 
-        @include mediaTablet {
-          margin: 5px 20px;
-        }
+    //     @include mediaTablet {
+    //       margin: 5px 20px;
+    //     }
 
-        @include mediaHeader {
-          width: 70%;
-        }
+    //     @include mediaHeader {
+    //       width: 70%;
+    //     }
 
-        @include mediaMax {
-          width: 90%;
-        }
-      }
+    //     @include mediaMax {
+    //       width: 90%;
+    //     }
+    //   }
 
-      &-save-btn {
-        margin: 5px auto;
+    //   &-save-btn {
+    //     margin: 5px auto;
 
-        @include mediaTablet {
-          margin: 5px 20px;
-        }
-      }
-    }
+    //     @include mediaTablet {
+    //       margin: 5px 20px;
+    //     }
+    //   }
+    // }
 
-    &-wrong-input {
-      color: $redColor;
-      font-size: 16px;
-      padding: 5px 10px;
+    // &-wrong-input {
+    //   color: $redColor;
+    //   font-size: 16px;
+    //   padding: 5px 10px;
 
-      @include mediaTablet {
-        padding: 10px 20px;
-        font-size: 18px;
-      }
-    }
+    //   @include mediaTablet {
+    //     padding: 10px 20px;
+    //     font-size: 18px;
+    //   }
+    // }
 
     &-list {
       padding: 0 20px 10px;
