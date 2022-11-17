@@ -5,6 +5,7 @@ import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
 import { Task } from "../Task/Task";
 import { Button } from "../Button/Button";
 import { Popup } from "../Popup/Popup";
+import { AddTask } from "../AddTask/AddTask";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addNewTask } from "../redux/actions/eventsActions";
@@ -117,7 +118,9 @@ export const Tasks = ({ eventId, tasks }) => {
         <Popup
           isShow={isShowAddTaskPopup}
           setIsShow={(value) => setIsShowAddTaskPopup(value)}
-        ></Popup>
+        >
+          <AddTask setIsShow={(value) => setIsShowAddTaskPopup(value)} />
+        </Popup>
         <div className="event-page__tasks-list">
           {tasks.map((singleTask) => (
             <Task key={singleTask.id} eventId={eventId} task={singleTask} />
