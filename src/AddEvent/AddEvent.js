@@ -129,7 +129,7 @@ export const AddEvent = ({ setIsShow }) => {
             Data
           </label>
         </div>
-        <Button icon="far fa-plus-square" text="Zapisz" isStatic={true} />
+        <Button icon="far fa-save" text="Zapisz" isStatic={true} />
       </form>
     </div>
   );
