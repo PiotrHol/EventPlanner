@@ -3,8 +3,12 @@ import "./addTask.scss";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
 import { useForm } from "react-hook-form";
+import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { addNewTask } from "../redux/actions/eventsActions";
 
-export const AddTask = ({ setIsShow }) => {
+export const AddTask = ({ setIsShow, eventId }) => {
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
   const [newTaskCost, setNewTaskCost] = useState("");
@@ -13,9 +17,30 @@ export const AddTask = ({ setIsShow }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const addTaskBtnHandler = (data) => {
-    console.log(data);
+  const addTaskBtnHandler = async (formData) => {
+    const dataToSet = {
+      id: Date.now(),
+      name: formData.taskName,
+      description: formData.taskDescription,
+      cost: !formData.taskCost
+        ? 0
+        : parseFloat(parseFloat(formData.taskCost).toFixed(2)),
+      isDone: false,
+    };
+
+    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+      tasks: arrayUnion(dataToSet),
+    });
+
+    dispatch(addNewTask(eventId, dataToSet));
+
+    setNewTaskName("");
+    setNewTaskDescription("");
+    setNewTaskCost("");
+    setIsShow(false);
   };
 
   return (

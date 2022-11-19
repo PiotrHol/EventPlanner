@@ -119,7 +119,10 @@ export const Tasks = ({ eventId, tasks }) => {
           isShow={isShowAddTaskPopup}
           setIsShow={(value) => setIsShowAddTaskPopup(value)}
         >
-          <AddTask setIsShow={(value) => setIsShowAddTaskPopup(value)} />
+          <AddTask
+            setIsShow={(value) => setIsShowAddTaskPopup(value)}
+            eventId={eventId}
+          />
         </Popup>
         <div className="event-page__tasks-list">
           {tasks.map((singleTask) => (
