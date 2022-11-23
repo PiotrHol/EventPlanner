@@ -1,6 +1,7 @@
 @import "../scss/main.scss";
 
-.event-page__task {
+.event-page {
+  &__task {
     width: 100%;
     margin: 10px 0;
     background: $eventBg;
@@ -8,91 +9,94 @@
     border: 1px solid $borderColor;
     padding: 10px;
     word-wrap: break-word;
-    font-family: 'Vollkorn', serif;
+    font-family: "Vollkorn", serif;
     font-size: 16px;
     font-weight: 600;
     display: flex;
 
     @include mediaHeader {
-        font-size: 18px;
+      font-size: 18px;
     }
 
-    .event-page__task-info {
-        width: 75%;
+    &-info {
+      width: 75%;
 
-        @include mediaTablet {
-            width: 78%;
-        }
+      @include mediaTablet {
+        width: 78%;
+      }
 
-        @include mediaHeader {
-            width: 85%;
-            display: flex;
-            align-items: center;
-        }
-
-        .event-page__task-name, .event-page__task-description {
-            padding: 5px;
-        }
-
-        .event-page__task-name {
-            font-weight: 800;
-            font-size: 18px;
-
-            @include mediaHeader {
-                width: 40%;
-            }
-
-            @include mediaDesktop {
-                font-size: 22px;
-                width: 35%;
-            }
-
-            @include mediaMax {
-                font-size: 20px;
-            }
-        }
-
-        .event-page__task-description {
-            @include mediaHeader {
-                width: 60%;
-            }
-
-            @include mediaDesktop {
-                width: 65%;
-            }
-        }
-    }
-
-    .event-page__task-actions {
-        width: 25%;
+      @include mediaHeader {
+        width: 85%;
         display: flex;
-        justify-content: space-around;
         align-items: center;
+      }
+    }
+
+    &-name,
+    &-description {
+      padding: 5px;
+    }
+
+    &-name {
+      font-weight: 800;
+      font-size: 18px;
+
+      @include mediaHeader {
+        width: 40%;
+      }
+
+      @include mediaDesktop {
+        font-size: 22px;
+        width: 35%;
+      }
+
+      @include mediaMax {
+        font-size: 20px;
+      }
+    }
+
+    &-description {
+      @include mediaHeader {
+        width: 60%;
+      }
+
+      @include mediaDesktop {
+        width: 65%;
+      }
+    }
+
+    &-actions {
+      width: 25%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      @include mediaTablet {
+        width: 22%;
+      }
+
+      @include mediaHeader {
+        width: 15%;
+      }
+
+      span {
+        font-size: 24px;
+        padding: 5px;
+        cursor: pointer;
 
         @include mediaTablet {
-            width: 22%;
+          font-size: 26px;
         }
-
-        @include mediaHeader {
-            width: 15%;
-        }
-
-        span {
-            font-size: 24px;
-            padding: 5px;
-            cursor: pointer;
-            
-            @include mediaTablet {
-                font-size: 26px;
-            }
-        }
+      }
     }
-}
 
-.event-page__task--inActive {
-    color: $shadowColor;
-
-    .event-page__task-info, .event-page__task-cost {
-        text-decoration: line-through;
+    &--inActive {
+      color: $shadowColor;
     }
+
+    &-info,
+    &-cost {
+      text-decoration: line-through;
+    }
+  }
 }
