@@ -57,7 +57,7 @@ export const AddTask = ({ setIsShow, eventId }) => {
             className={classNames("add-task__input", {
               "add-task__input--error": errors.taskName,
             })}
-            maxLength={60}
+            maxLength={50}
             id="new-task-name"
             value={newTaskName}
             onChange={(e) => setNewTaskName(e.target.value)}
@@ -76,12 +76,12 @@ export const AddTask = ({ setIsShow, eventId }) => {
             type="text"
             {...register("taskDescription", {
               required: true,
-              maxLength: 50,
+              maxLength: 80,
             })}
             className={classNames("add-task__input", {
               "add-task__input--error": errors.taskDescription,
             })}
-            maxLength={60}
+            maxLength={80}
             id="new-task-description"
             value={newTaskDescription}
             onChange={(e) => setNewTaskDescription(e.target.value)}
