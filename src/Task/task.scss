@@ -4,9 +4,12 @@
   &__task {
     width: 100%;
     margin: 10px 0;
-    background: $eventBg;
+    background: $eventInfoBg;
+    box-shadow: 0px 0px 3px 1px $shadowColor;
     color: $textColor;
-    border: 1px solid $borderColor;
+    border-left: 10px solid;
+    border-image: $eventBg;
+    border-image-slice: 1;
     padding: 10px;
     word-wrap: break-word;
     font-family: "Vollkorn", serif;
@@ -16,6 +19,16 @@
 
     @include mediaHeader {
       font-size: 18px;
+    }
+
+    &--inActive {
+      border-left: 10px solid;
+      border-image: $mainGradient;
+      border-image-slice: 1;
+      .event-page__task-info,
+      .event-page__task-cost {
+        text-decoration: line-through;
+      }
     }
 
     &-info {
@@ -39,29 +52,34 @@
 
     &-name {
       font-weight: 800;
-      font-size: 18px;
+      font-size: 16px;
 
       @include mediaHeader {
         width: 40%;
       }
 
       @include mediaDesktop {
-        font-size: 22px;
+        font-size: 17px;
         width: 35%;
       }
 
       @include mediaMax {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
 
     &-description {
+      font-size: 16px;
       @include mediaHeader {
         width: 60%;
       }
 
       @include mediaDesktop {
         width: 65%;
+      }
+
+      @include mediaMax {
+        font-size: 17px;
       }
     }
 
@@ -80,23 +98,14 @@
       }
 
       span {
-        font-size: 24px;
+        font-size: 22px;
         padding: 5px;
         cursor: pointer;
 
-        @include mediaTablet {
-          font-size: 26px;
+        @include mediaDesktop {
+          font-size: 24px;
         }
       }
-    }
-
-    &--inActive {
-      color: $shadowColor;
-    }
-
-    &-info,
-    &-cost {
-      text-decoration: line-through;
     }
   }
 }
