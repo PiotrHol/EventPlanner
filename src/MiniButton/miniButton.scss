@@ -1,0 +1,44 @@
+@import "../scss/main.scss";
+
+.mini-button {
+  background: $eventInfoActionsBg;
+  border: 1px solid $btnColorHover;
+  color: $textColor;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px !important;
+  margin: 0 3px;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-transition: color 1s ease-out;
+  -moz-transition: color 1s ease-out;
+  -o-transition: color 1s ease-out;
+  transition: color 1s ease-out;
+
+  &:hover {
+    color: $btnColorHover;
+    -webkit-transition: color 1s ease-out;
+    -moz-transition: color 1s ease-out;
+    -o-transition: color 1s ease-out;
+    transition: color 1s ease-out;
+  }
+
+  &--inactive {
+    color: $inactiveColor !important;
+    border-color: $inactiveColor !important;
+  }
+
+  span {
+    padding: 1px 3px;
+  }
+
+  &__icon {
+    font-size: 18px;
+  }
+
+  &__text {
+    font-size: 14px;
+  }
+}
