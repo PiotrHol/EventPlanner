@@ -1,13 +1,22 @@
 $bgColor: #e3e3e3;
-$mainGradient: linear-gradient(0deg, rgba(41,94,122,1) 0%, rgba(144,209,218,1) 100%);
-$whiteColor: #FFF;
+$mainGradient: linear-gradient(
+  0deg,
+  rgba(41, 94, 122, 1) 0%,
+  rgba(144, 209, 218, 1) 100%
+);
+$whiteColor: #fff;
 $blackColor: #000;
 $shadowColor: #c8c8c8;
+$inactiveColor: #a2a2a2;
 $btnTextColor: #e1eef0;
-$btnColorHover: rgba(41,94,122,1);
+$btnColorHover: rgba(41, 94, 122, 1);
 $borderColor: #e6e6e6;
 $textColor: #484848;
 $redColor: #ff0000;
-$eventBg: linear-gradient(180deg, rgba(245,245,245,1) 25%, rgba(223,223,223,1) 60%);
+$eventBg: linear-gradient(
+  180deg,
+  rgba(245, 245, 245, 1) 25%,
+  rgba(223, 223, 223, 1) 60%
+);
 $eventInfoBg: #fbfcf8;
 $eventInfoActionsBg: #f5fffa;
