@@ -11,6 +11,7 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { setIsDoneTask, deleteTask } from "../redux/actions/eventsActions";
+import { MiniButton } from "../MiniButton/MiniButton";
 
 export const Task = ({ eventId, task }) => {
   const dispatch = useDispatch();
@@ -52,15 +53,27 @@ export const Task = ({ eventId, task }) => {
         <div className="event-page__task-description">{task.description}</div>
       </div>
       <div className="event-page__task-actions">
-        <span
-          className={classNames(
-            { fas: task.isDone, far: !task.isDone },
-            "fa-check-square"
-          )}
-          title="Wykonane"
-          onClick={doneBtnHandler}
+        {task.isDone ? (
+          <MiniButton
+            onClickFunction={doneBtnHandler}
+            icon="fa-undo"
+            text="Przywróć"
+            isActive={task.isDone ? false : true}
+          />
+        ) : (
+          <MiniButton
+            onClickFunction={doneBtnHandler}
+            icon="fa-check"
+            text="Zrobione"
+            isActive={task.isDone ? false : true}
+          />
+        )}
+        <MiniButton
+          onClickFunction={trashBtnHandler}
+          icon="fa-trash"
+          text="Usuń"
+          isActive={task.isDone ? false : true}
         />
-        <span className="fas fa-trash" title="Usuń" onClick={trashBtnHandler} />
       </div>
     </div>
   );
