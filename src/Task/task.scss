@@ -8,7 +8,7 @@
     box-shadow: 0px 0px 3px 1px $shadowColor;
     color: $textColor;
     border-left: 10px solid;
-    border-image: $eventBg;
+    border-image: $mainGradient;
     border-image-slice: 1;
     padding: 10px;
     word-wrap: break-word;
@@ -24,7 +24,7 @@
 
     &--inActive {
       border-left: 10px solid;
-      border-image: $mainGradient;
+      border-image: $eventBg;
       border-image-slice: 1;
       .event-page__task-info,
       .event-page__task-cost {
@@ -82,26 +82,8 @@
     &-actions {
       width: auto;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
-
-      @include mediaTablet {
-        width: 22%;
-      }
-
-      @include mediaHeader {
-        width: 15%;
-      }
-
-      span {
-        font-size: 22px;
-        padding: 5px;
-        cursor: pointer;
-
-        @include mediaDesktop {
-          font-size: 24px;
-        }
-      }
     }
   }
 }
