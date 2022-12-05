@@ -1,0 +1,100 @@
+@import "../scss/main.scss";
+
+.add-guest {
+  width: 100%;
+
+  &__title {
+    width: 80%;
+    font-family: "Bungee", cursive;
+    font-size: 16px;
+    position: relative;
+    top: -43px;
+    margin-bottom: -10px;
+
+    @include mediaTablet {
+      font-size: 20px;
+    }
+  }
+
+  form {
+    width: 100%;
+  }
+
+  &__input-box {
+    width: 100%;
+    position: relative;
+    margin-bottom: 30px;
+
+    @include mediaTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 2px 4px;
+    transition: top 0.2s ease-out;
+    cursor: pointer;
+
+    &--focus {
+      top: -15px;
+      left: 0;
+      background-color: transparent;
+      transition: top 0.2s ease-out;
+    }
+
+    @include mediaTablet {
+      font-size: 18px;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px 4px !important;
+    outline: none !important;
+    border: none;
+    font-size: 14px !important;
+    color: $textColor !important;
+    border-bottom: 2px solid $borderColor;
+    background: transparent;
+    cursor: pointer;
+
+    &--focus {
+      color: $textColor !important;
+    }
+
+    &:focus {
+      border-color: $textColor;
+      color: $textColor;
+      & + .add-task__label {
+        top: -15px;
+        left: 0;
+        background-color: transparent;
+        transition: top 0.2s ease-out;
+      }
+    }
+
+    @include mediaTablet {
+      font-size: 18px !important;
+    }
+  }
+
+  button {
+    padding: 11px;
+    font-size: 16px;
+
+    @include mediaTablet {
+      font-size: 16px;
+      padding: 12px;
+    }
+
+    @include mediaDesktop {
+      font-size: 18px;
+      padding: 14px 16px;
+    }
+  }
+}
