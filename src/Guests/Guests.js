@@ -6,6 +6,7 @@ import { Guest } from "../Guest/Guest";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addNewGuest } from "../redux/actions/eventsActions";
+import { Button } from "../Button/Button";
 
 export const Guests = ({ eventId, guests }) => {
   const [isAddGuest, setIsAddGuest] = useState(false);
@@ -48,48 +49,29 @@ export const Guests = ({ eventId, guests }) => {
     <div className="event-page__content event-page__guests">
       <div className="event-page__bar" />
       <div className="event-page__guests-content">
-        <button
-          className="event-page__guests-add-guest"
-          onClick={addGuestBtnHandler}
-        >
-          Dodaj gościa
-        </button>
-        {isAddGuest && (
-          <form className="event-page__guests-new">
-            <div className="event-page__guests-new-inputs">
-              <label className="event-page__guests-new-tittle">
-                <h3>Imię i nazwisko:</h3>
-                <input
-                  type="text"
-                  maxLength={50}
-                  value={guestName}
-                  onChange={(event) => setGuestName(event.target.value)}
-                />
-              </label>
-              <button
-                className="event-page__guests-new-btn"
-                onClick={saveGuestBtnHandler}
-              >
-                Dodaj
-              </button>
-            </div>
-            {!isValid && (
-              <p className="event-page__guests-wrong-input">
-                Pole nie może być puste!
-              </p>
-            )}
-          </form>
-        )}
-        <div className="event-page__guests-list">
-          <h3 className="event-page__guests-list-tittle">
-            Lista gości ({guests.length}{" "}
-            {guests.length > 4 || guests.length < 2
-              ? guests.length === 1
-                ? "osoba"
-                : "osób"
-              : "osoby"}
-            ):
+        <div className="event-page__guests-header">
+          <h3 className="event-page__guests-title">
+            Lista gości:
+            <span>
+              {guests.length
+                ? ` (${guests.length} ${
+                    guests.length > 4 || guests.length < 2
+                      ? guests.length === 1
+                        ? "osoba"
+                        : "osób"
+                      : "osoby"
+                  })`
+                : ""}
+            </span>
           </h3>
+          <Button
+            onClickFunction={() => console.log("Open popup")}
+            icon="fas fa-user-plus"
+            text="Dodaj"
+            isStatic={true}
+          />
+        </div>
+        <div className="event-page__guests-list">
           {guests.map((singleGuest) => (
             <Guest key={singleGuest.id} eventId={eventId} guest={singleGuest} />
           ))}
