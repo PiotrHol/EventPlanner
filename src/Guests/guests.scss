@@ -42,119 +42,44 @@
       }
 
       button {
-        width: 80%;
-        background: $mainGradient;
-        border: 1px solid $borderColor;
         padding: 5px 10px;
-        border-radius: 5px;
         font-family: "Bungee", cursive;
         font-size: 14px;
-        margin: 10px 0;
 
         @include mediaTablet {
-          width: 50%;
           font-size: 16px;
         }
-
-        @include mediaHeader {
-          width: 200px;
-        }
       }
     }
 
-    &-add-guest {
-      margin: 10px auto;
-
-      @include mediaTablet {
-        margin: 10px 20px;
-      }
-    }
-
-    &-new {
+    &-header {
       width: 100%;
-
-      &-inputs {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        @include mediaHeader {
-          flex-direction: row;
-        }
-
-        @include mediaMax {
-          flex-direction: column;
-        }
-      }
-
-      &-tittle {
-        width: 100%;
-
-        h3 {
-          font-family: "Bungee", cursive;
-          font-size: 16px;
-          padding: 5px 10px;
-          letter-spacing: 0.02em;
-
-          @include mediaTablet {
-            padding: 5px 20px;
-            font-size: 18px;
-          }
-        }
-        input {
-          width: 90%;
-          margin: 5px 10px;
-          font-size: 18px;
-
-          @include mediaTablet {
-            margin: 5px 0px 5px 20px;
-          }
-        }
-      }
-
-      &-btn {
-        @include mediaTablet {
-          align-self: flex-start;
-          margin: 10px 20px;
-        }
-
-        @include mediaHeader {
-          align-self: flex-end;
-        }
-
-        @include mediaMax {
-          align-self: flex-start;
-        }
-      }
+      padding: 20px 20px 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    &-wrong-input {
-      color: $redColor;
+    &-title {
+      font-family: "Bungee", cursive;
       font-size: 16px;
-      padding: 5px 10px;
+      color: $btnColorHover;
 
       @include mediaTablet {
-        padding: 5px 20px;
         font-size: 18px;
+      }
+
+      span {
+        color: $textColor;
       }
     }
 
     &-list {
       width: 100%;
-      padding: 10px;
+      padding: 0 10px 10px;
 
       @include mediaTablet {
-        padding: 10px 20px 20px 20px;
-      }
-
-      &-tittle {
-        font-family: "Bungee", cursive;
-        font-size: 16px;
-
-        @include mediaTablet {
-          font-size: 18px;
-        }
+        padding: 0 20px 20px 20px;
       }
     }
   }
