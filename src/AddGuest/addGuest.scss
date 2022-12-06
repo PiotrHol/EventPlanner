@@ -67,6 +67,13 @@
       color: $textColor !important;
     }
 
+    &--error {
+      border-bottom: 2px solid $redColor !important;
+      & + .add-task__label {
+        color: $redColor;
+      }
+    }
+
     &:focus {
       border-color: $textColor;
       color: $textColor;

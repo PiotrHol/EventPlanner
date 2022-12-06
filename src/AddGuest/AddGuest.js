@@ -2,18 +2,52 @@ import React, { useState } from "react";
 import "./addGuest.scss";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
+import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addNewGuest } from "../redux/actions/eventsActions";
+import { useForm } from "react-hook-form";
 
-export const AddGuest = ({ setIsShow }) => {
+export const AddGuest = ({ setIsShow, eventId }) => {
   const [newGuestName, setNewGuestName] = useState("");
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const addGuestBtnHandler = async (formData) => {
+    const dataToSet = {
+      id: Date.now(),
+      name: formData.guestName,
+    };
+
+    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
+      guests: arrayUnion(dataToSet),
+    });
+
+    dispatch(addNewGuest(eventId, dataToSet));
+
+    setNewGuestName("");
+    setIsShow(false);
+  };
 
   return (
     <div className="add-guest">
       <h2 className="add-guest__title">Dodaj gościa</h2>
-      <form>
+      <form onSubmit={handleSubmit(addGuestBtnHandler)}>
         <div className="add-guest__input-box">
           <input
             type="text"
-            className="add-guest__input"
+            {...register("guestName", {
+              required: true,
+              maxLength: 50,
+            })}
+            className={classNames("add-guest__input", {
+              "add-guest__input--error": errors.guestName,
+            })}
             maxLength={50}
             id="new-guest-name"
             value={newGuestName}
