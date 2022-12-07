@@ -7,8 +7,11 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { addNewGuest } from "../redux/actions/eventsActions";
 import { Button } from "../Button/Button";
+import { Popup } from "../Popup/Popup";
+import { AddGuest } from "../AddGuest/AddGuest";
 
 export const Guests = ({ eventId, guests }) => {
+  const [isShowAddGuestPopup, setIsShowAddGuestPopup] = useState(false);
   const [isAddGuest, setIsAddGuest] = useState(false);
   const [guestName, setGuestName] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -52,6 +55,7 @@ export const Guests = ({ eventId, guests }) => {
         <div className="event-page__guests-header">
           <h3 className="event-page__guests-title">
             Lista gości:
+            {guests.length ? <br /> : ""}
             <span>
               {guests.length
                 ? ` (${guests.length} ${
@@ -65,12 +69,21 @@ export const Guests = ({ eventId, guests }) => {
             </span>
           </h3>
           <Button
-            onClickFunction={() => console.log("Open popup")}
+            onClickFunction={() => setIsShowAddGuestPopup(true)}
             icon="fas fa-user-plus"
             text="Dodaj"
             isStatic={true}
           />
         </div>
+        <Popup
+          isShow={isShowAddGuestPopup}
+          setIsShow={(value) => setIsShowAddGuestPopup(value)}
+        >
+          <AddGuest
+            setIsShow={(value) => setIsShowAddGuestPopup(value)}
+            eventId={eventId}
+          />
+        </Popup>
         <div className="event-page__guests-list">
           {guests.map((singleGuest) => (
             <Guest key={singleGuest.id} eventId={eventId} guest={singleGuest} />

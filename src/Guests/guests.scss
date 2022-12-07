@@ -70,13 +70,15 @@
       }
 
       span {
+        display: inline-block;
         color: $textColor;
+        margin-top: 4px;
       }
     }
 
     &-list {
       width: 100%;
-      padding: 0 10px 10px;
+      padding: 0 20px 10px;
 
       @include mediaTablet {
         padding: 0 20px 20px 20px;
