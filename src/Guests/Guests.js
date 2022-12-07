@@ -1,52 +1,12 @@
 import React, { useState } from "react";
 import "./guests.scss";
-import { eventValidation } from "../validation";
-import { doc, updateDoc, arrayUnion, getFirestore } from "firebase/firestore";
 import { Guest } from "../Guest/Guest";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { addNewGuest } from "../redux/actions/eventsActions";
 import { Button } from "../Button/Button";
 import { Popup } from "../Popup/Popup";
 import { AddGuest } from "../AddGuest/AddGuest";
 
 export const Guests = ({ eventId, guests }) => {
   const [isShowAddGuestPopup, setIsShowAddGuestPopup] = useState(false);
-  const [isAddGuest, setIsAddGuest] = useState(false);
-  const [guestName, setGuestName] = useState("");
-  const [isValid, setIsValid] = useState(true);
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-
-  const addGuestBtnHandler = () => {
-    setIsAddGuest((prev) => !prev);
-    setGuestName("");
-    !isValid && setIsValid(true);
-  };
-
-  const saveGuestBtnHandler = async (event) => {
-    event.preventDefault();
-
-    if (!eventValidation(guestName)) {
-      setIsValid(false);
-      return;
-    }
-
-    const dataToSet = {
-      id: Date.now(),
-      name: guestName,
-    };
-
-    await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
-      guests: arrayUnion(dataToSet),
-    });
-
-    dispatch(addNewGuest(eventId, dataToSet));
-
-    setIsAddGuest(false);
-    setGuestName("");
-    !isValid && setIsValid(true);
-  };
 
   return (
     <div className="event-page__content event-page__guests">
