@@ -1,41 +1,37 @@
 @import "../scss/main.scss";
 
-.event-page__guest {
+.event-page {
+  &__guest {
     width: 100%;
     margin: 10px 0;
-    background: $eventBg;
+    background: $eventInfoBg;
+    box-shadow: 0px 0px 3px 1px $shadowColor;
     color: $textColor;
-    border: 1px solid $borderColor;
+    border-left: 10px solid;
+    border-image: $mainGradient;
+    border-image-slice: 1;
     padding: 10px;
     word-wrap: break-word;
-    font-family: 'Vollkorn', serif;
-    font-size: 18px;
+    font-family: "Vollkorn", serif;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0.02em;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    @include mediaHeader {
-        width: 80%;
-    }
-
     @include mediaDesktop {
-        width: 100%;
+      font-size: 17px;
     }
 
-    h3 {
-        width: 90%;
-        padding: 0 5px;
+    @include mediaMax {
+      font-size: 18px;
     }
 
-    span {
-        cursor: pointer;
-        font-size: 24px;
-        padding: 0 5px;
-
-        @include mediaTablet {
-            font-size: 26px;
-        }
+    &-title {
+      width: 75%;
+      word-break: break-word;
+      padding: 0 5px;
     }
+  }
 }
