@@ -45,9 +45,17 @@ export const Guests = ({ eventId, guests }) => {
           />
         </Popup>
         <div className="event-page__guests-list">
-          {guests.map((singleGuest) => (
-            <Guest key={singleGuest.id} eventId={eventId} guest={singleGuest} />
-          ))}
+          {guests.length > 0 ? (
+            guests.map((singleGuest) => (
+              <Guest
+                key={singleGuest.id}
+                eventId={eventId}
+                guest={singleGuest}
+              />
+            ))
+          ) : (
+            <h3 className="event-page__guests-list-small-title">Bez gości</h3>
+          )}
         </div>
       </div>
     </div>

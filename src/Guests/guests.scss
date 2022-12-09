@@ -83,6 +83,17 @@
       @include mediaTablet {
         padding: 0 20px 20px 20px;
       }
+
+      &-small-title {
+        font-family: "Bungee", cursive;
+        font-size: 14px;
+        color: $textColor;
+        margin-bottom: 10px;
+
+        @include mediaTablet {
+          font-size: 16px;
+        }
+      }
     }
   }
 }
