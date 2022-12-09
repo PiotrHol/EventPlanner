@@ -31,9 +31,13 @@ export const Tasks = ({ eventId, tasks }) => {
           />
         </Popup>
         <div className="event-page__tasks-list">
-          {tasks.map((singleTask) => (
-            <Task key={singleTask.id} eventId={eventId} task={singleTask} />
-          ))}
+          {tasks.length > 0 ? (
+            tasks.map((singleTask) => (
+              <Task key={singleTask.id} eventId={eventId} task={singleTask} />
+            ))
+          ) : (
+            <h3 className="event-page__tasks-list-small-title">Brak zadań</h3>
+          )}
         </div>
       </div>
     </div>

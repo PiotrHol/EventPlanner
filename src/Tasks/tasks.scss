@@ -66,6 +66,17 @@
           font-size: 18px;
         }
       }
+
+      &-small-title {
+        font-family: "Bungee", cursive;
+        font-size: 14px;
+        color: $textColor;
+        margin-bottom: 10px;
+
+        @include mediaTablet {
+          font-size: 16px;
+        }
+      }
     }
   }
 }
