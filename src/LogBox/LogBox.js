@@ -48,9 +48,19 @@ export const LogBox = () => {
           formData.emailValue,
           formData.passwordValue
         );
-      } catch {
+      } catch (e) {
+        switch (e.code) {
+          case "auth/user-not-found":
+            setLogInErrorMessage("Nie posiadasz jeszcze konta. Załóż je!");
+            break;
+          case "auth/wrong-password":
+            setLogInErrorMessage("Niepoprawne hasło!");
+            break;
+          default:
+            setLogInErrorMessage("Niepoprawne dane!");
+            break;
+        }
         setLogInError(true);
-        setLogInErrorMessage("Niepoprawne dane");
       }
     });
   };
@@ -67,9 +77,16 @@ export const LogBox = () => {
           doc(getFirestore(), "users", `${userCredential.user.uid}`),
           {}
         );
-      } catch {
+      } catch (e) {
+        switch (e.code) {
+          case "auth/email-already-in-use":
+            setLogInErrorMessage("Podany email jest już używany!");
+            break;
+          default:
+            setLogInErrorMessage("Niepoprawne dane!");
+            break;
+        }
         setLogInError(true);
-        setLogInErrorMessage("Wystąpił błąd. Sprubuj ponownie");
       }
     });
   };
