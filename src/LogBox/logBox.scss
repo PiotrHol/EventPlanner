@@ -102,6 +102,7 @@
       letter-spacing: 0.4px;
 
       @include mediaTablet {
+        padding: 20px 0 5px 0;
         font-size: 18px;
       }
     }
@@ -123,16 +124,19 @@
         font-size: 18px;
       }
     }
+
+    &-error {
+      border-color: $redColor !important;
+    }
   }
 
   &__wrong-input {
-    color: $redColor;
-  }
+    font-size: 12px !important;
+    color: $redColor !important;
 
-  &__info-box {
-    border: 1px solid $textColor;
-    border-radius: 10px;
-    padding: 10px;
+    @include mediaTablet {
+      font-size: 16px !important;
+    }
   }
 
   &__buttons {
