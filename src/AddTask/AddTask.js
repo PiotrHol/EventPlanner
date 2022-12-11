@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./addTask.scss";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
@@ -9,25 +9,21 @@ import { useSelector } from "react-redux";
 import { addNewTask } from "../redux/actions/eventsActions";
 
 export const AddTask = ({ setIsShow, eventId }) => {
-  const [newTaskName, setNewTaskName] = useState("");
-  const [newTaskDescription, setNewTaskDescription] = useState("");
-  const [newTaskCost, setNewTaskCost] = useState("");
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const addTaskBtnHandler = async (formData) => {
+  const addTaskBtnHandler = async ({ taskName, taskDescription, taskCost }) => {
     const dataToSet = {
       id: Date.now(),
-      name: formData.taskName,
-      description: formData.taskDescription,
-      cost: !formData.taskCost
-        ? 0
-        : parseFloat(parseFloat(formData.taskCost).toFixed(2)),
+      name: taskName,
+      description: taskDescription,
+      cost: !taskCost ? 0 : parseFloat(parseFloat(taskCost).toFixed(2)),
       isDone: false,
     };
 
@@ -37,9 +33,6 @@ export const AddTask = ({ setIsShow, eventId }) => {
 
     dispatch(addNewTask(eventId, dataToSet));
 
-    setNewTaskName("");
-    setNewTaskDescription("");
-    setNewTaskCost("");
     setIsShow(false);
   };
 
@@ -59,12 +52,10 @@ export const AddTask = ({ setIsShow, eventId }) => {
             })}
             maxLength={50}
             id="new-task-name"
-            value={newTaskName}
-            onChange={(e) => setNewTaskName(e.target.value)}
           />
           <label
             className={classNames("add-task__label", {
-              "add-task__label--focus": newTaskName,
+              "add-task__label--focus": watch("taskName"),
             })}
             htmlFor="new-task-name"
           >
@@ -83,12 +74,10 @@ export const AddTask = ({ setIsShow, eventId }) => {
             })}
             maxLength={80}
             id="new-task-description"
-            value={newTaskDescription}
-            onChange={(e) => setNewTaskDescription(e.target.value)}
           />
           <label
             className={classNames("add-task__label", {
-              "add-task__label--focus": newTaskDescription,
+              "add-task__label--focus": watch("taskDescription"),
             })}
             htmlFor="new-task-description"
           >
@@ -105,17 +94,15 @@ export const AddTask = ({ setIsShow, eventId }) => {
               "add-task__input--error": errors.taskCost,
             })}
             id="new-task-cost"
-            value={newTaskCost}
-            onChange={(e) => setNewTaskCost(e.target.value)}
           />
           <label
             className={classNames("add-task__label", {
-              "add-task__label--focus": newTaskCost,
+              "add-task__label--focus": watch("taskCost"),
             })}
             htmlFor="new-task-cost"
           >
             Kwota{" "}
-            {!newTaskCost && (
+            {!watch("taskCost") && (
               <span className="add-task__label--additional">(Opcjonalnie)</span>
             )}
           </label>
