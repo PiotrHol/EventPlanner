@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./addGuest.scss";
 import classNames from "classnames";
 import { Button } from "../Button/Button";
@@ -9,19 +9,19 @@ import { addNewGuest } from "../redux/actions/eventsActions";
 import { useForm } from "react-hook-form";
 
 export const AddGuest = ({ setIsShow, eventId }) => {
-  const [newGuestName, setNewGuestName] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
-  const addGuestBtnHandler = async (formData) => {
+  const addGuestBtnHandler = async ({ guestName }) => {
     const dataToSet = {
       id: Date.now(),
-      name: formData.guestName,
+      name: guestName,
     };
 
     await updateDoc(doc(getFirestore(), "users", user, "events", eventId), {
@@ -30,7 +30,6 @@ export const AddGuest = ({ setIsShow, eventId }) => {
 
     dispatch(addNewGuest(eventId, dataToSet));
 
-    setNewGuestName("");
     setIsShow(false);
   };
 
@@ -50,12 +49,10 @@ export const AddGuest = ({ setIsShow, eventId }) => {
             })}
             maxLength={50}
             id="new-guest-name"
-            value={newGuestName}
-            onChange={(e) => setNewGuestName(e.target.value)}
           />
           <label
             className={classNames("add-guest__label", {
-              "add-guest__label--focus": newGuestName,
+              "add-guest__label--focus": watch("guestName"),
             })}
             htmlFor="new-guest-name"
           >
