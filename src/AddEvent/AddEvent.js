@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./addEvent.scss";
 import { Button } from "../Button/Button";
 import { setDoc, doc, getFirestore } from "firebase/firestore";
@@ -9,25 +9,23 @@ import { useForm } from "react-hook-form";
 import classNames from "classnames";
 
 export const AddEvent = ({ setIsShow }) => {
-  const [newEventName, setNewEventName] = useState("");
-  const [newEventPlace, setNewEventPlace] = useState("");
-  const [newEventDate, setNewEventDate] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
-  const addEventBtnHandler = async (data) => {
+  const addEventBtnHandler = async ({ eventName, eventDate, eventPlace }) => {
     const dataToSet = {
-      name: newEventName,
-      place: newEventPlace,
-      date: `${newEventDate.substr(8, 2)}.${newEventDate.substr(
+      name: eventName,
+      place: eventPlace,
+      date: `${eventDate.substr(8, 2)}.${eventDate.substr(
         5,
         2
-      )}.${newEventDate.substr(0, 4)}`,
+      )}.${eventDate.substr(0, 4)}`,
       guests: [],
       tasks: [],
     };
@@ -46,9 +44,6 @@ export const AddEvent = ({ setIsShow }) => {
       })
     );
 
-    setNewEventName("");
-    setNewEventPlace("");
-    setNewEventDate("");
     setIsShow(false);
   };
 
@@ -68,12 +63,10 @@ export const AddEvent = ({ setIsShow }) => {
             })}
             maxLength={50}
             id="new-event-name"
-            value={newEventName}
-            onChange={(e) => setNewEventName(e.target.value)}
           />
           <label
             className={classNames("add-event__label", {
-              "add-event__label--focus": newEventName,
+              "add-event__label--focus": watch("eventName"),
             })}
             htmlFor="new-event-name"
           >
@@ -92,12 +85,10 @@ export const AddEvent = ({ setIsShow }) => {
             })}
             maxLength={50}
             id="new-event-place"
-            value={newEventPlace}
-            onChange={(e) => setNewEventPlace(e.target.value)}
           />
           <label
             className={classNames("add-event__label", {
-              "add-event__label--focus": newEventPlace,
+              "add-event__label--focus": watch("eventPlace"),
             })}
             htmlFor="new-event-place"
           >
@@ -111,18 +102,14 @@ export const AddEvent = ({ setIsShow }) => {
             className={classNames(
               "add-event__input",
               "add-event__input--date",
-              { "add-event__input--focus": newEventDate },
+              { "add-event__input--focus": watch("eventDate") },
               { "add-event__input--error": errors.eventDate }
             )}
-            value={newEventDate}
             id="new-event-date"
-            onChange={(e) => {
-              setNewEventDate(e.target.value);
-            }}
           />
           <label
             className={classNames("add-event__label", {
-              "add-event__label--focus": newEventDate,
+              "add-event__label--focus": watch("eventDate"),
             })}
             htmlFor="new-event-date"
           >
