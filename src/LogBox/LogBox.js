@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./logBox.scss";
 import logo from "../images/logo.png";
 import { getFirestore } from "firebase/firestore";
@@ -15,9 +15,6 @@ import classNames from "classnames";
 
 export const LogBox = () => {
   const [newUserForm, setNewUserForm] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   const [loginInError, setLogInError] = useState(false);
   const [loginInErrorMessage, setLogInErrorMessage] = useState("");
   const auth = getAuth();
@@ -27,26 +24,31 @@ export const LogBox = () => {
     watch,
     formState: { errors },
     clearErrors,
+    reset,
   } = useForm();
+
+  useEffect(() => {
+    if (loginInError) {
+      setTimeout(() => setLogInError(false), 2000);
+    }
+  }, [loginInError]);
 
   const formChanger = (event) => {
     event.preventDefault();
     setNewUserForm((prev) => !prev);
     setLogInError(false);
     setLogInErrorMessage("");
-    setEmail("");
-    setPassword("");
-    setRepeatPassword("");
     clearErrors();
+    reset();
   };
 
-  const handleLogBtn = (formData) => {
+  const handleLogBtn = ({ emailValue, passwordValue }) => {
     setPersistence(auth, browserSessionPersistence).then(async () => {
       try {
         return await signInWithEmailAndPassword(
           auth,
-          formData.emailValue,
-          formData.passwordValue
+          emailValue,
+          passwordValue
         );
       } catch (e) {
         switch (e.code) {
@@ -65,13 +67,13 @@ export const LogBox = () => {
     });
   };
 
-  const handleNewUserBtn = (formData) => {
+  const handleNewUserBtn = ({ emailValue, passwordValue }) => {
     setPersistence(auth, browserSessionPersistence).then(async () => {
       try {
         const userCredential = await createUserWithEmailAndPassword(
           getAuth(),
-          formData.emailValue,
-          formData.passwordValue
+          emailValue,
+          passwordValue
         );
         await setDoc(
           doc(getFirestore(), "users", `${userCredential.user.uid}`),
@@ -124,8 +126,6 @@ export const LogBox = () => {
               },
             })}
             className={classNames({ "log-box__form-error": errors.emailValue })}
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
           />
           {errors.emailValue && (
             <p className="log-box__wrong-input">{errors.emailValue.message}</p>
@@ -146,8 +146,6 @@ export const LogBox = () => {
             className={classNames({
               "log-box__form-error": errors.passwordValue,
             })}
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
           />
           {errors.passwordValue && (
             <p className="log-box__wrong-input">
@@ -170,8 +168,6 @@ export const LogBox = () => {
                 className={classNames({
                   "log-box__form-error": errors.repeatPasswordValue,
                 })}
-                value={repeatPassword}
-                onChange={(event) => setRepeatPassword(event.target.value)}
               />
               {errors.repeatPasswordValue && (
                 <p className="log-box__wrong-input">
