@@ -156,7 +156,8 @@
       padding: 8px 0;
       color: $textColor;
       cursor: pointer;
-      transition: background-color .3s ease-in-out, color .3s ease-in-out, border-color .3s ease-in-out, font-size .3s ease-in-out;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+        border-color 0.3s ease-in-out, font-size 0.3s ease-in-out;
 
       @include mediaTablet {
         width: 85%;
@@ -197,6 +198,8 @@
   }
 
   &__archive {
-    color: $shadowColor;
+    border-left: 12px solid;
+    border-image: $eventBg;
+    border-image-slice: 1;
   }
 }
