@@ -3,7 +3,7 @@ import "./event.scss";
 import { Information } from "../Information/Information";
 import { Tasks } from "../Tasks/Tasks";
 import { Guests } from "../Guests/Guests";
-import { Cost } from "../Cost/Cost";
+import { Costs } from "../Costs/Costs";
 import { Button } from "../Button/Button";
 import classNames from "classnames";
 import { useHistory } from "react-router-dom";
@@ -110,7 +110,7 @@ export const Event = ({ id, name, place, date, tasks, guests }) => {
         </div>
         <div className="event-page__right-content">
           <Guests eventId={id} guests={guests} />
-          <Cost tasks={tasks} />
+          <Costs tasks={tasks} />
         </div>
       </div>
     </div>
