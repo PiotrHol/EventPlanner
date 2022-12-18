@@ -147,6 +147,7 @@
     button {
       font-family: "Bungee", cursive;
       font-size: 14px;
+      line-height: 14px;
       padding: 8px 6px;
       margin: 5px 0;
       background: $mainGradient;
@@ -171,11 +172,13 @@
 
       @include mediaTablet {
         font-size: 16px;
+        line-height: 16px;
         padding: 10px 12px;
       }
 
       @include mediaDesktop {
         font-size: 18px;
+        line-height: 18px;
         padding: 12px 16px;
       }
     }
