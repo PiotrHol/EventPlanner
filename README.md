@@ -8,10 +8,9 @@ The application used for planning and helping to organize various events. To use
 
 https://piotrhol.github.io/EventPlanner/
 
-
 ## Technologies
 
-React, Sass, React Router, Firebase, Redux, classnames, dotenv, validator
+React, Sass, React Router, Firebase, Redux, classnames, dotenv, React Hook Form
 
 ## Example screenshots
 
