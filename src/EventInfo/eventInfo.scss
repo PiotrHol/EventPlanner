@@ -149,6 +149,7 @@
       justify-content: center;
       align-items: center;
       font-size: 12px;
+      line-height: 12px;
       margin: 4px 0;
       background-color: $btnTextColor;
       border: 0.5px solid $btnColorHover;
@@ -162,6 +163,7 @@
       @include mediaTablet {
         width: 85%;
         font-size: 14px;
+        line-height: 14px;
       }
 
       @include mediaDesktop {
@@ -173,9 +175,11 @@
         color: $btnColorHover;
         border-color: $btnColorHover;
         font-size: 12.5px;
+        line-height: 12.5px;
 
         @include mediaTablet {
           font-size: 14.5px;
+          line-height: 14.5px;
         }
       }
     }
