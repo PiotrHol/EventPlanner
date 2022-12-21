@@ -3,89 +3,44 @@ import "./button.scss";
 import { useState, useEffect, useRef } from "react";
 
 export const Button = ({ onClickFunction, icon, text, isStatic }) => {
-  const [firstButtonWidth, setFirstButtonWidth] = useState(0);
-  const [buttonWidth, setButtonWidth] = useState("fit-content");
-  const [afterRenderButtonWidth, setAfterRenderButtonWidth] = useState(0);
-  const [onHoverIntervalId, setOnHoverIntervalId] = useState(null);
-  const [offHoverIntervalId, setOffHoverIntervalId] = useState(null);
-  const [windowXDimension, setWindowXDimension] = useState(window.innerWidth);
+  const [hideText, setHideText] = useState(false);
+  const [buttonWidth, setButtonWidth] = useState("");
+  const [defaultButtonWidth, setDefaultButtonWidth] = useState(0);
   const buttonRef = useRef();
 
   useEffect(() => {
-    if (!isStatic) {
-      setFirstButtonWidth(buttonRef.current.offsetWidth);
-      setButtonWidth(buttonRef.current.offsetHeight);
-      setAfterRenderButtonWidth(buttonRef.current.offsetHeight);
-      setWindowXDimension(window.innerWidth);
-
-      return () => {
-        clearInterval(onHoverIntervalId);
-        clearInterval(offHoverIntervalId);
-      };
-    }
-    // eslint-disable-next-line
+    setDefaultButtonWidth(buttonRef.current.offsetHeight);
   }, []);
 
   useEffect(() => {
-    if (!isStatic) {
-      const handleResize = () => {
-        setButtonWidth("fit-content");
-        setFirstButtonWidth(buttonRef.current.offsetWidth);
-        setButtonWidth(buttonRef.current.offsetHeight);
-        setAfterRenderButtonWidth(buttonRef.current.offsetHeight);
-      };
-
-      handleResize();
-      window.addEventListener("resize", handleResize);
-
-      return () => window.removeEventListener("resize", handleResize);
+    if (!buttonWidth && !isStatic) {
+      setButtonWidth(`${buttonRef.current.offsetWidth}px`);
+      setHideText(true);
     }
     // eslint-disable-next-line
-  }, [windowXDimension]);
+  }, [buttonWidth]);
 
-  const onHoverFunction = () => {
-    if (!isStatic) {
-      if (window.innerWidth >= 768) {
-        if (buttonRef.current.offsetWidth < firstButtonWidth) {
-          clearInterval(offHoverIntervalId);
-        }
-        const intervalId = setInterval(() => {
-          if (buttonRef.current.offsetWidth < firstButtonWidth) {
-            setButtonWidth((prev) => prev + 2);
-          } else {
-            clearInterval(intervalId);
-          }
-        }, 5);
-        setOnHoverIntervalId(intervalId);
-      }
-    }
+  const buttonStyleToChange = {
+    width: buttonWidth,
+    transition: "width .5s ease-out",
   };
 
-  const offHoverFunction = () => {
-    if (!isStatic) {
-      if (window.innerWidth >= 768) {
-        if (buttonRef.current && buttonRef.current.offsetWidth > afterRenderButtonWidth) {
-          clearInterval(onHoverIntervalId);
-        }
-        const intervalId = setInterval(() => {
-          if (buttonRef.current && buttonRef.current.offsetWidth > afterRenderButtonWidth) {
-            setButtonWidth((prev) => prev - 2);
-          } else {
-            clearInterval(intervalId);
-          }
-        }, 5);
-        setOffHoverIntervalId(intervalId);
-      }
-    }
+  const buttonStyle = {
+    width: `${defaultButtonWidth}px`,
+    transition: "width .5s ease-out",
   };
 
   return (
     <button
       className="button"
       ref={buttonRef}
-      style={{ width: buttonWidth }}
-      onMouseEnter={onHoverFunction}
-      onMouseLeave={offHoverFunction}
+      style={!hideText ? buttonStyleToChange : buttonStyle}
+      onMouseEnter={() =>
+        window.innerWidth >= 768 && !isStatic && setHideText(false)
+      }
+      onMouseLeave={() =>
+        window.innerWidth >= 768 && !isStatic && setHideText(true)
+      }
       onClick={onClickFunction && onClickFunction}
       type="submit"
     >
